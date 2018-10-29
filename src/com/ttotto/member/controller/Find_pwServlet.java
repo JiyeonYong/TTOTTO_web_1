@@ -1,4 +1,4 @@
-package kr.or.iei.member.controller;
+package com.ttotto.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.iei.member.model.service.MemberService;
-import kr.or.iei.member.model.vo.Member;
+import com.ttotto.member.model.service.MemberService;
+import com.ttotto.member.model.vo.Member;
 
 /**
- * Servlet implementation class EnrollServlet
+ * Servlet implementation class Find_pwServlet
  */
-@WebServlet(name = "Enroll", urlPatterns = { "/enroll.do" })
-public class EnrollServlet extends HttpServlet {
+@WebServlet(name = "Find_pw", urlPatterns = { "/find_pw.do" })
+public class Find_pwServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EnrollServlet() {
+    public Find_pwServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,28 +30,25 @@ public class EnrollServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 1. 인코딩
 		request.setCharacterEncoding("utf-8");
 		
-		// 2. 이전 페이지에서 전송한 값을 변수에 저장
-		Member m = new Member();
-		m.setUserId(request.getParameter("userId"));
-		m.setUserPwd(request.getParameter("userPwd"));
-		m.setUserEmail(request.getParameter("userEmail"));
-		m.setPhone(request.getParameter("Phone"));
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String password = request.getParameter("password");
 		
-	
-		// 3. 비지니스 로직
-		int result = new MemberService().insertMember(m);
+		Member member = new MemberService().selectFindMember(email, phone);
 		
-		// 4. 결과 처리 페이지로 이동
-		
-		if(result>0) {
-			response.sendRedirect("/views/member/enrollSuccess.jsp");
+		if(member != null) {
+			int result = new MemberService().updatePwdMember(email, password);
+			
+			if(result>0) {
+				response.sendRedirect("/views/member/pwdfindSuccess.jsp");
+			}
+			else {
+				response.sendRedirect("views/member/error.jsp");
+			}
 		}
-		else {
-			response.sendRedirect("/views/member/error.jsp");
-		}
+		
 		
 	}
 

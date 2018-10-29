@@ -1,10 +1,10 @@
-package kr.or.iei.member.model.service;
+package com.ttotto.member.model.service;
 
 import java.sql.Connection;
 
-import kr.or.iei.common.JDBCTemplate;
-import kr.or.iei.member.model.dao.MemberDao;
-import kr.or.iei.member.model.vo.Member;
+import com.ttotto.common.JDBCTemplate;
+import com.ttotto.member.model.dao.MemberDao;
+import com.ttotto.member.model.vo.Member;
 
 public class MemberService {
 	public Member selectOneMember(String userId, String userPwd) {

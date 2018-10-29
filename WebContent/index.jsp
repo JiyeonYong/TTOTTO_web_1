@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import = "kr.or.iei.member.model.vo.*"%>
+    import = "com.ttotto.member.model.vo.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -95,8 +95,8 @@
       <input type="password" class="form-control" id="pwd" placeholder="비밀번호 입력" name="userPwd">
     </div>
     <div class="form-group">
-      <label for="pwd_re">Password_re</label>
-      <input type="password" class="form-control" id="pwd" placeholder="비밀번호 재입력">
+      <label for="Name">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="이름 입력" name="userName">
     </div>
     <div class="form-group">
       <label for="email">Email</label>

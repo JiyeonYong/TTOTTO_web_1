@@ -1,4 +1,4 @@
-package kr.or.iei.member.controller;
+package com.ttotto.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,21 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import kr.or.iei.member.model.service.MemberService;
-import kr.or.iei.member.model.vo.Member;
+import com.ttotto.member.model.service.MemberService;
+import com.ttotto.member.model.vo.Member;
 
 /**
- * Servlet implementation class Find_pwServlet
+ * Servlet implementation class MdeleteServlet
  */
-@WebServlet(name = "Find_pw", urlPatterns = { "/find_pw.do" })
-public class Find_pwServlet extends HttpServlet {
+@WebServlet(name = "Mdelete", urlPatterns = { "/mdelete.do" })
+public class MdeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Find_pwServlet() {
+    public MdeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,26 +31,28 @@ public class Find_pwServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
+		// 1. 세션에서 탈퇴할 ID 추출
+		HttpSession session = request.getSession(false);
 		
-		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
-		String password = request.getParameter("password");
+		String userId = ((Member)session.getAttribute("member")).getUserId();
+		String userPwd = ((Member)session.getAttribute("member")).getUserPwd();
 		
-		Member member = new MemberService().selectFindMember(email, phone);
+		String Pwd = request.getParameter("password");
 		
-		if(member != null) {
-			int result = new MemberService().updatePwdMember(email, password);
+		int result = 0;
+		
+		if(Pwd.equals(userPwd)) {
+			result = new MemberService().deleteMember(userId, userPwd);
 			
+			// 3. 결과 리턴
 			if(result>0) {
-				response.sendRedirect("/views/member/pwdfindSuccess.jsp");
+				session.invalidate(); // 세션 파기
+				response.sendRedirect("/views/member/deleteSuccess.jsp");
 			}
 			else {
-				response.sendRedirect("views/member/error.jsp");
+				response.sendRedirect("/views/member/error.jsp");
 			}
 		}
-		
-		
 	}
 
 	/**

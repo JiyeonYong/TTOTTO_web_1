@@ -1,12 +1,12 @@
-package kr.or.iei.member.model.dao;
+package com.ttotto.member.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import kr.or.iei.common.JDBCTemplate;
-import kr.or.iei.member.model.vo.Member;
+import com.ttotto.common.JDBCTemplate;
+import com.ttotto.member.model.vo.Member;
 
 public class MemberDao {
 
@@ -20,7 +20,7 @@ public class MemberDao {
 
 		Member member = null;
 
-		String query = "select * from member where user_id=? AND user_pwd=?";
+		String query = "select * from USER_TABLE where user_id=? AND user_pwd=?";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -33,7 +33,8 @@ public class MemberDao {
 				member = new Member();
 				member.setUserId(rset.getString("user_id"));
 				member.setUserPwd(rset.getString("user_pwd"));
-				member.setUserEmail(rset.getString("user_email"));
+				member.setUserName(rset.getString("user_name"));
+				member.setUserEmail(rset.getString("email"));
 				member.setPhone(rset.getString("phone"));
 
 			}
@@ -52,15 +53,16 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 
-		String query = "insert into member values(?,?,?,?)";
+		String query = "insert into USER_TABLE values(?,?,?,?,?,SYSDATE)";
 
 		try {
 			pstmt = conn.prepareStatement(query);
 
 			pstmt.setString(1, m.getUserId());
 			pstmt.setString(2, m.getUserPwd());
-			pstmt.setString(3, m.getUserEmail());
-			pstmt.setString(4, m.getPhone());
+			pstmt.setString(3, m.getUserName());
+			pstmt.setString(4, m.getUserEmail());
+			pstmt.setString(5, m.getPhone());
 
 			result = pstmt.executeUpdate();
 
@@ -77,7 +79,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		String query = "select user_id from member where user_id=?";
+		String query = "select user_id from USER_TABLE where user_id=?";
 
 		String userId = null;
 
@@ -103,7 +105,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 
-		String query = "update member set user_pwd=?, phone=? where user_id=?";
+		String query = "update USER_TABLE set user_pwd=?, phone=? where user_id=?";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -126,7 +128,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 
-		String query = "delete from member where user_id =? and user_pwd=?";
+		String query = "delete from USER_TABLE where user_id =? and user_pwd=?";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -150,7 +152,7 @@ public class MemberDao {
 
 		Member member = null;
 
-		String query = "select * from member where user_email=? AND phone=?";
+		String query = "select * from USER_TABLE where email=? AND phone=?";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -163,7 +165,8 @@ public class MemberDao {
 				member = new Member();
 				member.setUserId(rset.getString("user_id"));
 				member.setUserPwd(rset.getString("user_pwd"));
-				member.setUserEmail(rset.getString("user_email"));
+				member.setUserName(rset.getString("user_name"));
+				member.setUserEmail(rset.getString("email"));
 				member.setPhone(rset.getString("phone"));
 
 			}
@@ -181,7 +184,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 
-		String query = "update member set user_pwd=? where user_email=?";
+		String query = "update USER_TABLE set user_pwd=? where email=?";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -203,7 +206,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from member where user_email=?";
+		String query = "select * from USER_TABLE where email=?";
 		
 		Member member = null;
 		
@@ -216,7 +219,7 @@ public class MemberDao {
 				member = new Member();
 				member.setUserId(rset.getString("user_id"));
 				member.setUserPwd(rset.getString("user_pwd"));
-				member.setUserEmail(rset.getString("user_email"));
+				member.setUserEmail(rset.getString("email"));
 				member.setPhone(rset.getString("phone"));
 			}
 		} catch (SQLException e) {

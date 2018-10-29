@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="kr.or.iei.member.model.vo.*" %>
+    <%@ page import="com.ttotto.member.model.vo.*" %>
 
 <%
 	Member member = (Member)request.getAttribute("member");
