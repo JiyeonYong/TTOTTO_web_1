@@ -10,6 +10,8 @@
 	<!-- 선언부에 아래와 같이 명시 -->
 	<%-- <%@ include file = "/views/layout/header.jsp" %> --%>
 	
+	
+	
 	<!--header-->
     <div class="jumbotron text-center" style="margin-bottom: 0; margin-top: 0">
         <h1>TTO TTO</h1>
