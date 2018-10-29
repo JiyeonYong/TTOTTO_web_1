@@ -1,4 +1,4 @@
-package com.ttotto.www.kakao.controller;
+package com.ttotto.kakao.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.ttotto.www.kakao.dao.KakaoDao;
-import com.ttotto.www.kakao.service.KakaoService;
-import com.ttotto.www.kakao.vo.KakaoTalk;
-import com.ttotto.www.kakao.vo.KakaoTalkId;
+import com.ttotto.kakao.model.dao.KakaoDao;
+import com.ttotto.kakao.model.service.KakaoService;
+import com.ttotto.kakao.model.vo.KakaoTalk;
+import com.ttotto.kakao.model.vo.KakaoTalkId;
 
 /**
  * Servlet implementation class KakaoViewServlet

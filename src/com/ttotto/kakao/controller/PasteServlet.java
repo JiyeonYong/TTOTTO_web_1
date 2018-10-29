@@ -1,4 +1,4 @@
-package com.ttotto.www.kakao.controller;
+package com.ttotto.kakao.controller;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ttotto.www.kakao.service.KakaoService;
-import com.ttotto.www.kakao.vo.KakaoTalk;
+import com.ttotto.kakao.model.service.KakaoService;
+import com.ttotto.kakao.model.vo.KakaoTalk;
 
 /**
  * Servlet implementation class PasteServlet

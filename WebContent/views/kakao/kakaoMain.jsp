@@ -1,7 +1,7 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.ttotto.www.kakao.dao.KakaoDao"%>
-<%@page import="com.ttotto.www.kakao.vo.KakaoTalk"%>
-<%@page import="com.ttotto.www.kakao.vo.KakaoTalkId"%>
+<%@page import="com.ttotto.kakao.model.dao.KakaoDao"%>
+<%@page import="com.ttotto.kakao.model.vo.KakaoTalk"%>
+<%@page import="com.ttotto.kakao.model.vo.KakaoTalkId"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 

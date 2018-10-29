@@ -1,4 +1,4 @@
-package com.ttotto.www.kakao.vo;
+package com.ttotto.kakao.model.vo;
 
 public class KakaoTalkId {
 	private int kakaoIdNo;

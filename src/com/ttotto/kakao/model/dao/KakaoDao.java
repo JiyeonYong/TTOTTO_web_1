@@ -1,4 +1,4 @@
-package com.ttotto.www.kakao.dao;
+package com.ttotto.kakao.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.ttotto.www.common.JDBCTemplete;
-import com.ttotto.www.kakao.vo.KakaoTalk;
-import com.ttotto.www.kakao.vo.KakaoTalkId;
+import com.ttotto.common.JDBCTemplate;
+import com.ttotto.kakao.model.vo.KakaoTalk;
+import com.ttotto.kakao.model.vo.KakaoTalkId;
 
 public class KakaoDao {
 
@@ -43,7 +43,7 @@ public class KakaoDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			JDBCTemplete.close(pstmt);
+			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}
@@ -77,7 +77,7 @@ public class KakaoDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			JDBCTemplete.close(stmt);
+			JDBCTemplate.close(stmt);
 		}
 		
 		return kakaoList;
