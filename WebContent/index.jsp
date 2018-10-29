@@ -4,42 +4,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>TTO TTO</title>
  <link rel="stylesheet" href="/CSS/bootstrap.css">
 </head>
 <body>
 <!DOCTYPE html>
 <html>
-<head>
-    
-    
+<head>  
 <meta charset="UTF-8">
-<title>Main Page</title>
-    <!-- Bootstrap4 CDN방식-->
-    
-    
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
+<title>TTO TTO</title>
     
     <style>
     
-      .fakeimg {
-        height: 200px;
-        background: #aaa;
-      }
-        
-        .card {
-            margin-bottom: 20px;
-        }
-    
+      .fakeimg { height: 200px; background: #aaa;}
+      .card { margin-bottom: 20px;}
       a:link { color: black; text-decoration: none;}
       a:visited { color: black; text-decoration: none;}
       a:hover { color: grey; text-decoration: none;}
       
     </style>
+    
 </head>
     
 <body>
