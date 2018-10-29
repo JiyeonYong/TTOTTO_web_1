@@ -90,8 +90,8 @@
       <input type="password" class="form-control" id="pwd" placeholder="비밀번호 입력" name="userPwd">
     </div>
     <div class="form-group">
-      <label for="pwd_re">Password_re</label>
-      <input type="password" class="form-control" id="pwd" placeholder="비밀번호 재입력">
+      <label for="Name">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="이름 입력" name="userName">
     </div>
     <div class="form-group">
       <label for="email">Email</label>
