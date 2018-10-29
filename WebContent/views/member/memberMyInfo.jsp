@@ -16,7 +16,8 @@
 	Member member = (Member)session.getAttribute("member");
 	
 	// 1-1. 이전 페이지에서 입력한 비밀번호와 세션에 있는 비밀번호를 확인하는 작업
-	String userPwd = request.getParameter("userPwd");
+	String userPwd = request.getParameter("password");
+	System.out.println(userPwd);
 	Member m = (Member)request.getAttribute("member");
 	
 	if(userPwd.equals(member.getUserPwd())){ // 비밀번호

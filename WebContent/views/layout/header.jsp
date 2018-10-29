@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="com.ttotto.member.model.vo.*" %>
+
+<%
+	session = request.getSession(false);
+	Member member = (Member)session.getAttribute("member");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +15,38 @@
 <body>
 	<!-- 선언부에 아래와 같이 명시 -->
 	<%-- <%@ include file = "/views/layout/header.jsp" %> --%>
+	
+	<!--header-->
+	<script>
+	 function info_passCheck(){
+		var password = window.prompt("개인 정보 보호를 위하여 확인 차 비밀번호를 입력해 주세요.");
+		document.getElementById("password").value = password;
+ 	}
+	</script>
+
+	<% if(member != null) { %>
+	<nav class="navbar navbar-expand-sm bg-light navbar-light">
+		<ul class="navbar-nav">
+			<li><%=member.getUserName() %>님 환영합니다.</li>
+			<li class="nav-item">
+			<form action="/views/member/memberMyInfo.jsp" method="post">
+      			<input type="hidden" id="password" name="password"/>
+        		<button type="submit" class="nav-link" onclick="return info_passCheck();">MyPage</button>
+    		</form>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/logout.do">logout</a>
+			</li>
+			<% } else { %>
+			<li class="nav-item">
+				<a class="nav-link" href="/views/member/login.html">Login</a>
+			</li>
+			<% } %>
+		</ul>
+	</nav>
+	
+	
+	<!-- ------------------------------------------------------------------------------------------------------------------------- -->
 	
 	<!--header-->
     <div class="jumbotron text-center" style="margin-bottom: 0; margin-top: 0">
