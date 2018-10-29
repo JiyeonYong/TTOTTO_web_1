@@ -43,6 +43,11 @@
 		Member member = (Member)session.getAttribute("member");
 %>
 	<h1>Main Page</h1>
+	
+	<script>
+	location.href= "views/project/projectList.jsp";
+	</script>
+	
 	<%= member.getUserId() %>님 환영합니다.<br>
 	<a href="/myInfo.do" onclick="return info_passCheck()">My Page</a>
 	<a href="/logout.do">로그아웃</a>
