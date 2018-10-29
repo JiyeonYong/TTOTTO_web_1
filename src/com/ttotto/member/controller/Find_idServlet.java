@@ -1,24 +1,28 @@
-package kr.or.iei.member.controller;
+package com.ttotto.member.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.ttotto.member.model.service.MemberService;
+import com.ttotto.member.model.vo.Member;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class Find_idServlet
  */
-@WebServlet(name = "Logout", urlPatterns = { "/logout.do" })
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name = "Find_id", urlPatterns = { "/find_id.do" })
+public class Find_idServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public Find_idServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,13 +32,24 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//  세션 파기
-		HttpSession session = request.getSession(false);
+		request.setCharacterEncoding("utf-8");
 		
-		if(session != null) { // 세션이 존재하는 경우
-			session.invalidate(); // 세션 파기
-			response.sendRedirect("/index.jsp");
+		String email = request.getParameter("email");
+		
+		Member member = new MemberService().selectFindIdMember(email);
+		
+		if(member != null) {
+			RequestDispatcher view = request.getRequestDispatcher("views/member/idfindSuccess.jsp");
+			
+			request.setAttribute("member", member);
+			
+			view.forward(request, response);
 		}
+		else {
+			response.sendRedirect("/views/member/error");
+		}
+		
+		
 	}
 
 	/**

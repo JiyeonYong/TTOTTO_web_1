@@ -1,4 +1,4 @@
-package kr.or.iei.member.model.vo;
+package com.ttotto.member.model.vo;
 
 public class Member {
 	private String userId;

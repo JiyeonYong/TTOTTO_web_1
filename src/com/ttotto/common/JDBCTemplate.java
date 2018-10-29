@@ -1,4 +1,4 @@
-package kr.or.iei.common;
+package com.ttotto.common;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

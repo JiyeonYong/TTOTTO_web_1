@@ -1,12 +1,12 @@
-package kr.or.iei.member.model.dao;
+package com.ttotto.member.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import kr.or.iei.common.JDBCTemplate;
-import kr.or.iei.member.model.vo.Member;
+import com.ttotto.common.JDBCTemplate;
+import com.ttotto.member.model.vo.Member;
 
 public class MemberDao {
 
