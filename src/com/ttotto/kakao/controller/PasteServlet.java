@@ -117,16 +117,25 @@ public class PasteServlet extends HttpServlet {
 	      
 	      int projNo = 1;	//projNo는 db에서 시퀀스로 넣어줌.. 
 	      
-	      KakaoTalk kt = new KakaoTalk(projNo, kakaoContents.get(0), kakaoTime.get(0), 0);
+	      ArrayList<KakaoTalk> kakaoList = new ArrayList<>();
 	      
-	      int result = new KakaoService().insertKakao(kt);
-			
+	      for(int i=0; i<kakaoId.size(); i++) {
+	    	  
+	    	  kakaoList.add(new KakaoTalk(projNo, kakaoContents.get(i), kakaoTime.get(i), 0));
+	      }
+    	  
+	      int result = new KakaoService().insertKakao(kakaoList);
+
 			if(result>0) {
+				RequestDispatcher view = request.getRequestDispatcher("views/kakao/kakaoMain.jsp");
+				request.setAttribute("kakaoList", kakaoList);
+				request.setAttribute("iskakaoList", "1");
+				view.forward(request, response);
 				
-				response.sendRedirect("/index.jsp");
 			}else {
 				System.out.println("붙여넣기에 실패했습니다.");
 			}
+			
 	}
 
 	/**

@@ -13,26 +13,28 @@ import com.ttotto.kakao.model.vo.KakaoTalkId;
 
 public class KakaoDao {
 
-	public int insertKakao(KakaoTalk kaTalk, Connection conn) {
+	public int insertKakao(ArrayList<KakaoTalk> kakaoList, Connection conn) {
 		PreparedStatement pstmt = null;
 		int result = 0;		
 		int projno = 1;
 
-		System.out.println(kaTalk);
-		System.out.println(kaTalk.getContent());
+		//System.out.println(kakaoList);
+		//System.out.println(kakaoList.getContent());
 		
 		String query = "insert into kakao values(kakaoNo.nextval,?,?,sysdate,default)";
 		
 		System.out.println(query);
 		try {
 			pstmt = conn.prepareStatement(query);
+			for(int i=0; i<kakaoList.size(); i++) {
 			pstmt.setInt(1, projno);
-			pstmt.setString(2, kaTalk.getContent());
-			result = pstmt.executeUpdate();
+			pstmt.setString(2, kakaoList.get(i).getContent());
 			
+			result += pstmt.executeUpdate();
+			}
 			if(result>0) {
 				conn.commit();
-				System.out.println("성공!");
+				System.out.println(result + "성공!");
 			}else {
 				conn.rollback();
 				System.out.println("실패!");
