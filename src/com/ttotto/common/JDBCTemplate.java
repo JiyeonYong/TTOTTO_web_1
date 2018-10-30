@@ -13,13 +13,13 @@ public class JDBCTemplate {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			try {
-<<<<<<< HEAD
+
 				conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "ttotto", "1234");
-=======
 
-				conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "project", "1234");
 
->>>>>>> be3fc326259c1732ec0c84f9b1fb2e83455ccdf0
+				//conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "project", "1234");
+				//DB 아이디 통일해서 쓰는게 좋지 않을까 
+				
 				System.out.println(conn);
 				conn.setAutoCommit(false); //auto커밋 해제
 				
