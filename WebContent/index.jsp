@@ -42,15 +42,9 @@
 	if(session.getAttribute("member") != null){ // 로그인 성공 시
 		Member member = (Member)session.getAttribute("member");
 %>
-	<h1>Main Page</h1>
-	
 	<script>
 	location.href= "views/project/projectList.jsp";
 	</script>
-	
-	<%= member.getUserId() %>님 환영합니다.<br>
-	<a href="/myInfo.do" onclick="return info_passCheck()">My Page</a>
-	<a href="/logout.do">로그아웃</a>
 	
 <% }else{%>
 
@@ -119,22 +113,7 @@
 </div>
 
 
-<% } %>
-
-<!-- MyPage 비밀번호 확인 -->
-<div style="display:none;" id="info_passCheck">
-	<center>
-	<span style="color:red;">
-	개인 정보 보호를 위하여 확인 차 비밀번호를 입력해 주세요.
-	</span>
-	<form action="/views/member/memberMyInfo.jsp" method="post">
-		비밀번호 입력 : <input type="password" name="userPwd" id="userPwd"/>
-		<input type="submit" value="체크"/>
-	</form>
-	</center>
-</div>
-    
-    
+<% } %>   
 <script type = "text/javaxcript" src = "JS/bootstrap.js"></script>
 </body>
 </html>

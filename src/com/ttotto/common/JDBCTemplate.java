@@ -13,7 +13,7 @@ public class JDBCTemplate {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			try {
-				conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "iei", "1234");
+				conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "project", "1234");
 				System.out.println(conn);
 				conn.setAutoCommit(false); //auto커밋 해제
 				
