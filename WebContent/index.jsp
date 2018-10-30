@@ -38,6 +38,15 @@
 	
 <% }else{%>
 
+<script>
+	function idCheck(){
+		var userId = document.getElementById("userId").value;
+		window.open("/views/member/idCheck.jsp?userId="+userId ,"_blank","width=500px,height=100px");
+		
+		return false;
+	}
+</script>
+
 <div class="jumbotron text-center" style="margin-bottom:0">
   <h1>TTO TTO</h1>
 </div>
@@ -72,7 +81,9 @@
   <form action="/enroll.do" method="post">
     <div class="form-group">
         <label for="id">ID</label>
-        <input type="text" class="form-control" id="id" placeholder="아이디 입력" name="userId">
+        <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId"> 
+        <button type="button" class="btn btn-outline-dark" onclick="return idCheck();">ID 중복확인</button>
+        <input type="hidden" id="checkFlag" value=0/>
     </div>
     <div class="form-group">
       <label for="pwd">Password</label>
@@ -91,7 +102,7 @@
       <input type="text" class="form-control" id="phone" placeholder="전화번호 입력 ('-'없이 입력해 주세요)" name="Phone">
     </div>
     <a href="#">이메일 확인</a><br><br>
-    <button type="submit" class="btn btn-primary">회원가입</button>
+    <button type="submit" class="btn btn-primary" onclick="return check();">회원가입</button>
   </form>
 </div>
 
@@ -103,7 +114,18 @@
 </div>
 
 
-<% } %>   
+<% } %>  
+
+<script>
+	function check(){
+		var checkFlag = document.getElementById("checkFlag").value;
+		if(checkFlag==0){
+			alert("ID 중복확인을 먼저 진행해 주세요");
+			return false;
+		}
+	}
+</script>
+ 
 <script type = "text/javaxcript" src = "JS/bootstrap.js"></script>
 </body>
 </html>
