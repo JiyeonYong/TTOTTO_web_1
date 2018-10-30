@@ -13,12 +13,12 @@ public class KakaoService {
 	
 	
 	//카카오톡 내용을 입력받아 DB에 넣는 함수
-	public int insertKakao(KakaoTalk kaTalk) {
+	public int insertKakao(ArrayList<KakaoTalk> kakaoList) {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		System.out.println(conn);
 		
-		int result = new KakaoDao().insertKakao(kaTalk, conn);
+		int result = new KakaoDao().insertKakao(kakaoList, conn);
 		
 		if(result>0) {
 			JDBCTemplate.commit(conn);
