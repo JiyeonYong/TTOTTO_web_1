@@ -1,0 +1,257 @@
+DROP  TABLE USER_TABLE;
+DROP TABLE PROJECT_MEMBER_TABLE;
+DROP TABLE PROJECT_TABLE;
+DROP TABLE PROJ_BOARD_TABLE;
+drop table proj_hash_table;
+drop table comment_table;
+drop table post_hash_table;
+drop table hash_table;
+drop table post_table;
+drop table proj_board_table;
+drop table project_table;
+drop sequence boardno;
+Drop sequence projNo;
+drop sequence hashNO;
+drop sequence postNO;
+drop sequence projmemberno;
+drop sequence commentno;
+DROP TABLE USER_TABLE CASCADE CONSTRAINTS;
+
+-- 사용자 
+CREATE TABLE  USER_TABLE  (
+    USER_ID    VARCHAR2(20)   PRIMARY KEY,
+    USER_PWD    VARCHAR2(20)   NOT NULL,
+    USER_NAME    VARCHAR2(20)   NOT NULL,
+    EMAIL    VARCHAR2(50)   NOT NULL,
+    PHONE    VARCHAR2(11)   NOT NULL,
+    USER_ENROLL_DATE    DATE 
+);
+
+
+
+-- 프로젝트
+-- PROJ_NO는 SEQUENCE를 이용해 증가(INSERT시, projNo.NEXTVAL 이용하여 증가시킬 것)
+-- PROJ_CREATER_ID는 USER_TABLE의 USER_ID를 참조하는 FOREIGN KEY
+-- PROJ_TYPE 에 PRIVATE / PUBLIC 중 하나만 입력할 수 있도록 check_type 이라는 제약 조건 추가
+CREATE SEQUENCE projNo
+start with 1
+increment by 1
+maxvalue 99999
+nocycle
+nocache;
+
+CREATE TABLE  PROJECT_TABLE  (
+    PROJ_NO    NUMBER   PRIMARY KEY,
+    PROJ_NAME    VARCHAR2(20)   NOT NULL,
+    PROJ_MEMBER_COUNT    NUMBER   NOT NULL,
+    PROJ_UPDATE_DATE    DATE,
+    PROJ_TYPE    VARCHAR2(10)   NOT NULL,
+    PROJ_CREATER_ID    VARCHAR2(20)   NOT NULL,
+     FOREIGN KEY (PROJ_CREATER_ID) REFERENCES USER_TABLE(USER_ID) ON DELETE CASCADE
+);
+
+COMMENT ON COLUMN PROJECT_TABLE.PROJ_MEMBER_COUNT IS '참여 멤버수';
+COMMENT ON COLUMN PROJECT_TABLE.PROJ_UPDATE_DATE IS '최근 업데이트 날짜';
+COMMENT ON COLUMN PROJECT_TABLE.PROJ_TYPE IS 'private/public';
+COMMENT ON COLUMN PROJECT_TABLE.PROJ_CREATER_ID IS '프로젝트 생성자';
+
+ALTER TABLE PROJECT_TABLE 
+ADD CONSTRAINT check_type 
+CHECK( PROJ_TYPE IN('private', 'public'));
+
+
+
+
+
+
+
+
+
+-- 프로젝트-멤버 테이블
+-- '멤버'는 프로젝트에 참여하고 있는 사용자를 뜻함
+-- PROJ_MEMBER_NO는 SEQUENCE를 이용해 증가
+-- PROJ_NO, USER_ID는 각각 PROJECT_TABLE.PROJ_NO 와 USER_TABLE.USER_ID 를 참조하는 FOREIGN KEY
+-- MEMBER_NICKNAME 은 프로젝트에 참가할때 정하는 닉네임으로 같은 프로젝트 내에서는 중복 불가(TABLE에서 
+-- 회원들이 어떤 프로젝트 테이블에 멤버로 참여하고 있는지 알 수 있는 테이블
+CREATE SEQUENCE projMemberNo
+start with 1
+increment by 1
+maxvalue 99999
+nocycle
+nocache;
+
+CREATE TABLE  PROJECT_MEMBER_TABLE  (
+    PROJ_MEMBER_NO     NUMBER   PRIMARY KEY,
+    PROJ_NO    NUMBER,
+     FOREIGN KEY (PROJ_NO) REFERENCES PROJECT_TABLE(PROJ_NO) ON DELETE CASCADE,
+    MEMBER_ID    VARCHAR2(20),
+     FOREIGN KEY (MEMBER_ID) REFERENCES USER_TABLE(USER_ID) ON DELETE CASCADE,
+     MEMBER_NICKNAME VARCHAR2(20) NOT NULL
+);
+
+COMMENT ON COLUMN PROJECT_MEMBER_TABLE.PROJ_NO IS '참여중인 프로젝트';
+COMMENT ON COLUMN PROJECT_MEMBER_TABLE.MEMBER_NICKNAME IS '프로젝트내 닉네임';
+
+
+
+-- 프로젝트-게시판 테이블
+-- 프로젝트당 어떤 게시판들이 존재하는지 알 수 있는 테이블
+-- PROJ_NO는 PROJECT_TABLE의 PROJ_NO를 참조하는 FOREIGN KEY
+CREATE SEQUENCE boardNo
+start with 1
+increment by 1
+maxvalue 99999
+nocycle
+nocache;
+
+CREATE TABLE  PROJ_BOARD_TABLE  (
+    BOARD_NO    NUMBER   PRIMARY KEY,
+    PROJ_NO    NUMBER,
+     FOREIGN KEY (PROJ_NO) REFERENCES PROJECT_TABLE(PROJ_NO) ON DELETE CASCADE,
+    BOARD_NAME    VARCHAR2(50)   NOT NULL
+);
+
+
+
+
+-- 게시글 테이블
+-- POST_NO는 SEQUENCE를 이용해 증가
+-- BOARD_NO, BOARD_NAME 각각 PROJ_BOARD_TABLE.BOARD_NO 와 PROJ_BOARD_TABLE.BOARD_NAME 을 참조하는 FOREIGN KEY
+-- 모든 게시판에 포함된 게시물들을 알 수 있는 테이블
+-- BOARD_NO를 통해 구분해서 보여줘야함
+-- POST_TYPE이 FILEENABLE이어야만 파일 업로드 가능
+CREATE SEQUENCE postNo
+start with 1
+increment by 1
+maxvalue 99999
+nocycle
+nocache;
+
+CREATE TABLE  POST_TABLE  (
+    POST_NO    NUMBER   PRIMARY KEY,
+    BOARD_NO    NUMBER,
+    FOREIGN KEY (BOARD_NO) REFERENCES PROJ_BOARD_TABLE(BOARD_NO) ON DELETE CASCADE,
+    SUBJECT      VARCHAR2(100)   NOT NULL,
+    CONTENTS    VARCHAR2(4000)   NOT NULL,
+    USER_ID     VARCHAR2(20),
+    FOREIGN KEY (USER_ID) REFERENCES USER_TABLE(USER_ID) ON DELETE CASCADE,
+    POST_TYPE    VARCHAR2(20)   NOT NULL,
+    POST_DATE    DATE
+);
+
+COMMENT ON COLUMN POST_TABLE.CONTENTS IS '본문';
+COMMENT ON COLUMN POST_TABLE.SUBJECT IS '제목';
+COMMENT ON COLUMN POST_TABLE.POST_TYPE IS 'normal/fileEnable';
+
+ALTER TABLE POST_TABLE 
+ADD CONSTRAINT check_post_type 
+CHECK( POST_TYPE IN('normal', 'fileEnable'));
+
+
+
+
+
+
+--댓글 테이블
+-- POST_NO는 SEQUENCE를 이용해 증가
+-- POST_NO, USER_ID 각각 POST_TABLE.POST_NO 와 USER_TABLE.USER_ID 를 참조하는 FOREIGN KEY
+-- 모든 게시물에 포함된 댓글들을 알 수 있는 테이블
+-- POST_NO 통해 구분해서 보여줘야함
+CREATE SEQUENCE commentNo
+start with 1
+increment by 1
+maxvalue 99999
+nocycle
+nocache;
+
+CREATE TABLE  COMMENT_TABLE  (
+    COMMENT_NO    NUMBER   NOT NULL,
+    POST_NO    NUMBER,
+    FOREIGN KEY (POST_NO) REFERENCES POST_TABLE(POST_NO) ON DELETE CASCADE,
+    CONTENTS VARCHAR2(500) NOT NULL,
+    USER_ID    VARCHAR2(20)   NOT NULL,
+    FOREIGN KEY (USER_ID) REFERENCES USER_TABLE(USER_ID) ON DELETE CASCADE,
+    COMMENT_DATE    DATE
+);
+
+COMMENT ON COLUMN COMMENT_TABLE.CONTENTS IS '댓글내용';
+
+
+
+
+
+
+
+
+
+
+
+
+-- 해시테이블 & 프로젝트 해시 테이블 & 게시물 해시 테이블
+-- 프로젝트/게시물의 속성을 나타내는 해시를 이용해 전체 검색에 이용할 수 있는 테이블
+-- 프로젝트 또는 게시물 생성시 해시값을 넣었을 경우 이 테이블에 추가해야함
+-- HASH_NO는 SEQUENCE를 이용해 증가
+-- HASH_TABLE은 정리하면 모든 HASH태그 값을 저장하고 있는 테이블
+-- PROJ_HASH_TABLE과 POST_HASH_TABLE은 해당 프로젝트와 게시물에 어떤 태그들이 사용되었는지 알 수 있는 테이블
+CREATE SEQUENCE hashNo
+start with 1
+increment by 1
+maxvalue 99999
+nocycle
+nocache;
+
+CREATE TABLE HASH_TABLE (
+    HASH_NO NUMBER PRIMARY KEY,
+    HASH_NAME VARCHAR2(20) NOT NULL
+);
+
+CREATE TABLE  PROJ_HASH_TABLE  (
+    HASH_NO    NUMBER,
+    FOREIGN KEY (HASH_NO) REFERENCES HASH_TABLE(HASH_NO) ON DELETE CASCADE,
+    PROJ_NO    NUMBER,
+    FOREIGN KEY (PROJ_NO) REFERENCES PROJECT_TABLE(PROJ_NO) ON DELETE CASCADE
+);
+
+CREATE TABLE  POST_HASH_TABLE  (
+    HASH_NO    NUMBER,
+    FOREIGN KEY (HASH_NO) REFERENCES HASH_TABLE(HASH_NO) ON DELETE CASCADE,
+    POST_NO    NUMBER,
+    FOREIGN KEY (POST_NO) REFERENCES POST_TABLE(POST_NO) ON DELETE CASCADE
+);
+
+
+-------------- 카카오
+create table kakao (
+    kakao_no number not null primary key,
+    proj_no number not null,
+    contents varchar(200) not null,
+    date_with_time varchar(30) not null,
+    importance number
+);
+
+commit;
+select * from kakao;
+
+insert into kakao values(2,2,'ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ',sysdate,1);
+
+
+
+create table kakao_id(
+    kakao_id_no number not null,
+    proj_no number not null,
+    view_id varchar(30) not null,
+    input_id varchar(30) not null
+);
+
+select * from kakao_id;
+
+insert into kakao_id values(1,1,'view_id','input_id');
+insert into kakao_id values(2,2,'view_id2','input_id2');
+
+select * from kakao;
+
+select * from kakao_ID;
+
+
+
+

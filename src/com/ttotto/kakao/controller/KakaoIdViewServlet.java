@@ -46,12 +46,11 @@ public class KakaoIdViewServlet extends HttpServlet {
 		
 		request.setAttribute("is_id_tool", is_id_tool);
 		
-		RequestDispatcher view = request.getRequestDispatcher("");
+		RequestDispatcher view = request.getRequestDispatcher("views/kakao/kakaoMain.jsp");
 
 		view.forward(request, response);
 		
 		/*
-		
 		HttpSession session = request.getSession(true);
 		
 		session.setAttribute("is_id_tool", name);

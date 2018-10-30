@@ -15,21 +15,19 @@ public class KakaoDao {
 
 	public int insertKakao(KakaoTalk kaTalk, Connection conn) {
 		PreparedStatement pstmt = null;
-		int result = 5;
-		int kakaono = 5;
-		int projno = 0;
+		int result = 0;		
+		int projno = 1;
 
 		System.out.println(kaTalk);
 		System.out.println(kaTalk.getContent());
 		
-		String query = "insert into kakao values(?,?,?,sysdate,default)";
+		String query = "insert into kakao values(kakaoNo.nextval,?,?,sysdate,default)";
 		
 		System.out.println(query);
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, kakaono);
-			pstmt.setInt(2, projno);
-			pstmt.setString(3, kaTalk.getContent());			
+			pstmt.setInt(1, projno);
+			pstmt.setString(2, kaTalk.getContent());
 			result = pstmt.executeUpdate();
 			
 			if(result>0) {
@@ -54,7 +52,7 @@ public class KakaoDao {
 		
 		ArrayList<KakaoTalkId> kakaoList=new ArrayList<>();
 
-		String query = "select * from kakao_id where proj_no="+projNo;
+		String query = "select * from kakao_id where proj_no = " + projNo;
 		
 		try {
 			stmt = conn.createStatement();	
@@ -67,6 +65,7 @@ public class KakaoDao {
 				String inputId=rset.getString("input_id");
 				
 				KakaoTalkId kakaoId = new KakaoTalkId(viewId, inputId);
+				
 				
 				kakaoList.add(kakaoId);				
 				
