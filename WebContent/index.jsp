@@ -88,7 +88,7 @@
     </div>
     <div class="form-group">
       <label for="phone">Phone</label>
-      <input type="text" class="form-control" id="phone" placeholder="전화번호 입력" name="Phone">
+      <input type="text" class="form-control" id="phone" placeholder="전화번호 입력 ('-'없이 입력해 주세요)" name="Phone">
     </div>
     <a href="#">이메일 확인</a><br><br>
     <button type="submit" class="btn btn-primary">회원가입</button>
