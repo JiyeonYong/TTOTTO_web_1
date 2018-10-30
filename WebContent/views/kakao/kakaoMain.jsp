@@ -1,10 +1,13 @@
+<%@page import="com.ttotto.kakao.controller.KakaoIdViewServlet"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.ttotto.kakao.model.dao.KakaoDao"%>
 <%@page import="com.ttotto.kakao.model.vo.KakaoTalk"%>
 <%@page import="com.ttotto.kakao.model.vo.KakaoTalkId"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%
+	KakaoTalkId k = new KakaoTalkId();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -111,8 +114,7 @@ button{
 </style>
 </head>
 <body>
- <center>
- 
+<center>
 
 <div style="width:1300px; height:500px">
 
@@ -126,7 +128,6 @@ button{
 			<div name="teamImgDiv" style="width:100%; height:20%; float:left; border:2px solid pink; box-sizing: border-box;">
 			<img src="../../img/kakao%20profile.png" style="width:80px; height:80px; box-sizing: border-box; border-radius: 40px; ">
 			</div>		
-			
 			<div name="teamMemberCount" style="width:100%; height:10%; float:left; border:2px solid pink; box-sizing: border-box; color:grey">
 				0명
 			</div>		
@@ -134,19 +135,20 @@ button{
 			<div name="editDiv" style="width:100%; height:10%; float:left; border:2px solid pink; box-sizing: border-box; color:grey">
 				<img src="../../img/edit.PNG" style="width:50px; height:50px; box-sizing: border-box; border-radius: 50px; ">
 			</div>
-			<%
-			ArrayList<KakaoTalkId> kakaoIdList = new ArrayList<KakaoTalkId>();
-			KakaoTalkId id1 = new KakaoTalkId("kh솔비","솔");
-			
-				request.getAttribute("kakaotalkId");
+			<div style="border:3px solid blue; width:100%; height:100%;">
+				<%
+				ArrayList<KakaoTalkId> kakaoIdList = new ArrayList<KakaoTalkId>();
+				KakaoTalkId id1 = new KakaoTalkId("kh솔비","솔");
 				
-				for(int i=0; i<kakaoIdList.size(); i++) {
-						
-			%>
-			<div>
-				<%=id1.getViewId()%><br>
+					request.getAttribute("kakaotalkId");
+					
+					for(int i=0; i<kakaoIdList.size(); i++) {
+				%>
+				<div>
+					<%=id1.getViewId()%><br>
+				</div>
+				<%  }%>
 			</div>
-			<%  }%>
 		</div>	
 	</div>	
 
@@ -169,13 +171,13 @@ button{
         </div>
 	</div>
  	<div id="kakao_body1" style="height:87%; width:100%; border:1px solid blue; box-sizing: border-box;" >           
-		<div id="kakao_body1-1" style="height:98%; width:90%; margin-left:20px; border:1px solid yellow; overflow:auto; display:inline-block; box-sizing: border-box;">
+		<div id="kakao_body1-1" style="height:98%; width:95%; border:1px solid yellow; overflow:auto; display:inline-block; box-sizing: border-box;">
         	<div name="kakao_talkData1" style="float:right; border:1px solid black; width:100%; box-sizing: border-box;">
         	  	<div name="kakao_Contents" style="float:left; width:80%; height:80%; border:2px solid pink; box-sizing: border-box;">
             	<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-right:30px;float:right; box-sizing: border-box;">
             	<ul></ul>                
                    <div class="bubbleRight bubbleRight:after bubbleRight:before" class="text text-r" id="talkText1" style="background-color:white !important;" >                   								
-												
+							
                    </div><br><br>
             	</div>
             	</div> 
@@ -183,7 +185,7 @@ button{
              	<img src="../../img/kakao%20profile.png" alt="Jane Doe" class="mr-3 mt-3 rounded-circle" style="width:55px; margin-top:30px;">
              	</div>
             	<div name="kakao_id" style="border:2px solid purple; width:20%; height:40%; float:left; box-sizing:border-box;" >
-            			kh최성현
+            			<%= k.getViewId()%>
             	</div> 
           </div>  
             <div name="kakao_talkData2" style="float:right; border:1px solid red; width:100%"> 
@@ -214,7 +216,7 @@ button{
         </div>
         <form action="/paste.do" method="post" style="height:100%;">
         <div id="kakao_body2" style="height:67%; width:80%; border:1px solid blue; margin-left:10px; margin-top:25px; overflow:auto; display:inline-block;">  
-            <input type="text" class="form-control" id="contents" name="kakaoText" style = "height:100%; width:100%"/>
+            <input type="text" class="form-control" id="contents" name="kakaoString" style = "height:100%; width:100%"/>
         </div>
         <div id="kakao_footer2" style="height:10%; width:100%; border:2px;  float:left; margin-top:20px;" align="center">           
                  
@@ -275,10 +277,6 @@ button{
 	 
 	 <%}%>
 	 
-	 
-	
-	
-	
   </script>
 </body>
 </html>

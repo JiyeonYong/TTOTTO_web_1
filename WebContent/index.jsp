@@ -42,9 +42,17 @@
 	if(session.getAttribute("member") != null){ // 로그인 성공 시
 		Member member = (Member)session.getAttribute("member");
 %>
+<<<<<<< HEAD
 	<script>
 	location.href= "views/project/projectList.jsp";
 	</script>
+=======
+	<h1>Main Page</h1>
+	
+	<%= member.getUserId() %>님 환영합니다.<br>
+	<a href="/myInfo.do" onclick="return info_passCheck()">My Page</a>
+	<a href="/logout.do">로그아웃</a>
+>>>>>>> 572a7f94292f096e03bd5728b2f9759ea9fe61d6
 	
 <% }else{%>
 

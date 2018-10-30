@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import = "com.ttotto.project.model.vo.*"
+    import = "java.util.ArrayList"%>
+    
+    
+<%
+	ArrayList<Project> list = (ArrayList<Project>)request.getAttribute("projectList");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,9 +51,17 @@
                 
                 <h4>진행중인 프로젝트</h4>
                 <ul class="list-group">
+                	<% for(Project p : list) { %>
+                		<li class="list-group-item d-flex justify-content-between align-items-center">
+                		
+                   	 	<a href= "#"><%=p.getProjName() %></a>
+                   	    </li>
+                	
+                	<%} %>
+                <!-- 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                     <a href = "#">또또 프로젝트 </a>
-                    <!-- 해당 프로젝트에 최근 이슈(새 댓글,게시글 등) 몇개 있는지 알려주는 badge-->
+                    해당 프로젝트에 최근 이슈(새 댓글,게시글 등) 몇개 있는지 알려주는 badge
                     <span class="badge badge-primary badge-pill">12</span>
                     </li>
                     
@@ -59,7 +74,7 @@
                     <a href= "#">어사출또 개발 프로젝트</a>
                     <span class="badge badge-primary badge-pill">99</span>
                     </li>
-                    </ul>
+                    </ul> -->
         
                     <!--<hr class="d-sm-none">-->
             </div>

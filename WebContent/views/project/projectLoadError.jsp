@@ -4,13 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login Success</title>
+<title>프로젝트 로드 실패</title>
 </head>
 <body>
-<script>
-	alert("정상적으로 로그인 되었습니다.");
-	location.href="/projectList.do";
-</script>
-
+	<script>
+		alert("프로젝트 로드 실패!");
+		location.href="/index.jsp";
+	</script>
 </body>
 </html>
