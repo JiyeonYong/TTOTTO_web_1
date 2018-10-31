@@ -240,7 +240,7 @@ create table kakao (
     importance number
 );
 
-commit;
+
 select * from kakao;
 
 insert into kakao values(2,2,'せせせせせせせせせせせせ',sysdate,1);
@@ -263,6 +263,6 @@ select * from kakao;
 
 select * from kakao_ID;
 
-
+commit;
 
 
