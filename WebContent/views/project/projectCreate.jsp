@@ -49,19 +49,19 @@
 
 						<!-- Modal body -->
 						<div class="modal-body">
-							<input class="form-control mr-sm-2" type="text"
+							<input class="form-control mr-sm-2" type="text" id="HashSearch"
 								placeholder="해시태그는 앞에 #를 붙여 검색하시길 바랍니다."> <br>
-							<button type="button" onclick="inputHash();" class="btn btn-primary" id="HashBtn">스마트 폰</button>
-							<button type="button" class="btn btn-primary"id="HashBtn">멤버쉽</button>
-							<button type="button" class="btn btn-primary"id="HashBtn">게임</button>
-							<button type="button" class="btn btn-primary"id="HashBtn">소개팅</button>
-							<button type="button" class="btn btn-primary"id="HashBtn">스터디</button>
+							<button type="button" onclick="inputHash(0);" class="btn btn-primary" id="HashBtn0">스마트 폰</button>
+							<button type="button" onclick="inputHash(1);" class="btn btn-primary"id="HashBtn1">멤버쉽</button>
+							<button type="button" onclick="inputHash(2);" class="btn btn-primary"id="HashBtn2">게임</button>
+							<button type="button" onclick="inputHash(3);" class="btn btn-primary"id="HashBtn3">소개팅</button>
+							<button type="button" onclick="inputHash(4);" class="btn btn-primary"id="HashBtn4">스터디</button>
 							<br> <br>
-							<button type="button" class="btn btn-primary"id="HashBtn">운동</button>
-							<button type="button" class="btn btn-primary"id="HashBtn">SNS</button>
-							<button type="button" class="btn btn-primary"id="HashBtn">독서</button>
-							<button type="button" class="btn btn-primary"id="HashBtn">chat</button>
-							<button type="button" class="btn btn-primary"id="HashBtn">쇼핑</button>
+							<button type="button" onclick="inputHash(5);" class="btn btn-primary"id="HashBtn5">운동</button>
+							<button type="button" onclick="inputHash(6);" class="btn btn-primary"id="HashBtn6">SNS</button>
+							<button type="button" onclick="inputHash(7);" class="btn btn-primary"id="HashBtn7">독서</button>
+							<button type="button" onclick="inputHash(8);" class="btn btn-primary"id="HashBtn8">chat</button>
+							<button type="button" onclick="inputHash(9);" class="btn btn-primary"id="HashBtn9">쇼핑</button>
 							<br> <br>
 
 
@@ -140,14 +140,25 @@
 		</form>
 	</div>
 <script>
-	$(document).ready(function(){
-		document.getElementById("HashBtn")
-			
-			
-			
+
+	var isClickHash = new Array(10);
 	
-		})
-	})
+	for(var i=0;i<10;i++)
+		isClickHash[i]=true;
+	
+	function inputHash(num){		
+		
+		if(isClickHash[num]){
+		
+		var hashSearch = document.getElementById('HashSearch').value;
+		hashSearch= hashSearch + "#" +$("#HashBtn"+num).html() + " ";
+		document.getElementById('HashSearch').value=hashSearch;		
+		isClickHash[num]=false;
+		
+		}
+		
+	}
+
 </script>
 </body>
 </html>
