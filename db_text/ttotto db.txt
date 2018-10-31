@@ -20,12 +20,18 @@ drop table hash_table;
 drop table post_table;
 drop table proj_board_table;
 drop table project_table;
+drop table kakao_table;
+drop table file_table;
+
 drop sequence boardno;
 Drop sequence projNo;
 drop sequence hashNO;
 drop sequence postNO;
 drop sequence projmemberno;
 drop sequence commentno;
+drop sequence kakaoNo;
+drop sequence fileNo;
+
 DROP TABLE USER_TABLE CASCADE CONSTRAINTS;
 
 -- 紫遂切 
@@ -231,23 +237,29 @@ CREATE TABLE  POST_HASH_TABLE  (
 );
 
 
+
+
 -------------- 朝朝神
-create table kakao (
+
+
+CREATE SEQUENCE kakaoNo
+start with 1
+increment by 1
+maxvalue 999999
+nocycle
+nocache;
+
+create table kakao_table (
     kakao_no number not null primary key,
     proj_no number not null,
     contents varchar(200) not null,
-    date_with_time varchar(30) not null,
+    date_with_time date not null,
     importance number
 );
 
+insert into kakao_table values(kakaoNo.nextVal,2,'せせせせせせせせせせせせ',sysdate,1);
 
-select * from kakao;
-
-insert into kakao values(2,2,'せせせせせせせせせせせせ',sysdate,1);
-
-
-
-create table kakao_id(
+create table kakao_id_table(
     kakao_id_no number not null,
     proj_no number not null,
     view_id varchar(30) not null,
@@ -256,12 +268,35 @@ create table kakao_id(
 
 select * from kakao_id;
 
-insert into kakao_id values(1,1,'view_id','input_id');
-insert into kakao_id values(2,2,'view_id2','input_id2');
+insert into kakao_id_table values(1,1,'view_id','input_id');
+insert into kakao_id_table values(2,2,'view_id2','input_id2');
 
-select * from kakao;
+select * from kakao_table;
 
-select * from kakao_ID;
+select * from kakao_ID_table;
+
+----------- file 獣什奴
+
+CREATE SEQUENCE fileNO
+start with 1
+increment by 1
+maxvalue 999999
+nocycle
+nocache;
+
+
+  CREATE TABLE FILE_TABLE (   
+   FILE_NO NUMBER not null primary key, 
+   POST_NO NUMBER, 
+   FILE_NAME VARCHAR2(100 BYTE) NOT NULL, 
+   FILE_PATH VARCHAR2(500 BYTE), 
+   FILE_SIZE NUMBER, 
+   FILE_USER VARCHAR2(30 BYTE), 
+   UPLOADTIME TIMESTAMP, 
+    FOREIGN KEY (POST_NO)
+     REFERENCES POST_TABLE (POST_NO) ON DELETE CASCADE
+   ); 
+
 
 commit;
 
