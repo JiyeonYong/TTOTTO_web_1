@@ -236,7 +236,7 @@ button{
              		<img src="../../img/kakao%20profile.png" alt="Jane Doe" class="mr-3 mt-3 rounded-circle" style="width:55px; margin-top:30px;">
           		</div>
            		<div name="kakao_id" style="border:2px solid purple; width:20%; height:40%; float:left; box-sizing:border-box;" >
-            			<%= k.getViewId()%>
+            			<%= kakaoList.get(i).getDateWithTime()%>
            		</div> 
           	</div>  
             	
