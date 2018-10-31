@@ -172,7 +172,7 @@ button{
             	<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-right:30px;float:right; box-sizing: border-box;">
             	<ul></ul>                
                    <div class="bubbleRight bubbleRight:after bubbleRight:before" class="text text-r" id="talkText1" style="background-color:white !important;" >                   								
-				
+						이거?
                    </div><br><br>
             	</div>
             	</div> 
@@ -194,34 +194,57 @@ button{
                   	</div>
            		</div>
             </div>
-  <script>          	
 	 <% // 카카오톡 말풍선 보여지기
 	 System.out.println("req:" + request.getAttribute("iskakaoList"));
 	 
 	 if(request.getAttribute("iskakaoList")=="1"){%>
 	 			
+	 <%
+	 	ArrayList<KakaoTalk> kakaoList = (ArrayList<KakaoTalk>)request.getAttribute("kakaoList");
+	 	System.out.println(kakaoList.get(0).getContent());
+
+	 
 	 		
-	 		for(var i=0; i<kakaoList.size(); i++) {
-	 			</script>
+	 		for(int i=0; i<kakaoList.size(); i++) {
 	 			
-	 			<div name="kakao_talkData2" style="float:right; border:1px solid red; width:100%"> 
+	 			if(i%2==0){
+	 %>		
+	 		<div name="kakao_talkData2" style="float:right; border:1px solid red; width:100%"> 
                 <img src="../../img/kakao%20profile.png" alt="Jane Doe" class="mr-3 mt-3 rounded-circle" style="width:55px; float:left; margin-top:30px; margin-left:20px;">
             	<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px;margin-left:30px; float:left">
             		<ul></ul>
                 	<div style="float:right">
-                    	<div class="bubbleLeft bubbleLeft:after bubbleLeft:before" class="text text-r" id="talkText2" style="background-color:white !important;" >								
-								<script>	
-									kakaoList.get(i).getContent
-									
-								</script>
+                    	<div class="bubbleLeft bubbleLeft:after bubbleLeft:before" class="text text-r" id="talkText2" style="background-color:white !important;" >
+									<%=kakaoList.get(i).getContent()%>
                     	</div><br><br>
                   	</div>
            		</div>
             </div>
-  <script>
-	 		}
-	 <%}%>            
-  </script>      
+            
+            	<%}else{%>
+            	
+            <div name="kakao_talkData1" style="float:right; border:1px solid black; width:100%; box-sizing: border-box;">
+        		<div name="kakao_Contents" style="float:left; width:80%; height:80%; border:2px solid pink; box-sizing: border-box;">
+            		<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-right:30px;float:right; box-sizing: border-box;">
+            			<ul></ul>                
+               			<div class="bubbleRight bubbleRight:after bubbleRight:before" class="text text-r" id="talkText1" style="background-color:white !important;" >                   								
+							<%=kakaoList.get(i).getContent()%>
+               			 </div><br><br>
+            		</div>
+            	</div> 
+        		<div name="kakao_profileImg" style="border:2px solid yellow; width:20%; height:60%; float:left; box-sizing: border-box;" >
+             		<img src="../../img/kakao%20profile.png" alt="Jane Doe" class="mr-3 mt-3 rounded-circle" style="width:55px; margin-top:30px;">
+          		</div>
+           		<div name="kakao_id" style="border:2px solid purple; width:20%; height:40%; float:left; box-sizing:border-box;" >
+            			<%= k.getViewId()%>
+           		</div> 
+          	</div>  
+            	
+            	
+            	
+            	<%} %>
+	 		<%}%>
+	 <%}%>        
         </div>    
     </div>    
   </div>
@@ -296,14 +319,7 @@ button{
 		
 		kakao_id_tool.style.display="none";
 	 
-	 <%}%>
-	 
-	 
-
-	 		
-	
-	 
-	 
-  </script>
+	 <%} %> 
+ </script>
 </body>
 </html>
