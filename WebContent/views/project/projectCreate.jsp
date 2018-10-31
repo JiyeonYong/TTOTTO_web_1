@@ -51,17 +51,17 @@
 						<div class="modal-body">
 							<input class="form-control mr-sm-2" type="text"
 								placeholder="해시태그는 앞에 #를 붙여 검색하시길 바랍니다."> <br>
-							<button type="button" class="btn btn-primary">Primary</button>
-							<button type="button" class="btn btn-primary">Primary</button>
-							<button type="button" class="btn btn-primary">Primary</button>
-							<button type="button" class="btn btn-primary">Primary</button>
-							<button type="button" class="btn btn-primary">Primary</button>
+							<button type="button" onclick="inputHash();" class="btn btn-primary" id="HashBtn">스마트 폰</button>
+							<button type="button" class="btn btn-primary"id="HashBtn">멤버쉽</button>
+							<button type="button" class="btn btn-primary"id="HashBtn">게임</button>
+							<button type="button" class="btn btn-primary"id="HashBtn">소개팅</button>
+							<button type="button" class="btn btn-primary"id="HashBtn">스터디</button>
 							<br> <br>
-							<button type="button" class="btn btn-primary">Primary</button>
-							<button type="button" class="btn btn-primary">Primary</button>
-							<button type="button" class="btn btn-primary">Primary</button>
-							<button type="button" class="btn btn-primary">Primary</button>
-							<button type="button" class="btn btn-primary">Primary</button>
+							<button type="button" class="btn btn-primary"id="HashBtn">운동</button>
+							<button type="button" class="btn btn-primary"id="HashBtn">SNS</button>
+							<button type="button" class="btn btn-primary"id="HashBtn">독서</button>
+							<button type="button" class="btn btn-primary"id="HashBtn">chat</button>
+							<button type="button" class="btn btn-primary"id="HashBtn">쇼핑</button>
 							<br> <br>
 
 
@@ -139,6 +139,15 @@
 			</div>
 		</form>
 	</div>
-
+<script>
+	$(document).ready(function(){
+		document.getElementById("HashBtn")
+			
+			
+			
+	
+		})
+	})
+</script>
 </body>
 </html>
