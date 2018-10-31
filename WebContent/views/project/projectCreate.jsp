@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="com.ttotto.member.model.vo.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 </head>
+
 <body>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 	<!-- Latest compiled and minified CSS -->
 
@@ -97,7 +101,7 @@
 						</div>
 						<div class="modal-body">
 							<input type="text" class="form-control"
-								placeholder="(프로젝트 명을 입력해주세요.)" />
+								id="projectName" placeholder="(프로젝트 명을 입력해주세요.)" />
 						</div>
 						<hr>
 						<h4 class="modal-title3">3. 프로젝트 공개 / 비공개 선택</h4>
@@ -131,7 +135,7 @@
 							</span>
 						</div>
 						<div class="modal-footer">
-							<button class="btn btn-secondary" data-toggle="modal"
+							<button onclick="finishCreate();" class="btn btn-secondary" data-toggle="modal"
 								data-dismiss="modal">완료</button>
 						</div>
 					</div>
@@ -139,6 +143,8 @@
 			</div>
 		</form>
 	</div>
+	
+	
 <script>
 
 	var isClickHash = new Array(10);
@@ -158,7 +164,31 @@
 		}
 		
 	}
-
+	
+	var projectName;
+	var projectType;
+	var projectCreaterId;
+ 	
+	<%
+		session = request.getSession(false);
+	
+		Member m = (Member)session.getAttribute("member");
+		if(m!=null){			
+	%>
+		projectCreaterId=<%m.getUserId();%>;
+		console.log(projectCreaterId);
+		
+	<%
+		}
+	%>
+	$(document).ready{
+		function finishCreate(){
+			projectName=$("#projectName").val;
+			alert(projectName);
+		}
+	}
+	
 </script>
+
 </body>
 </html>
