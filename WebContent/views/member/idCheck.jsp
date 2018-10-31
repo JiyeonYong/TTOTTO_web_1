@@ -43,9 +43,6 @@
 	
 	function backBtn(){
 		opener.document.getElementById("userId").value = userId;
-		opener.document.getElementById("userName").value = userName;
-		opener.document.getElementById("userEmail").value = userEmail;
-		opener.documnet.getElementById("Phone").value = Phone;
 		opener.document.getElementById('checkFlag').value = checkFlag;
 		window.close(); // 브라우저 종료 (내 자신 : 팝업 창)
 	}
