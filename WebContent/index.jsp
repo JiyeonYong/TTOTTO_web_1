@@ -121,8 +121,33 @@
 	function check(){
 		
 		var checkFlag = document.getElementById("checkFlag").value;
+		var userId = document.getElementById("userId").value;
+		var userPwd = document.getElementById("userPwd").value;
+		var userName = document.getElementById("userName").value;
+		var userEmail = document.getElementById("userEmail").value;
+		var userPhone = document.getElementById("Phone").value;
 		if(checkFlag==0){
 			alert("ID 중복확인을 먼저 진행해 주세요");
+			return false;
+		}
+		else if(userId == ""){
+			alert("ID를 입력해 주세요");
+			return false;
+		}
+		else if(userPwd == ""){
+			alert("비밀번호를 입력해 주세요");
+			return false;
+		}
+		else if(userName == ""){
+			alert("이름을 입력해 주세요");
+			return false;
+		}
+		else if(userEmail == ""){
+			alert("이메일을 입력해 주세요");
+			return false;
+		}
+		else if(userPhone == ""){
+			alert("전화번호를 입력해 주세요");
 			return false;
 		}
 	}
