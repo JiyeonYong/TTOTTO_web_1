@@ -43,7 +43,6 @@
 	
 	function backBtn(){
 		opener.document.getElementById("userId").value = userId;
-		opener.document.getElementById("userPwd").value= userPwd;
 		opener.document.getElementById("userName").value = userName;
 		opener.document.getElementById("userEmail").value = userEmail;
 		opener.documnet.getElementById("Phone").value = Phone;
