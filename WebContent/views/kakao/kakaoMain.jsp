@@ -138,9 +138,7 @@ button{
 			<div style="border:3px solid blue; width:100%; height:100%;">
 				<%
 				ArrayList<KakaoTalkId> kakaoIdList = new ArrayList<KakaoTalkId>();
-				KakaoTalkId id1 = new KakaoTalkId("kh솔비","솔");
-				
-					request.getAttribute("kakaotalkId");
+				KakaoTalkId id1 = new KakaoTalkId("kh솔비","솔");				
 					
 					for(int i=0; i<kakaoIdList.size(); i++) {
 				%>
@@ -201,7 +199,7 @@ button{
 	 System.out.println("req:" + request.getAttribute("iskakaoList"));
 	 
 	 if(request.getAttribute("iskakaoList")=="1"){%>
-	 		var kakaoList = request.getAttribute("kakaoList");	
+	 			
 	 		
 	 		for(var i=0; i<kakaoList.size(); i++) {
 	 			</script>
