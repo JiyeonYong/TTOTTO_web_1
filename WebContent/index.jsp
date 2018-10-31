@@ -89,19 +89,19 @@
     </div>
     <div class="form-group">
       <label for="pwd">Password</label>
-      <input type="password" class="form-control" id="pwd" placeholder="비밀번호 입력" name="userPwd">
+      <input type="password" class="form-control" id="userPwd" placeholder="비밀번호 입력" name="userPwd">
     </div>
     <div class="form-group">
       <label for="Name">Name</label>
-      <input type="text" class="form-control" id="name" placeholder="이름 입력" name="userName">
+      <input type="text" class="form-control" id="userName" placeholder="이름 입력" name="userName">
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" class="form-control" id="email" placeholder="이메일 입력" name="userEmail">
+      <input type="email" class="form-control" id="userEmail" placeholder="이메일 입력" name="userEmail">
     </div>
     <div class="form-group">
       <label for="phone">Phone</label>
-      <input type="text" class="form-control" id="phone" placeholder="전화번호 입력 ('-'없이 입력해 주세요)" name="Phone">
+      <input type="text" class="form-control" id="Phone" placeholder="전화번호 입력 ('-'없이 입력해 주세요)" name="Phone">
     </div><br>
     <button type="submit" class="btn btn-primary" onclick="return check();">회원가입</button>
   </form>
