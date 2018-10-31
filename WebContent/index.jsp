@@ -85,7 +85,7 @@
     </div>
     <div class="form-group">
     	<button type="button" class="btn btn-outline-dark" onclick="return idCheck();">ID 중복확인</button>
-        <input type="hidden" id="checkFlag" value=0/>
+        <input type="hidden" class="form-control" id="checkFlag" value=0>
     </div>
     <div class="form-group">
       <label for="pwd">Password</label>
@@ -119,6 +119,7 @@
 
 <script>
 	function check(){
+		
 		var checkFlag = document.getElementById("checkFlag").value;
 		if(checkFlag==0){
 			alert("ID 중복확인을 먼저 진행해 주세요");
