@@ -82,7 +82,9 @@
     <div class="form-group">
         <label for="id">ID</label>
         <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId"> 
-        <button type="button" class="btn btn-outline-dark" onclick="return idCheck();">ID 중복확인</button>
+    </div>
+    <div class="form-group">
+    	<button type="button" class="btn btn-outline-dark" onclick="return idCheck();">ID 중복확인</button>
         <input type="hidden" id="checkFlag" value=0/>
     </div>
     <div class="form-group">
@@ -100,8 +102,7 @@
     <div class="form-group">
       <label for="phone">Phone</label>
       <input type="text" class="form-control" id="phone" placeholder="전화번호 입력 ('-'없이 입력해 주세요)" name="Phone">
-    </div>
-    <a href="#">이메일 확인</a><br><br>
+    </div><br>
     <button type="submit" class="btn btn-primary" onclick="return check();">회원가입</button>
   </form>
 </div>
