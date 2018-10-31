@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import com.ttotto.common.JDBCTemplate;
 import com.ttotto.project.model.vo.Project;
 
-public class ProejctDao {
+public class ProjectDao {
 
 	public ArrayList<Project> selectAllProjectList(Connection conn, String userId) {
 		PreparedStatement pstmt = null;
@@ -45,6 +45,35 @@ public class ProejctDao {
 		}
 		
 		return list;
+	}
+
+	public int createProject(Connection conn,Project newProject) {
+		// TODO Auto-generated method stub
+		
+		int result=0;
+		PreparedStatement pstmt = null;
+		String sql = "insert into project_table values(projNo.nextval,?,?,sysdate,?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, newProject.getProjName());
+			pstmt.setInt(2, newProject.getMemberCount());
+			pstmt.setString(3, newProject.getProjType());
+			pstmt.setString(4, newProject.getCreaterId());
+			
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 
 }

@@ -105,8 +105,8 @@
 						</div>
 						<hr>
 						<h4 class="modal-title3">3. 프로젝트 공개 / 비공개 선택</h4>
-						<pre>  <button type="button" class="btn">공개</button>  <button
-								type="button" class="btn">비공개</button>
+						<pre>  <button onclick="clickPublic();" type="button" class="btn">공개</button>  <button
+								onclick="clickPrivate();" type="button" class="btn">비공개</button>
 					</pre>
 
 						<div class="modal-footer">
@@ -164,10 +164,6 @@
 		}
 		
 	}
-	
-	var projectName;
-	var projectType;
-	var projectCreaterId;
  	
 	<%
 		session = request.getSession(false);
@@ -181,14 +177,34 @@
 	<%
 		}
 	%>
-	$(document).ready{
-		function finishCreate(){
-			projectName=$("#projectName").val;
-			alert(projectName);
-		}
+	
+	function finishCreate(){
+		
+		
+		$("#projNameSubmit").val($("#projectName").val());
+		
+		document.getElementById('projForm').submit();
+		
 	}
 	
+	function clickPrivate(){
+		$("#projTypeSubmit").val("private");
+	}
+	
+	function clickPublic(){
+		$("#projTypeSubmit").val("public");
+	}
+	
+	
 </script>
+
+<form action = "/projectCreate.do" method="post" style="display:none;" id="projForm">
+<input type="text" id="projCreaterIdSubmit" name="projCreaterId"/>		<!-- 프로젝트 제작자 아이디 -->
+<input type="text" id="projNameSubmit" name="projName"/>	<!-- 프로젝트명 -->
+<input type="text" id="projTypeSubmit" name="projType"/>	<!-- 프로젝트 타입 -->
+
+
+</form>
 
 </body>
 </html>
