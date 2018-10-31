@@ -44,7 +44,9 @@
             <!-- left section-->
             <div class="col-sm-4">
                 <h4>프로젝트 만들기</h4>
-                <button id = "createProjectBtn" type = "button" class = "btn btn-primary">+ NEW 프로젝트</button>
+                
+               <%@ include file = "/views/project/projectCreate.jsp" %>
+ 
                 <p style = "margin-top: 10px">새 프로젝트를 만들어 친구들과 팀플을 시작하세요!</p>
                 
                 <br><br>
@@ -168,7 +170,9 @@
     <%@ include file = "/views/layout/footer.jsp" %>
     
     
-<script type = "text/javaxcript" src = "JS/bootstrap.js"></script>
+<script type = "text/javaxcript" src = "JS/bootstrap.js">
+
+</script>
 </body>
 </html>
 </body>

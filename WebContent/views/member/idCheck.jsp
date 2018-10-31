@@ -8,7 +8,9 @@
 <title>ID 중복확인</title>
 </head>
 <body>
-<% String checkId = request.getParameter("userId"); %>
+<% String checkId = request.getParameter("userId"); 
+	System.out.print(checkId);
+%>
 
 <% 
 	boolean result = new MemberService().checkId(checkId);
