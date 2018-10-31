@@ -9,11 +9,7 @@
  <link rel="stylesheet" href="/CSS/bootstrap.css">
 </head>
 <body>
-<!DOCTYPE html>
-<html>
-<head>  
-<meta charset="UTF-8">
-<title>TTO TTO</title>
+<head>
     
     <style>
     
@@ -29,32 +25,27 @@
     
 <body>
     
-    <script>
- function info_passCheck(){
-	 var passCheck = document.getElementById("info_passCheck");
-		passCheck.style.display="block";
-		return false;
- }
-</script>
+
 <%
 	session = request.getSession(false);
 	
 	if(session.getAttribute("member") != null){ // 로그인 성공 시
 		Member member = (Member)session.getAttribute("member");
 %>
-<<<<<<< HEAD
 	<script>
 	location.href= "views/project/projectList.jsp";
 	</script>
-=======
-	<h1>Main Page</h1>
-	
-	<%= member.getUserId() %>님 환영합니다.<br>
-	<a href="/myInfo.do" onclick="return info_passCheck()">My Page</a>
-	<a href="/logout.do">로그아웃</a>
->>>>>>> 572a7f94292f096e03bd5728b2f9759ea9fe61d6
 	
 <% }else{%>
+
+<script>
+	function idCheck(){
+		var userId = document.getElementById("userId").value;
+		window.open("/views/member/idCheck.jsp?userId="+userId ,"_blank","width=500px,height=100px");
+		
+		return false;
+	}
+</script>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
   <h1>TTO TTO</h1>
@@ -90,7 +81,9 @@
   <form action="/enroll.do" method="post">
     <div class="form-group">
         <label for="id">ID</label>
-        <input type="text" class="form-control" id="id" placeholder="아이디 입력" name="userId">
+        <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId"> 
+        <button type="button" class="btn btn-outline-dark" onclick="return idCheck();">ID 중복확인</button>
+        <input type="hidden" id="checkFlag" value=0/>
     </div>
     <div class="form-group">
       <label for="pwd">Password</label>
@@ -106,10 +99,10 @@
     </div>
     <div class="form-group">
       <label for="phone">Phone</label>
-      <input type="text" class="form-control" id="phone" placeholder="전화번호 입력" name="Phone">
+      <input type="text" class="form-control" id="phone" placeholder="전화번호 입력 ('-'없이 입력해 주세요)" name="Phone">
     </div>
     <a href="#">이메일 확인</a><br><br>
-    <button type="submit" class="btn btn-primary">회원가입</button>
+    <button type="submit" class="btn btn-primary" onclick="return check();">회원가입</button>
   </form>
 </div>
 
@@ -121,9 +114,18 @@
 </div>
 
 
-<% } %>   
+<% } %>  
+
+<script>
+	function check(){
+		var checkFlag = document.getElementById("checkFlag").value;
+		if(checkFlag==0){
+			alert("ID 중복확인을 먼저 진행해 주세요");
+			return false;
+		}
+	}
+</script>
+ 
 <script type = "text/javaxcript" src = "JS/bootstrap.js"></script>
-</body>
-</html>
 </body>
 </html>
