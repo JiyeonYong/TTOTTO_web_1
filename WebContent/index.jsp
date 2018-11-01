@@ -37,9 +37,7 @@
 	</script>
 	
 <% }else{%>
-
-
-<div class="jumbotron text-center" style="margin-bottom:0"> 
+ 
 
 <script>
 	function idCheck(){
@@ -85,7 +83,7 @@
   <form action="/enroll.do" method="post">
     <div class="form-group">
         <label for="id">ID</label>
-        <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId"> 
+        <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId">
     </div>
     <div class="form-group">
     	<button type="button" class="btn btn-outline-dark" onclick="return idCheck();">ID 중복확인</button>
@@ -96,8 +94,8 @@
       <input type="password" class="form-control" id="userPwd" placeholder="비밀번호 입력" name="userPwd">
     </div>
     <div class="form-group">
-      <label for="Name">Name</label>
-      <input type="text" class="form-control" id="userName" placeholder="이름 입력" name="userName">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="userName" placeholder="이름  입력" name="userName">
     </div>
     <div class="form-group">
       <label for="email">Email</label>
@@ -105,8 +103,8 @@
     </div>
     <div class="form-group">
       <label for="phone">Phone</label>
-      <input type="text" class="form-control" id="Phone" placeholder="전화번호 입력 ('-'없이 입력해 주세요)" name="Phone">
-    </div><br>
+      <input type="text" class="form-control" id="Phone" placeholder="전화번호 입력" name="Phone">
+    </div>
     <button type="submit" class="btn btn-primary" onclick="return check();">회원가입</button>
   </form>
 </div>
