@@ -50,7 +50,7 @@
 	
 <% }else{%>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
+<div class="jumbotron text-center" style="margin-bottom:0"> 
   <h1>TTO TTO</h1>
 </div>
  

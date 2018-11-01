@@ -46,13 +46,11 @@ public class ProjectListServlet extends HttpServlet {
 
 			ArrayList<Project> list = new ProjectService().selectAllProjectList(userId);
 			
-			if (!list.isEmpty()) {
+			
 				RequestDispatcher view = request.getRequestDispatcher("views/project/projectList.jsp");
 				request.setAttribute("projectList", list);
 				view.forward(request, response);
-			} else {
-				response.sendRedirect("/views/project/projectLoadError.jsp");
-			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
