@@ -44,23 +44,35 @@ public class ProjectDao {
 		return list;
 	}
 
-	public int createProject(Connection conn,Project newProject) {
+	public int createProject(Connection conn,Project newProject,String createrId) {
 		// TODO Auto-generated method stub
 		
 		int result=0;
 		PreparedStatement pstmt = null;
-		String sql = "insert into project_table values(projNo.nextval,?,?,sysdate,?,?)";
+		String sql1 = "insert into project_table values(projNo.nextval,?,?,sysdate,?,?)";
+		
+		String sql2 = "insert into project_member_table values(projMemberNo.nextVal,"
+				+ "projNo.currVal,?,?)";
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql1);
 			
 			pstmt.setString(1, newProject.getProjName());
 			pstmt.setInt(2, newProject.getMemberCount());
 			pstmt.setString(3, newProject.getProjType());
 			pstmt.setString(4, newProject.getCreaterId());
 			
+			result += pstmt.executeUpdate();
 			
-			result = pstmt.executeUpdate();
+			String memberNickName="민수러브";
+			
+			pstmt=conn.prepareStatement(sql2);
+			
+			pstmt = conn.prepareStatement(sql2);			
+			pstmt.setString(1, createrId);
+			pstmt.setString(2, memberNickName);								
+			
+			result += pstmt.executeUpdate();
 			
 			
 		} catch (SQLException e) {
@@ -72,5 +84,7 @@ public class ProjectDao {
 		
 		return result;
 	}
-
 }
+		
+		
+	

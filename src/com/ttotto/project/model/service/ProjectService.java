@@ -20,12 +20,12 @@ public class ProjectService {
 		return list;
 	}
 
-	public int createProject(Project newProject) {
+	public int createProject(Project newProject,String createrId) {
 		// TODO Auto-generated method stub
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		int result = new ProjectDao().createProject(conn,newProject);
+		int result = new ProjectDao().createProject(conn,newProject,createrId);
 		
 		if(result>0) {
 			JDBCTemplate.commit(conn);
@@ -35,13 +35,4 @@ public class ProjectService {
 		return result;
 		
 	}
-
-	public int createProjectMember(String createrId) {
-		
-		Connection conn = JDBCTemplate.getConnection();
-		
-		
-		
-	}
-
 }
