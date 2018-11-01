@@ -163,20 +163,8 @@
 		
 		}
 		
-	}
- 	
-	<%
-		session = request.getSession(false);
+	} 	
 	
-		Member m = (Member)session.getAttribute("member");
-		if(m!=null){			
-	%>
-		projectCreaterId=<%m.getUserId();%>;
-		console.log(projectCreaterId);
-		
-	<%
-		}
-	%>
 	
 	function finishCreate(){
 		

@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.ttotto.member.model.vo.Member;
 import com.ttotto.project.model.service.ProjectService;
 import com.ttotto.project.model.vo.Project;
 
@@ -32,8 +34,12 @@ public class ProjectCreateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
+		
+		
+		
 		String projName= request.getParameter("projName");
-		String createrId = request.getParameter("projCreaterId");
+		String createrId = ((Member)session.getAttribute("member")).getUserId();
 		String projType= request.getParameter("projType");
 		
 		//회원 추가 기능 일단 생략하고 0으로 프로젝트 DB에 생성

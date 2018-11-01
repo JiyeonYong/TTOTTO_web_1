@@ -16,13 +16,10 @@ public class ProjectDao {
 		ResultSet rset = null;
 		ArrayList<Project> list = new ArrayList<Project>();
 		
-		String query = "select * " + 
-				"from (select proj_no from project_member_table where member_id = ?) pm, project_table p " + 
-				"where pm.proj_no = p.proj_no";
+		String query = "select * from project_table";
 		
 		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, userId);
+			pstmt = conn.prepareStatement(query);			
 			
 			rset = pstmt.executeQuery();
 			
