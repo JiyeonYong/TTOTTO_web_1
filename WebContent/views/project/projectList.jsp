@@ -44,12 +44,17 @@
             <!-- left section-->
             <div class="col-sm-4">
                 <h4>프로젝트 만들기</h4>
-                <button id = "createProjectBtn" type = "button" class = "btn btn-primary">+ NEW 프로젝트</button>
+                
+               <%@ include file = "/views/project/projectCreate.jsp" %>
+ 
                 <p style = "margin-top: 10px">새 프로젝트를 만들어 친구들과 팀플을 시작하세요!</p>
                 
                 <br><br>
                 
                 <h4>진행중인 프로젝트</h4>
+                <%if(list==null){ %>
+                	진행중인 프로젝트가 없습니다.
+                <%}else{%>
                 <ul class="list-group">
                 	<% for(Project p : list) { %>
                 		<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -57,6 +62,7 @@
                 		<form>
                    	    </li>
                 	
+<<<<<<< HEAD
                 	<%} 
                 	
                 	   if(list.isEmpty()){%>
@@ -64,6 +70,30 @@
                 		진행중인 프로젝트가 없습니다.
                    	    </li>
                 		<%} %>
+=======
+                		<%} %>
+                	
+                	<%}%>
+                <!-- 
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href = "#">또또 프로젝트 </a>
+                    해당 프로젝트에 최근 이슈(새 댓글,게시글 등) 몇개 있는지 알려주는 badge
+                    <span class="badge badge-primary badge-pill">12</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href= "#">뚜뚜 팀플</a>
+                    <span class="badge badge-primary badge-pill">50</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href= "#">어사출또 개발 프로젝트</a>
+                    <span class="badge badge-primary badge-pill">99</span>
+                    </li>
+                    </ul> -->
+        
+                    <!--<hr class="d-sm-none">-->
+>>>>>>> f2ff085e77fcde6acef0ee1d0df6b63c390820c7
             </div>
             
             <!-- right section-->
@@ -150,7 +180,9 @@
     <%@ include file = "/views/layout/footer.jsp" %>
     
     
-<script type = "text/javaxcript" src = "JS/bootstrap.js"></script>
+<script type = "text/javaxcript" src = "JS/bootstrap.js">
+
+</script>
 </body>
 </html>
 </body>

@@ -1,7 +1,8 @@
 package com.ttotto.kakao.model.vo;
 
 public class KakaoTalk {	
-	private int projNo;				//프로젝트넘버
+	private int projNo;			//프로젝트넘버
+	private String viewId;		//카톡에 보여주는 아이디(닉네임)
 	private String content;		//내용
 	private String dateWithTime;	//날짜시간
 	private int importance;			//중요도

@@ -9,11 +9,7 @@
  <link rel="stylesheet" href="/CSS/bootstrap.css">
 </head>
 <body>
-<!DOCTYPE html>
-<html>
-<head>  
-<meta charset="UTF-8">
-<title>TTO TTO</title>
+<head>
     
     <style>
     
@@ -29,28 +25,33 @@
     
 <body>
     
-    <script>
- function info_passCheck(){
-	 var passCheck = document.getElementById("info_passCheck");
-		passCheck.style.display="block";
-		return false;
- }
-</script>
+
 <%
 	session = request.getSession(false);
 	
 	if(session.getAttribute("member") != null){ // 로그인 성공 시
 		Member member = (Member)session.getAttribute("member");
 %>
-	<h1>Main Page</h1>
-	
-	<%= member.getUserId() %>님 환영합니다.<br>
-	<a href="/myInfo.do" onclick="return info_passCheck()">My Page</a>
-	<a href="/logout.do">로그아웃</a>
+	<script>
+	location.href= "views/project/projectList.jsp";
+	</script>
 	
 <% }else{%>
 
+<<<<<<< HEAD
 <div class="jumbotron text-center" style="margin-bottom:0"> 
+=======
+<script>
+	function idCheck(){
+		var userId = document.getElementById("userId").value;
+		window.open("/views/member/idCheck.jsp?userId="+userId ,"_blank","width=500px,height=100px");
+		
+		return false;
+	}
+</script>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+>>>>>>> f2ff085e77fcde6acef0ee1d0df6b63c390820c7
   <h1>TTO TTO</h1>
 </div>
  
@@ -84,26 +85,29 @@
   <form action="/enroll.do" method="post">
     <div class="form-group">
         <label for="id">ID</label>
-        <input type="text" class="form-control" id="id" placeholder="아이디 입력" name="userId">
+        <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId"> 
+    </div>
+    <div class="form-group">
+    	<button type="button" class="btn btn-outline-dark" onclick="return idCheck();">ID 중복확인</button>
+        <input type="hidden" class="form-control" id="checkFlag" value=0>
     </div>
     <div class="form-group">
       <label for="pwd">Password</label>
-      <input type="password" class="form-control" id="pwd" placeholder="비밀번호 입력" name="userPwd">
+      <input type="password" class="form-control" id="userPwd" placeholder="비밀번호 입력" name="userPwd">
     </div>
     <div class="form-group">
       <label for="Name">Name</label>
-      <input type="text" class="form-control" id="name" placeholder="이름 입력" name="userName">
+      <input type="text" class="form-control" id="userName" placeholder="이름 입력" name="userName">
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" class="form-control" id="email" placeholder="이메일 입력" name="userEmail">
+      <input type="email" class="form-control" id="userEmail" placeholder="이메일 입력" name="userEmail">
     </div>
     <div class="form-group">
       <label for="phone">Phone</label>
-      <input type="text" class="form-control" id="phone" placeholder="전화번호 입력" name="Phone">
-    </div>
-    <a href="#">이메일 확인</a><br><br>
-    <button type="submit" class="btn btn-primary">회원가입</button>
+      <input type="text" class="form-control" id="Phone" placeholder="전화번호 입력 ('-'없이 입력해 주세요)" name="Phone">
+    </div><br>
+    <button type="submit" class="btn btn-primary" onclick="return check();">회원가입</button>
   </form>
 </div>
 
@@ -115,24 +119,44 @@
 </div>
 
 
-<% } %>
+<% } %>  
 
-<!-- MyPage 비밀번호 확인 -->
-<div style="display:none;" id="info_passCheck">
-	<center>
-	<span style="color:red;">
-	개인 정보 보호를 위하여 확인 차 비밀번호를 입력해 주세요.
-	</span>
-	<form action="/views/member/memberMyInfo.jsp" method="post">
-		비밀번호 입력 : <input type="password" name="userPwd" id="userPwd"/>
-		<input type="submit" value="체크"/>
-	</form>
-	</center>
-</div>
-    
-    
+<script>
+	function check(){
+		
+		var checkFlag = document.getElementById("checkFlag").value;
+		var userId = document.getElementById("userId").value;
+		var userPwd = document.getElementById("userPwd").value;
+		var userName = document.getElementById("userName").value;
+		var userEmail = document.getElementById("userEmail").value;
+		var userPhone = document.getElementById("Phone").value;
+		if(checkFlag==0){
+			alert("ID 중복확인을 먼저 진행해 주세요");
+			return false;
+		}
+		else if(userId == ""){
+			alert("ID를 입력해 주세요");
+			return false;
+		}
+		else if(userPwd == ""){
+			alert("비밀번호를 입력해 주세요");
+			return false;
+		}
+		else if(userName == ""){
+			alert("이름을 입력해 주세요");
+			return false;
+		}
+		else if(userEmail == ""){
+			alert("이메일을 입력해 주세요");
+			return false;
+		}
+		else if(userPhone == ""){
+			alert("전화번호를 입력해 주세요");
+			return false;
+		}
+	}
+</script>
+ 
 <script type = "text/javaxcript" src = "JS/bootstrap.js"></script>
-</body>
-</html>
 </body>
 </html>

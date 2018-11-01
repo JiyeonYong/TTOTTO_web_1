@@ -138,9 +138,7 @@ button{
 			<div style="border:3px solid blue; width:100%; height:100%;">
 				<%
 				ArrayList<KakaoTalkId> kakaoIdList = new ArrayList<KakaoTalkId>();
-				KakaoTalkId id1 = new KakaoTalkId("kh솔비","솔");
-				
-					request.getAttribute("kakaotalkId");
+				KakaoTalkId id1 = new KakaoTalkId("kh솔비","솔");				
 					
 					for(int i=0; i<kakaoIdList.size(); i++) {
 				%>
@@ -152,10 +150,7 @@ button{
 		</div>	
 	</div>	
 
-
-
 <div id="kakao_white_space1" style="width:1%; height:100%; float:left;"></div><!-- 아이디 관리, 보여주기 사이 빈공간 -->
-
 
 <!-- 카카오톡 메인 화면 -->
  <div id="kakao1" style="height:500px; width:33%; border:2px solid black; float:left; data-toogle:drop-down; background-color:#A6CCE6; box-sizing: border-box;">
@@ -177,7 +172,7 @@ button{
             	<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-right:30px;float:right; box-sizing: border-box;">
             	<ul></ul>                
                    <div class="bubbleRight bubbleRight:after bubbleRight:before" class="text text-r" id="talkText1" style="background-color:white !important;" >                   								
-							
+						이거?
                    </div><br><br>
             	</div>
             	</div> 
@@ -199,10 +194,60 @@ button{
                   	</div>
            		</div>
             </div>
+	 <% // 카카오톡 말풍선 보여지기
+	 System.out.println("req:" + request.getAttribute("iskakaoList"));
+	 
+	 if(request.getAttribute("iskakaoList")=="1"){%>
+	 			
+	 <%
+	 	ArrayList<KakaoTalk> kakaoList = (ArrayList<KakaoTalk>)request.getAttribute("kakaoList");
+	 	System.out.println(kakaoList.get(0).getContent());
+
+	 
+	 		
+	 		for(int i=0; i<kakaoList.size(); i++) {
+	 			
+	 			if(i%2==0){
+	 %>		
+	 		<div name="kakao_talkData2" style="float:right; border:1px solid red; width:100%"> 
+                <img src="../../img/kakao%20profile.png" alt="Jane Doe" class="mr-3 mt-3 rounded-circle" style="width:55px; float:left; margin-top:30px; margin-left:20px;">
+            	<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px;margin-left:30px; float:left">
+            		<ul></ul>
+                	<div style="float:right">
+                    	<div class="bubbleLeft bubbleLeft:after bubbleLeft:before" class="text text-r" id="talkText2" style="background-color:white !important;" >
+									<%=kakaoList.get(i).getContent()%>
+                    	</div><br><br>
+                  	</div>
+           		</div>
+            </div>
+            
+            	<%}else{%>
+            	
+            <div name="kakao_talkData1" style="float:right; border:1px solid black; width:100%; box-sizing: border-box;">
+        		<div name="kakao_Contents" style="float:left; width:80%; height:80%; border:2px solid pink; box-sizing: border-box;">
+            		<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-right:30px;float:right; box-sizing: border-box;">
+            			<ul></ul>                
+               			<div class="bubbleRight bubbleRight:after bubbleRight:before" class="text text-r" id="talkText1" style="background-color:white !important;" >                   								
+							<%=kakaoList.get(i).getContent()%>
+               			 </div><br><br>
+            		</div>
+            	</div> 
+        		<div name="kakao_profileImg" style="border:2px solid yellow; width:20%; height:60%; float:left; box-sizing: border-box;" >
+             		<img src="../../img/kakao%20profile.png" alt="Jane Doe" class="mr-3 mt-3 rounded-circle" style="width:55px; margin-top:30px;">
+          		</div>
+           		<div name="kakao_id" style="border:2px solid purple; width:20%; height:40%; float:left; box-sizing:border-box;" >
+            			<%= kakaoList.get(i).getDateWithTime()%>
+           		</div> 
+          	</div>  
+            	
+            	
+            	
+            	<%} %>
+	 		<%}%>
+	 <%}%>        
         </div>    
     </div>    
   </div>
- 
  
     
     <div id="kakao_white_space2" style="width:5%; height:100%; float:left;"></div><!-- 보여주기, 붙여넣기 사이 빈공간 -->
@@ -261,9 +306,8 @@ button{
 		return true;
 	}
 	
-
+	// 아이디툴 보여주기 안보여주기
 	 <%
-	 System.out.println("req:" + request.getAttribute("is_id_tool"));
 	 
 	 if(request.getAttribute("is_id_tool")=="1"){%>
 	 		<%System.out.println("여기>>>");%>
@@ -275,8 +319,7 @@ button{
 		
 		kakao_id_tool.style.display="none";
 	 
-	 <%}%>
-	 
-  </script>
+	 <%} %> 
+ </script>
 </body>
 </html>
