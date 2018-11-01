@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ttotto.postpost.service.PostService;
-import com.ttotto.postpost.vo.Post;
+import com.ttotto.postpost.vo.*;
+import com.ttotto.postpost.vo.PostListData;
 
 /**
  * Servlet implementation class PostServlet
@@ -32,14 +33,15 @@ public class PostServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Post> list =new PostService().noteAllList();
-		new PostService().commentList();
 		
+		System.out.println("서블릿왔어");
+		PostListData list =new PostService().PostAllList();
 		
-		if(!list.isEmpty()) {
+		if(list != null) {
 			RequestDispatcher view = request.getRequestDispatcher("views/post/post.jsp");
-			request.setAttribute("postList", list);
+			request.setAttribute("PostListData", list);
 			view.forward(request, response);
+			System.out.println("list의값"+list);
 			
 		}else {
 			response.sendRedirect("/views/post/error.jsp");

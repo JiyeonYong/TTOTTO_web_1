@@ -22,7 +22,7 @@ public class Comment {  //댓글
 		this.postNo = postNo;
 		this.contents = contents;
 		this.userId = userId;
-		CommentDate = commentDate;
+		this.CommentDate = commentDate;
 	}
 	public int getCommentNo() {
 		return commentNo;

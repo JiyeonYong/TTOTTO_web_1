@@ -21,7 +21,9 @@ public class PostDao {
 		
 		ArrayList<Post> list = new ArrayList<Post>();
 		
-		String query = "select * from Post_table";
+		String query = "select * from post_table";
+		
+		System.out.println("postDao의값"+conn);
 		
 		try {
 			stmt = conn.createStatement();
@@ -38,7 +40,10 @@ public class PostDao {
 				p.setPostType(rset.getString("POST_TYPE"));
 				p.setPostDate(rset.getDate("POST_DATE"));
 				
+				p.getPostNo();
 				list.add(p);
+			
+				
 			}
 			
 			
@@ -49,33 +54,67 @@ public class PostDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(stmt);
 		}
+		System.out.println(list+"list의사이즈야");
 		return list;
 	}
 
-	public ArrayList<Post> commentList(Connection conn ) {
+	public ArrayList<Comment> commentList(Connection conn, int postNo ) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		ArrayList<Comment> list = new ArrayList<Comment>();
 		
-		String query = "select * from COMMENT_TABLE where post_no=?";
+		String query = "select * from comment_table where post_no=?";
+		
+		System.out.println("전"+query);
+		
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setString(1, "POST_NO");
+			pstmt.setInt(1, postNo);
+			System.out.println(query);
+			rset=pstmt.executeQuery();
+			
+			System.out.println("pstmt"+pstmt);
+			System.out.println("rset"+rset);
+			
+			
+			
+			while(rset.next()) {
+				
+				Comment co = new Comment();
+				co.setCommentNo(rset.getInt("COMMENT_NO"));
+				co.setPostNo(rset.getInt("POST_NO"));
+				co.setContents(rset.getString("CONTENTS"));
+				co.setUserId(rset.getString("USER_ID"));
+				co.setCommentDate(rset.getDate("COMMENT_DATE"));
+				
+				list.add(co);
+				System.out.println("co의값"+co);
+			}
+				
+				
+				
+		
+			System.out.println("PostDao"+list);
+		
 			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
 		
 		
 		
 		
-		return null;
+		return list;
 	}
 
+		
 }

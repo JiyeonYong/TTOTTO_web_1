@@ -5,33 +5,35 @@ import java.util.ArrayList;
 
 import com.ttotto.common.JDBCTemplate;
 import com.ttotto.postpost.dao.PostDao;
+import com.ttotto.postpost.vo.Comment;
 import com.ttotto.postpost.vo.Post;
+import com.ttotto.postpost.vo.PostListData;
 
 public class PostService {
 
-	public ArrayList<Post> noteAllList() {
-		
+	public PostListData PostAllList() {
+		System.out.println("POSTSERVICE의값이야");
 		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<Post> list=new PostDao().noteAllList(conn);
-	
-		JDBCTemplate.close(conn);
+		PostListData pld = null;
 		
-		return list;
+		ArrayList<Post> list = new PostDao().noteAllList(conn);	
+		
+		
+		System.out.println("postservice의리스트값"+list);
+		
+		for(Post p :list) {
+			int postNo = p.getPostNo();
+			ArrayList<Comment> list1 =new PostDao().commentList(conn, postNo);
+			
+			//if(p!=null) {
+				pld = new PostListData();
+				pld.setList(list);
+				pld.setList1(list1);
+		//}
+		
 	}
-
-	public ArrayList<Post> commentList() {
-		
-
-		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<Post> list=new PostDao().commentList(conn);
-	
 		JDBCTemplate.close(conn);
-		
-		return list;
-		
-		
+		System.out.println("pld의값"+pld);
+		return pld ;
 	}
-
-
-
 }

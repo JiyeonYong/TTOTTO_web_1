@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.ttotto.postpost.vo.Post"
-		import="java.util.ArrayList" %>   
+		import="java.util.ArrayList" 
+		import="com.ttotto.postpost.vo.PostListData"
+		import="com.ttotto.postpost.vo.Comment"%>   
 		
 <%
-	ArrayList<Post> list = (ArrayList<Post>)request.getAttribute("postList");
+	PostListData pld = (PostListData)request.getAttribute("PostListData");
 
+	ArrayList<Post> list= pld.getList();
+	ArrayList<Comment> list1 = pld.getList1();
 %>
     
     
@@ -193,11 +197,28 @@
             
                
     <!-- 해당 프로젝트 조회창-->
+
+
+	<%for(Comment c : list1){ %>
+		<%=c.getContents()%> 
+	<%} %>
+
+
+
+
     
-	<%for(Post p :list) {%>    
+	<%for(Post p :list){
+		for(Comment co :list1){
+	
+	%>    
+	
+
+	
+	
     
                 <div class = "card text-center">
-                    <div class = "card-header"><pre>POST제목 : <%=p.getSubject()%>                       작성자 :<%=p.getUserId()%></pre>
+                    <div class = "card-header"><pre>POST제목 : <%=p.getSubject()%>                 
+                    						      작성자 :<%=p.getUserId()%></pre>
                      <!--    <span id = "post-title">Post 조회창</span> -->
                     </div>
                     
@@ -220,7 +241,7 @@
                     <div class = "card-footer" >
              	  		<input type="hidden" name="postNo" value="<%=p.getPostNo()%>"/> 
                         <span id = "post-maker-id"><%=p.getUserId()%></span>
-                        <span id = "post-maker-action"> 님: <%=p.getUserId()%> </span><br>
+                        <span id = "post-maker-action"> 님: <%=co.getContents()%> </span><br>
                         <!-- <span id = "post-maker-id">한솔</span>
                         <span id = "post-maker-action">님이 댓글을 달았습니다.</span><br>
                         <span id = "post-maker-id">유진</span>
@@ -231,6 +252,7 @@
                     </div>
                 </div>
             
+              <%} %>
               <%} %>
                 <!--Todo : loadMore 버튼 구현하기-->
                 <!--<div id="loadMore" style="">
