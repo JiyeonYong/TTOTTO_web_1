@@ -36,4 +36,14 @@ public class ProjectService {
 		
 	}
 
+	public int createProjectMember(String createrId) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		
+		
+		
+		
+	}
+
 }
