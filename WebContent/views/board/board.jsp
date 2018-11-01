@@ -24,7 +24,7 @@
 			
 				<h4>게시판 목록</h4>
 				<ul class = "list-group">
-				<%@ include file="/views/board/boardList.jsp"%>
+				<!--  include file="/views/board/boardList.jsp"  -->
 				</ul>
 
 			</div>
