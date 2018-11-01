@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/CSS/bootstrap.css">
 </head>
 <body>
+	
 
 		<% for (Board b : list) {%>
 		<li class="list-group-item d-flex justify-content-between align-items-center">
