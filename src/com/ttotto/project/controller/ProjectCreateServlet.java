@@ -49,12 +49,10 @@ public class ProjectCreateServlet extends HttpServlet {
 		
 		Project newProject = new Project(0, projName, memberCount, updateDate, projType, createrId);
 		
-		int projResult = new ProjectService().createProject(newProject);
-		
-		int memberResult= new ProjectService().createProjectMember(createrId);
+		int result = new ProjectService().createProject(newProject,createrId);
 		
 		try {			
-			if(projResult>0) {
+			if(result>0) {
 				response.sendRedirect("/views/project/projectList.jsp");
 				
 			}else {
