@@ -38,9 +38,9 @@
 	
 <% }else{%>
 
-<<<<<<< HEAD
+
 <div class="jumbotron text-center" style="margin-bottom:0"> 
-=======
+
 <script>
 	function idCheck(){
 		var userId = document.getElementById("userId").value;
@@ -51,7 +51,7 @@
 </script>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
->>>>>>> f2ff085e77fcde6acef0ee1d0df6b63c390820c7
+
   <h1>TTO TTO</h1>
 </div>
  

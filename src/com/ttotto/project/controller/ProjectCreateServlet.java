@@ -43,20 +43,22 @@ public class ProjectCreateServlet extends HttpServlet {
 		String projType= request.getParameter("projType");
 		
 		//회원 추가 기능 일단 생략하고 0으로 프로젝트 DB에 생성
-		int memberCount = 0;
+		int memberCount = 1;
 		
 		Date updateDate=null;
 		
 		Project newProject = new Project(0, projName, memberCount, updateDate, projType, createrId);
 		
-		int result = new ProjectService().createProject(newProject);
+		int projResult = new ProjectService().createProject(newProject);
+		
+		int memberResult= new ProjectService().createProjectMember(createrId);
 		
 		try {			
-			if(result>0) {
+			if(projResult>0) {
 				response.sendRedirect("/views/project/projectList.jsp");
 				
 			}else {
-				System.out.println("프로젝트가 정상 처리되지 않았습니다.");
+				System.out.println("프로젝트가 정상적으로 만들어지지 않았습니다.");
 				throw new Exception();
 			}			
 		} catch (Exception e) {			

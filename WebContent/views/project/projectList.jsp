@@ -62,15 +62,7 @@
                 		<form>
                    	    </li>
                 	
-<<<<<<< HEAD
-                	<%} 
-                	
-                	   if(list.isEmpty()){%>
-                		<li class="list-group-item d-flex justify-content-between align-items-center">
-                		진행중인 프로젝트가 없습니다.
-                   	    </li>
-                		<%} %>
-=======
+
                 		<%} %>
                 	
                 	<%}%>
@@ -93,7 +85,7 @@
                     </ul> -->
         
                     <!--<hr class="d-sm-none">-->
->>>>>>> f2ff085e77fcde6acef0ee1d0df6b63c390820c7
+
             </div>
             
             <!-- right section-->
