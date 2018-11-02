@@ -56,7 +56,7 @@ public class ProjectDao {
 		String sql1 = "insert into project_table values(projNo.nextval,?,?,sysdate,?,?)";
 		
 		String sql2 = "insert into project_member_table values(projMemberNo.nextVal,"
-				+ "projNo.currVal,?,?)";
+				+ "projNo.currVal,?,?,?)";
 		
 		try {
 			pstmt = conn.prepareStatement(sql1);
@@ -74,7 +74,8 @@ public class ProjectDao {
 			
 			pstmt = conn.prepareStatement(sql2);			
 			pstmt.setString(1, createrId);
-			pstmt.setString(2, memberNickName);								
+			pstmt.setString(2, memberNickName);	
+			pstmt.setString(3, newProject.getAddMemberId());
 			
 			result += pstmt.executeUpdate();
 			

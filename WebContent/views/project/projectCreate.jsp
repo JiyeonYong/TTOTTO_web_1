@@ -129,8 +129,8 @@
 
 						</div>
 						<div class="modal-body">
-							<span class="input-group-text">@ <br> <input
-								type="text" class="form-control" placeholder="UserId">
+							<span class="input-group-text">@ <br> 
+							<input type="text" id="addMemberId" class="form-control" placeholder="UserId">
 							</span>
 						</div>
 						<div class="modal-footer">
@@ -170,6 +170,7 @@
 		
 		$("#projNameSubmit").val($("#projectName").val());
 		$("#projHashNameSubmit").val($("#HashSearch").val());
+		$("#addMemberSubmit").val($("#addMemberId").val());
 		
 		document.getElementById('projForm').submit();
 		
@@ -192,6 +193,7 @@
 <input type="text" id="projCreaterIdSubmit" name="projCreaterId"/>		<!-- 프로젝트 제작자 아이디 -->
 <input type="text" id="projNameSubmit" name="projName"/>	<!-- 프로젝트명 -->
 <input type="text" id="projTypeSubmit" name="projType"/>	<!-- 프로젝트 타입 -->
+<input type="text" id="addMemberSubmit" name="addMember"/>  <!-- 추가할 아이디 -->
 
 
 </form>

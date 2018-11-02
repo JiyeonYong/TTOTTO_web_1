@@ -16,6 +16,8 @@ import com.ttotto.project.model.service.ProjectService;
 import com.ttotto.project.model.vo.Hash;
 import com.ttotto.project.model.vo.Project;
 
+import com.ttotto.project.model.vo.totalCreateProject;
+
 /**
  * Servlet implementation class ProjectCreateServlet
  */
@@ -41,6 +43,8 @@ public class ProjectCreateServlet extends HttpServlet {
 		String projHash=request.getParameter("projHash");
 		ArrayList<String>list = new ArrayList<String>();
 		String[]toColumNum = projHash.split("#");
+		totalCreateProject tcp = new totalCreateProject();
+		
 		for(int i=0; i<toColumNum.length;i++) {
 			list.add(toColumNum[i]);
 		}
@@ -54,6 +58,10 @@ public class ProjectCreateServlet extends HttpServlet {
 		String projName= request.getParameter("projName");
 		String createrId = ((Member)session.getAttribute("member")).getUserId();
 		String projType= request.getParameter("projType");
+		String addMemberId = request.getParameter("addMember");
+		
+		
+	
 		
 		
 		
@@ -68,7 +76,7 @@ public class ProjectCreateServlet extends HttpServlet {
 		
 		Date updateDate=null;
 		
-		Project newProject = new Project(0, projName, memberCount, updateDate, projType, createrId);
+		Project newProject = new Project(0, projName, memberCount, updateDate, projType, createrId,addMemberId);
 		
 		int result = new ProjectService().createProject(newProject,createrId);
 		

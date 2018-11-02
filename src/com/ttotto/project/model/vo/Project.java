@@ -10,9 +10,10 @@ public class Project {
 	private Date updateDate;
 	private String projType;
 	private String createrId;
+	private String addMemberId;
 	
 
-	public Project(int projNo, String projName, int memberCount, Date updateDate, String projType, String createrId) {
+	public Project(int projNo, String projName, int memberCount, Date updateDate, String projType, String createrId,String addMemberId) {
 		super();
 		this.projNo = projNo;
 		
@@ -21,6 +22,7 @@ public class Project {
 		this.updateDate = updateDate;
 		this.projType = projType;
 		this.createrId = createrId;
+		this.addMemberId = addMemberId;
 	}
 
 	
@@ -31,6 +33,24 @@ public class Project {
 	public Project() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+
+
+	
+
+
+	public String getAddMemberId() {
+		return addMemberId;
+	}
+
+
+
+
+
+
+	public void setAddMemberId(String addMemberId) {
+		this.addMemberId = addMemberId;
 	}
 
 
