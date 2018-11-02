@@ -2,6 +2,7 @@ package com.ttotto.project.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ttotto.member.model.vo.Member;
 import com.ttotto.project.model.service.ProjectService;
+import com.ttotto.project.model.vo.Hash;
 import com.ttotto.project.model.vo.Project;
 
 /**
@@ -33,16 +35,35 @@ public class ProjectCreateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		
+		String projHash=request.getParameter("projHash");
+		ArrayList<String>list = new ArrayList<String>();
+		String[]toColumNum = projHash.split("#");
+		for(int i=0; i<toColumNum.length;i++) {
+			list.add(toColumNum[i]);
+		}
+		System.out.println(list+"list의값");
+		Hash hash = new Hash(list);
 		
+		
+		new ProjectService().createHashName(hash);
+	
 		
 		String projName= request.getParameter("projName");
 		String createrId = ((Member)session.getAttribute("member")).getUserId();
 		String projType= request.getParameter("projType");
 		
-		//회원 추가 기능 일단 생략하고 0으로 프로젝트 DB에 생성
+		
+		
+		//회원 추가 기능 일단 생략하고 0으로 프로젝트 
+		
+		
+		
+		
+		
+		//DB에 생성
 		int memberCount = 1;
 		
 		Date updateDate=null;

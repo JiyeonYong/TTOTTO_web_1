@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.ttotto.common.JDBCTemplate;
 import com.ttotto.project.model.dao.ProjectDao;
+import com.ttotto.project.model.vo.Hash;
 import com.ttotto.project.model.vo.Project;
 
 public class ProjectService {
@@ -34,5 +35,17 @@ public class ProjectService {
 		
 		return result;
 		
+	}
+
+	public int createHashName(Hash hash) {
+		Connection conn = JDBCTemplate.getConnection();
+		System.out.println("createHashName"+hash);
+		int result = new ProjectDao().createHashName(conn,hash);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
 	}
 }

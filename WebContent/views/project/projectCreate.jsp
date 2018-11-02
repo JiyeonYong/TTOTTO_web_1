@@ -53,7 +53,7 @@
 
 						<!-- Modal body -->
 						<div class="modal-body">
-							<input class="form-control mr-sm-2" type="text" id="HashSearch"
+							<input class="form-control mr-sm-2" type="text" id="HashSearch" name="HashSearch"
 								placeholder="해시태그는 앞에 #를 붙여 검색하시길 바랍니다."> <br>
 							<button type="button" onclick="inputHash(0);" class="btn btn-primary" id="HashBtn0">스마트 폰</button>
 							<button type="button" onclick="inputHash(1);" class="btn btn-primary"id="HashBtn1">멤버쉽</button>
@@ -77,9 +77,8 @@
 							<button type="button" class="btn btn-secondary"
 								data-toggle="modal" data-target="#secondModal"
 								data-dismiss="modal">Next</button>
-
+						
 						</div>
-
 
 					</div>
 
@@ -170,8 +169,10 @@
 		
 		
 		$("#projNameSubmit").val($("#projectName").val());
+		$("#projHashNameSubmit").val($("#HashSearch").val());
 		
 		document.getElementById('projForm').submit();
+		
 		
 	}
 	
@@ -187,6 +188,7 @@
 </script>
 
 <form action = "/projectCreate.do" method="post" style="display:none;" id="projForm">
+<input type="text" id="projHashNameSubmit" name="projHash"/> <!-- 프로젝트 해쉬이름 -->
 <input type="text" id="projCreaterIdSubmit" name="projCreaterId"/>		<!-- 프로젝트 제작자 아이디 -->
 <input type="text" id="projNameSubmit" name="projName"/>	<!-- 프로젝트명 -->
 <input type="text" id="projTypeSubmit" name="projType"/>	<!-- 프로젝트 타입 -->

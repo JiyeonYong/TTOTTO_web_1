@@ -4,15 +4,18 @@ import java.sql.Date;
 
 public class Project {
 	private int projNo;
+	
 	private String projName;
 	private int memberCount;
 	private Date updateDate;
 	private String projType;
 	private String createrId;
+	
 
 	public Project(int projNo, String projName, int memberCount, Date updateDate, String projType, String createrId) {
 		super();
 		this.projNo = projNo;
+		
 		this.projName = projName;
 		this.memberCount = memberCount;
 		this.updateDate = updateDate;
@@ -20,19 +23,29 @@ public class Project {
 		this.createrId = createrId;
 	}
 
+	
+	
+
+
+
 	public Project() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+
+
+
+
+
 	public int getProjNo() {
 		return projNo;
 	}
-
 	public void setProjNo(int projNo) {
 		this.projNo = projNo;
 	}
-
+	
+	
 	public String getProjName() {
 		return projName;
 	}

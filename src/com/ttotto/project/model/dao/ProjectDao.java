@@ -1,12 +1,16 @@
 package com.ttotto.project.model.dao;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import com.ttotto.common.JDBCTemplate;
+import com.ttotto.project.model.vo.Hash;
 import com.ttotto.project.model.vo.Project;
 
 public class ProjectDao {
@@ -82,6 +86,37 @@ public class ProjectDao {
 			JDBCTemplate.close(pstmt);
 		}
 		
+		return result;
+	}
+
+	public int createHashName(Connection conn, Hash hash) {
+	PreparedStatement pstmt = null;
+	int result =0;
+	
+	System.out.println("hash값은?"+hash);
+	
+	
+	
+	
+	
+	String query = "insert into hash_table values(hashNo.nextval,?)";
+	try {
+		pstmt=conn.prepareStatement(query);
+		
+		
+		String hash1 = hash.toString();
+		
+		System.out.println(hash1+"////////////e1의값은");
+				
+		pstmt.setString(1, hash1);
+		result = pstmt.executeUpdate();
+		System.out.println(result+"결과값");
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		JDBCTemplate.close(pstmt);
+	}
 		return result;
 	}
 }
