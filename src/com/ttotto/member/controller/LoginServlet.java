@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 			
 			session.setAttribute("member", member);
 			
-			response.sendRedirect("/views/member/loginSuccess.jsp"); // sendRedirect 메소드는 해당되는 페이지로 이동시키는 메소드		
+			response.sendRedirect("/projectList.do"); // sendRedirect 메소드는 해당되는 페이지로 이동시키는 메소드		
 		}
 		else { // 로그인 실패 
 			response.sendRedirect("/views/member/loginFail.jsp");

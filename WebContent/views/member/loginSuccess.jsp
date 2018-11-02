@@ -8,7 +8,6 @@
 </head>
 <body>
 <script>
-	alert("정상적으로 로그인 되었습니다.");
 	location.href="/projectList.do";
 </script>
 
