@@ -40,7 +40,7 @@ public class UploadServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 파일 업로드를 구현하려면 몇가지 정보가 필요함
+		
 		//1. 사용자 계정명 (업로드한 사람의 정보 - session을 이용)
 		HttpSession session = request.getSession(false);
 		try {
@@ -48,9 +48,7 @@ public class UploadServlet extends HttpServlet {
 
 		//2. 최대 업로드 파일 사이즈 (cos 라이브러리는 10MB가 한계)
 		int fileSizeLimit = 5 * 1024 * 1024;
-		// 1Byte*1024 == 1024Byte == 1KByte
-		// 1KByte*1024 == 1024Kbyte ==  1MByte
-				
+		
 		//3. 업로드 될 경로
 		String uploadPath = getServletContext().getRealPath("/")+"uploadFile"+"\\"+userId;
 		
@@ -66,22 +64,13 @@ public class UploadServlet extends HttpServlet {
 									fileSizeLimit,
 									encType,
 									new DefaultFileRenamePolicy());
-		// 마지막에 만든 DefaultFileRenamePolicy 객체를 만들어서 넣어주게 되면
-		// 파일 이름의 중복 처리를 자동으로 처리해줌
-		// ex) a.bmp가 중복으로 2번 업로드를 하게 되면 
-		// 파일의 이름이 자동으로 a1.bmp, a2.bmp로 변경됨
-	
 		
-		// 업로드된 파일의 정보를 바탕으로 DB에 기록할 수 있도록 생성
 		
 		//1. 파일 이름
-		// getFilesystemName("view의 파라미터 이름);을 사용하면
-		// 업로드된 파일의 이름을 가져옴
 		String fileName = multi.getFilesystemName("upfile");
 		System.out.println("파일 이름 : " + fileName);
 			
 		//2. 업로드 파일의 실체 총 경로 (filePath)
-		// 업로드되는 경로 + 파일 이름	
 		String fullFilePath = uploadPath+"\\"+fileName;
 		System.out.println("총 경로 : " + fullFilePath);
 		
@@ -89,31 +78,25 @@ public class UploadServlet extends HttpServlet {
 		//3. 파일의 크기(length)
 		File file = new File(fullFilePath); //import java.io.File
 		long fileSize = file.length(); //파일의 사이즈를 가져옴
+	
 		
-		//usb -> 파일 시스템 : fat32
-		//    -> 파일 시스템 : NTFS 혹은 exFat
-		
-		//4. 업로드 유저
-		// 위에서 만들었기 때문에 생략 가능 (userId)
-		
-		
-		//5. 파일이 업로드된 시간 (밀리세컨까지)
+		//5. 파일이 업로드된 시간
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 		Timestamp uploadTime = null;
 		
 		uploadTime = Timestamp.valueOf(formatter.format(Calendar.getInstance().getTimeInMillis()));
-		//Timestamp import는 java.sql.Timestamp
+	
 		
 		System.out.println("업로드된 시간 : " + uploadTime);
 		
 		
-		//객체에 값 저장
+		
 		FileData fd = new FileData();
-		fd.setFileName(fileName);		//파일 이름
-		fd.setFilePath(fullFilePath);	//파일 총 경로 (디렉토리+파일명)
-		fd.setFileSize(fileSize);		//파일 사이즈
-		fd.setFileUser(userId);			//업로드 유저
-		fd.setUploadTime(uploadTime);	//업로드된 시간
+		fd.setFileName(fileName);		
+		fd.setFilePath(fullFilePath);	
+		fd.setFileSize(fileSize);	
+		fd.setFileUser(userId);			
+		fd.setUploadTime(uploadTime);	
 		
 		
 		//비즈니스 로직 처리
@@ -136,13 +119,6 @@ public class UploadServlet extends HttpServlet {
 		
 	
 		
-		
-		
-		
-		
-		
-		
-		
 	}
 
 	/**
@@ -154,12 +130,5 @@ public class UploadServlet extends HttpServlet {
 	}
 
 }
-
-
-
-
-
-
-
 
 
