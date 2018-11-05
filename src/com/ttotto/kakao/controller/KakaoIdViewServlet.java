@@ -37,12 +37,12 @@ public class KakaoIdViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int projNo=1;
 		
-		ArrayList<KakaoTalkId> kakaoList = new ArrayList<>();
-		kakaoList = new KakaoService().viewKakaoId(projNo);		 
+		ArrayList<KakaoTalkId> kakaoIdList = new ArrayList<>();
+		kakaoIdList = new KakaoService().viewKakaoId(projNo);		 
 		
 		String is_id_tool = "1";
 		
-		request.setAttribute("kakaoList", kakaoList);	
+		request.setAttribute("kakaoList", kakaoIdList);	
 		
 		request.setAttribute("is_id_tool", is_id_tool);
 		

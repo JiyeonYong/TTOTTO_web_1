@@ -125,6 +125,9 @@ button{
 <!--header-->
 	<%@ include file="/views/layout/header.jsp"%>
 	
+	
+	
+	
 	<br><br><br>
 <center>
 
@@ -144,50 +147,66 @@ button{
 				0명
 			</div>		
 			
-			<div name="editDiv" style="width:100%; height:10%; float:left; border:2px solid pink; box-sizing: border-box; color:grey">
+			<div  name="editDiv" style="width:100%; height:10%; float:left; border:2px solid pink; box-sizing: border-box; color:grey">
 				<img src="../../img/edit.PNG" style="width:50px; height:50px; box-sizing: border-box; border-radius: 50px; ">
 				<br>편집
 			</div>
-			<div style="border:3px solid blue; width:100%; height:100%;">
 			
 			
-			<script>
+			<div id = "kakaoIdList">
+			
+			</div>
+		</div>	
+	</div>	
+	
+	
+	
+<script>				
 				
-				$.ajax({
+				//
+				
+				$(function(){
+					$.ajax({
+				
 					url : "/kakaoIdList.do",
 					data : {
 						
 					},
 					type : "post",
-					success : function(kakaoListData){
-												
+					success : function(kakaoIdList){
+						
+						console.log("길이"+kakaoIdList.length);
+						console.log(kakaoIdList);
+						
+						for(var i=0;i<kakaoIdList.length;i++)
+						{
+							
+							
+							$("#kakaoIdList").append(
+									
+									"<div style='border:2px solid red; height:15%; width:100%; float:left; text-align:left;'>"+									
+									"<img src='../../img/kakao%20profile.png' style='width:35px; height:35px; box-sizing: border-box; border-radius: 40px;'>"+									
+									kakaoIdList[i][0].viewId + "</div><br><br>"									
+							);
+							
+						}
+						
 					},
 					error : function(){
 						console.log("kakaoId ajax 통신 에러");
 					},
+					
 					complete:function(){
 						console.log("complete 통신 연결");
 					}
 					
+					});
 					
 				});
 			
-			
-			</script>
-				<%
-				ArrayList<KakaoTalkId> kakaoIdList = new ArrayList<KakaoTalkId>();
-				KakaoTalkId id1 = new KakaoTalkId("kh솔비","솔");				
-					
-					for(int i=0; i<kakaoIdList.size(); i++) {
-				%>
-				<div>
-					<%=id1.getViewId()%><br>
-				</div>
-				<%  }%>
-			</div>
-		</div>	
-	</div>	
-
+				</script>
+				
+				
 <div id="kakao_white_space1" style="width:1%; height:100%; float:left;"></div><!-- 아이디 관리, 보여주기 사이 빈공간 -->
 
 <!-- 카카오톡 메인 화면 -->
@@ -201,9 +220,12 @@ button{
         
         <!-- ajax이용하여 전체보기, 날짜별 모아보기, 중요도별 모아보기 기능 제공-->
         
-        	<img src="../../img/%EA%B8%B0%EB%B3%B8%EB%B3%B4%EA%B8%B0.png" style="float:left; width:35px; height:30px;">
-            <img src="../../img/%EB%AA%A8%EC%95%84%EB%B3%B4%EA%B8%B03.png" style="float :left width:35px; height:30px;">
-            <img src="../../img/%EB%AA%A8%EC%95%84%EB%B3%B4%EA%B8%B02.png" style="float : left width:35px; height:30px;">
+        	<img id="allView" src="../../img/%EA%B8%B0%EB%B3%B8%EB%B3%B4%EA%B8%B0.png" style="float:left; width:35px; height:30px;">
+        	
+            <img id="dateView" src="../../img/%EB%AA%A8%EC%95%84%EB%B3%B4%EA%B8%B03.png" style="float :left width:35px; height:30px;">
+            
+            <img id="importanceView" src="../../img/%EB%AA%A8%EC%95%84%EB%B3%B4%EA%B8%B02.png" style="float : left width:35px; height:30px;">
+            
         </div>
 	</div>
  	<div id="kakao_body1" style="height:87%; width:100%; border:1px solid blue; box-sizing: border-box;" >           
@@ -236,13 +258,13 @@ button{
            		</div>
             </div>
 	 <% // 카카오톡 말풍선 보여지기
-	 System.out.println("req:" + request.getAttribute("iskakaoList"));
+	 //System.out.println("req:" + request.getAttribute("iskakaoList"));
 	 
 	 if(request.getAttribute("iskakaoList")=="1"){%>
 	 			
 	 <%
 	 	ArrayList<KakaoTalk> kakaoList = (ArrayList<KakaoTalk>)request.getAttribute("kakaoList");
-	 	System.out.println(kakaoList.get(0).getContent());
+	 	//System.out.println(kakaoList.get(0).getContent());
 
 	 
 	 		

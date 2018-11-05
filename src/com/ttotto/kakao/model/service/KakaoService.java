@@ -21,10 +21,8 @@ public class KakaoService {
 		//kakao_table에 넣기
 		int result= new KakaoDao().insertKakao(kakaoList, conn);
 		
-		
 		// kakao_id_table에 값 넣기		
 		new KakaoDao().insertKakaoId(kakaoList,conn);
-		
 		
 		if(result>0) {
 			JDBCTemplate.commit(conn);
@@ -43,15 +41,19 @@ public class KakaoService {
 		
 		//System.out.println(conn);
 		
-		ArrayList<KakaoTalkId> kakaoList = new KakaoDao().viewKakaoId(conn,projNo);
+		ArrayList<KakaoTalkId> kakaoIdList = new KakaoDao().viewKakaoId(projNo,conn);		
 		
-		if(kakaoList.size()!= 0) {
+		
+		if(kakaoIdList.size()!= 0) {
 			JDBCTemplate.commit(conn);
 		}else {
 			JDBCTemplate.rollback(conn);
-		}
+		}		
+		
 		JDBCTemplate.close(conn);
 		
-		return kakaoList;
+		return kakaoIdList;
+		
+		
 	}
 }
