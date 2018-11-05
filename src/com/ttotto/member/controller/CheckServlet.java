@@ -1,6 +1,8 @@
 package com.ttotto.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,19 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ttotto.member.model.service.MemberService;
-import com.ttotto.member.model.vo.Member;
 
 /**
- * Servlet implementation class Find_pwServlet
+ * Servlet implementation class CheckServlet
  */
-@WebServlet(name = "Find_pw", urlPatterns = { "/find_pw.do" })
-public class Find_pwServlet extends HttpServlet {
+@WebServlet(name = "Check", urlPatterns = { "/check.do" })
+public class CheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Find_pwServlet() {
+    public CheckServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,25 +30,20 @@ public class Find_pwServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String checkId = request.getParameter("userId");
+		boolean isUserId = new MemberService().checkId(checkId);
 		
-		request.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+		//System.out.println(isUserId);
 		
-		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
-		String password = request.getParameter("password");
+		out.print(isUserId);
+//		if(isUserId==true)
+//		{
+//			out.println("true");
+//		}else {
+//			out.println("false");
+//		}
 		
-		Member member = new MemberService().selectFindMember(email, phone);
-		
-		if(member != null) {
-			int result = new MemberService().updatePwdMember(email, password);
-			
-			if(result>0) {
-				response.sendRedirect("/views/member/pwdfindSuccess.jsp");
-			}
-			else {
-				response.sendRedirect("/views/member/error.jsp");
-			}
-		}
 		
 		
 	}
@@ -56,7 +52,7 @@ public class Find_pwServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

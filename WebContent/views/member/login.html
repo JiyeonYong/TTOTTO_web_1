@@ -45,13 +45,13 @@
             <form action="/login.do">
         <div class="form-group">
         <label for="id">ID</label>
-        <input type="text" class="form-control" id="id" placeholder="아이디 입력" name="userId">
+        <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId">
         </div>
         <div class="form-group">
         <label for="pwd">Password</label>
-        <input type="password" class="form-control" id="pwd" placeholder="비밀번호 입력" name="userPwd">
+        <input type="password" class="form-control" id="userPwd" placeholder="비밀번호 입력" name="userPwd">
         </div>
-        <button type="submit" class="btn btn-primary">로그인</button>
+        <button type="submit" class="btn btn-primary" onclick="return login();">로그인</button>
         <a class="btn btn-primary" href="find.html">아이디/비밀번호 찾기</a>
     </form>
         </div>
@@ -62,5 +62,21 @@
 <div class="jumbotron text-center" style="margin-bottom:0">
   <p>Footer</p>
 </div>
+
+<script>
+	function login(){
+		var userId = document.getElementById("userId").value;
+		var userPwd = document.getElementById("userPwd").value;
+		
+		if(userId == ""){
+			alert("ID를 입력해 주세요.");
+			return false;
+		}
+		else if(userPWd == ""){
+			alert("비밀번호를 입력해 주세요.");
+			return false;
+		}
+	}
+</script>
 </body>
 </html>
