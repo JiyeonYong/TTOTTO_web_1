@@ -112,10 +112,10 @@
 				type : "post",
 				success : function(result){
 					var result = result;
-					if(result==1){
+					if(result==0){
 						alert("수정완료");
 					}
-					else if(result==0){
+					else if(result==1){
 						alert("이메일과 전화번호를 다시 입력해주세요.");
 					}
 				},
