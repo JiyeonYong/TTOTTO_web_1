@@ -41,12 +41,14 @@ public class Find_pwServlet extends HttpServlet {
 		if(member != null) {
 			int result = new MemberService().updatePwdMember(email, password);
 			
-			if(result>0) {
-				response.sendRedirect("/views/member/pwdfindSuccess.jsp");
-			}
-			else {
-				response.sendRedirect("/views/member/error.jsp");
-			}
+			//if(result>0) {
+				//response.getWriter().print(result);
+			//}
+			//else {
+				//response.sendRedirect("/views/member/error.jsp");
+			//}
+			response.getWriter().print(result);
+			
 		}
 		
 		

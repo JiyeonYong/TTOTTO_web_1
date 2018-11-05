@@ -1,6 +1,7 @@
 package com.ttotto.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,21 +36,32 @@ public class Find_idServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String email = request.getParameter("email");
-		
+		String userId ="";
 		Member member = new MemberService().selectFindIdMember(email);
 		
 		if(member != null) {
-			RequestDispatcher view = request.getRequestDispatcher("views/member/idfindSuccess.jsp");
+			//RequestDispatcher view = request.getRequestDispatcher("views/member/idfindSuccess.jsp");
 			
-			request.setAttribute("member", member);
+			//request.setAttribute("member", member);
 			
-			view.forward(request, response);
+			//view.forward(request, response);
+			
+			
+			userId = member.getUserId();
+			
+			
 		}
 		else {
 			response.sendRedirect("/views/member/error");
 		}
-		
-		
+		//response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+		System.out.println(userId);
+		response.getWriter().print(userId);
+//		
+//		PrintWriter out = response.getWriter();
+//		System.out.println(userId);
+//		out.print(userId);
 	}
 
 	/**
