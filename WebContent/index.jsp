@@ -33,7 +33,7 @@
 		Member member = (Member)session.getAttribute("member");
 %>
 	<script>
-	location.href= "views/project/projectList.jsp";
+	location.href= "/views/project/projectList.jsp";
 	</script>
 	
 <% }else{%>
@@ -96,7 +96,8 @@
       <label for="phone">Phone</label>
       <input type="text" class="form-control" id="Phone" placeholder="전화번호 입력" name="Phone">
     </div>
-    <button type="submit" class="btn btn-primary" onclick="return check();">회원가입</button>
+    <button type="submit" class="btn btn-primary" onclick="return check();" id="enroll">회원가입</button>
+    
   </form>
 </div>
 
@@ -133,6 +134,30 @@ $(function(){
 					idCheckText.attr("style","color:blue");
 				}
 			},
+			error : function(){
+				alert("문제가 발생하였습니다. 지속적으로 문제 발생 시 관리자에게 문의 바랍니다.");
+			}
+		});
+	});
+	$("#enroll").click(function(){
+		var userId = $("#userId").val();
+		var userPwd = $("#userPwd").val();
+		var userName = $("#userName").val();
+		var userEmail = $("#userEmail").val();
+		var Phone = $("Phone").val();
+		
+		$.ajax({
+			url : "/enroll.do",
+			type : "post",
+			data : {userId:userId,userPwd:userPwd,userName:userName,userEmail:userEmail,Phone:Phone},
+			success : function(result){
+				if(result==1){
+					alert("회원가입 완료");
+				}
+				else if(result==0){
+					alert("회원가입 실패");
+				}
+			} ,
 			error : function(){
 				alert("문제가 발생하였습니다. 지속적으로 문제 발생 시 관리자에게 문의 바랍니다.");
 			}

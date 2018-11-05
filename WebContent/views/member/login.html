@@ -42,7 +42,7 @@
     <div class="col-sm-5">
       <h2>로그인</h2>
         <div class="jumbotron">
-            <form action="/login.do">
+            <form action="/login.do" method="post">
         <div class="form-group">
         <label for="id">ID</label>
         <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId">
@@ -72,7 +72,7 @@
 			alert("ID를 입력해 주세요.");
 			return false;
 		}
-		else if(userPWd == ""){
+		else if(userPwd == ""){
 			alert("비밀번호를 입력해 주세요.");
 			return false;
 		}
