@@ -89,14 +89,18 @@
                 <ul class="list-group">
                 	<% for(Project p : list) { %>
                 		<li class="list-group-item d-flex justify-content-between align-items-center">
-                		<a href= "views/board/board.jsp"> <%=p.getProjName()%> </a>
+                		<a href= "views/board/board.jsp?projNo=<%=p.getProjNo()%>"> <%=p.getProjName()%> </a>
                 		<form>
+                			
+                		</form>
                    	    </li>
                 	
 
                 		<%} %>
                 	
                 	<%}%>
+                	
+                	</ul>
                 <!-- 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                     <a href = "#">또또 프로젝트 </a>

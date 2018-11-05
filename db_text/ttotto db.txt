@@ -21,6 +21,7 @@ drop table post_table;
 drop table proj_board_table;
 drop table project_table;
 drop table kakao_table;
+drop table kakao_id_table;
 drop table file_table;
 
 drop sequence boardno;
@@ -30,6 +31,7 @@ drop sequence postNO;
 drop sequence projmemberno;
 drop sequence commentno;
 drop sequence kakaoNo;
+drop sequence kakaoIdNo;
 drop sequence fileNo;
 
 DROP TABLE USER_TABLE CASCADE CONSTRAINTS;
@@ -241,6 +243,13 @@ CREATE TABLE  POST_HASH_TABLE  (
 
 -------------- 朝朝神
 
+CREATE SEQUENCE kakaoIdNo
+start with 1
+increment by 1
+maxvalue 999999
+nocycle
+nocache;
+
 
 CREATE SEQUENCE kakaoNo
 start with 1
@@ -249,31 +258,30 @@ maxvalue 999999
 nocycle
 nocache;
 
+
+create table kakao_id_table(
+    kakao_id_no number primary key,
+    proj_no number not null,
+    view_id varchar2(60) not null,
+    input_id varchar2(60) not null,
+    FOREIGN KEY (PROJ_NO)
+    REFERENCES PROJECT_TABLE (PROJ_NO) ON DELETE CASCADE
+
+);
+
+
 create table kakao_table (
     kakao_no number not null primary key,
     proj_no number not null,
-    contents varchar(200) not null,
+    input_id varchar2(60) not null,
+    contents varchar2(200) not null,
     date_with_time date not null,
-    importance number
+    importance number,
+    FOREIGN KEY (PROJ_NO)
+    REFERENCES PROJECT_TABLE (PROJ_NO) ON DELETE CASCADE
 );
 
-insert into kakao_table values(kakaoNo.nextVal,2,'せせせせせせせせせせせせ',sysdate,1);
 
-create table kakao_id_table(
-    kakao_id_no number not null,
-    proj_no number not null,
-    view_id varchar(30) not null,
-    input_id varchar(30) not null
-);
-
-select * from kakao_id;
-
-insert into kakao_id_table values(1,1,'view_id','input_id');
-insert into kakao_id_table values(2,2,'view_id2','input_id2');
-
-select * from kakao_table;
-
-select * from kakao_ID_table;
 
 ----------- file 獣什奴
 

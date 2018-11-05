@@ -3,8 +3,7 @@ package com.ttotto.project.model.vo;
 import java.sql.Date;
 
 public class Project {
-	private int projNo;
-	
+	private int projNo;	
 	private String projName;
 	private int memberCount;
 	private Date updateDate;
@@ -15,8 +14,7 @@ public class Project {
 
 	public Project(int projNo, String projName, int memberCount, Date updateDate, String projType, String createrId,String addMemberId) {
 		super();
-		this.projNo = projNo;
-		
+		this.projNo = projNo;		
 		this.projName = projName;
 		this.memberCount = memberCount;
 		this.updateDate = updateDate;

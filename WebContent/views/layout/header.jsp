@@ -66,8 +66,12 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">   
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                <a class="nav-link" href="#">MyPage</a>
-                </li>   
+                	<a class="nav-link" href="#">MyPage</a>
+                </li>
+                   
+                <li>
+                	<a class="nav-link" href = "/views/kakao/kakaoMain.jsp">카카오톡 모아보기</a>
+                </li>
             
             </ul>
       

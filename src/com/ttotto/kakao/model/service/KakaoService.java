@@ -16,9 +16,15 @@ public class KakaoService {
 	public int insertKakao(ArrayList<KakaoTalk> kakaoList) {
 		Connection conn = JDBCTemplate.getConnection();
 		
-		System.out.println(conn);
+		//System.out.println(conn);
 		
-		int result = new KakaoDao().insertKakao(kakaoList, conn);
+		//kakao_table에 넣기
+		int result= new KakaoDao().insertKakao(kakaoList, conn);
+		
+		
+		// kakao_id_table에 값 넣기		
+		new KakaoDao().insertKakaoId(kakaoList,conn);
+		
 		
 		if(result>0) {
 			JDBCTemplate.commit(conn);
@@ -35,7 +41,7 @@ public class KakaoService {
 	public ArrayList<KakaoTalkId> viewKakaoId(int projNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		
-		System.out.println(conn);
+		//System.out.println(conn);
 		
 		ArrayList<KakaoTalkId> kakaoList = new KakaoDao().viewKakaoId(conn,projNo);
 		

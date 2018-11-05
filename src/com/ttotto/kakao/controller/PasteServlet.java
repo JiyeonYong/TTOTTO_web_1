@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ttotto.kakao.model.service.KakaoService;
 import com.ttotto.kakao.model.vo.KakaoTalk;
@@ -38,11 +39,9 @@ public class PasteServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String kakaoString = (String) request.getParameter("kakaoString");
-		
-		
+		String kakaoString = (String) request.getParameter("kakaoString");		
 
-	      System.out.println(kakaoString);
+	 //   System.out.println(kakaoString);
 
 	      Pattern p = Pattern.compile("\\[(.*?)\\]");
 	      Matcher m = p.matcher(kakaoString);
@@ -105,7 +104,7 @@ public class PasteServlet extends HttpServlet {
 
 	      }
 	      
-	      System.out.println(kakaoIndex +" " + kakaoId.size() + " " + kakaoTime.size() + " " + kakaoContents.size() + " " + kakaoContentsIndex);
+	      //System.out.println(kakaoIndex +" " + kakaoId.size() + " " + kakaoTime.size() + " " + kakaoContents.size() + " " + kakaoContentsIndex);
 	      
 
 	      /*
@@ -115,13 +114,29 @@ public class PasteServlet extends HttpServlet {
 	      }
 	       */
 	      
-	      int projNo = 1;	//projNo는 db에서 시퀀스로 넣어줌.. 
+	      HttpSession session = request.getSession();
+	      
+	      int projNo = (int)session.getAttribute("projNo"); 
 	      
 	      ArrayList<KakaoTalk> kakaoList = new ArrayList<>();
 	      
+	      
+	      //카카오톡 리스트에 카카오톡 내용 넣어주기
 	      for(int i=0; i<kakaoId.size(); i++) {
 	    	  
-	    	  kakaoList.add(new KakaoTalk(projNo, kakaoContents.get(i), kakaoTime.get(i), 0));
+	    	  KakaoTalk kakaoTalk = new KakaoTalk();
+	    	  
+	    	  kakaoTalk.setProjNo(projNo);
+	    	  
+	    	  kakaoTalk.setInputId(kakaoId.get(i));
+	    	  
+	    	  kakaoTalk.setContent(kakaoContents.get(i));
+	    	  
+	    	  kakaoTalk.setDateWithTime(null);
+	    	  
+	    	  kakaoTalk.setImportance(0);	    	  
+	    	  
+	    	  kakaoList.add(kakaoTalk);
 	      }
     	  
 	      int result = new KakaoService().insertKakao(kakaoList);

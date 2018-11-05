@@ -5,10 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+<title>게시판 페이지</title>
 <link rel="stylesheet" href="/CSS/bootstrap.css">
 </head>
+
+
+
+
 <body>
+
+	<%		
+		int projNo = Integer.parseInt((String)request.getParameter("projNo"));
+	
+		session.setAttribute("projNo",projNo);
+	%>
+
+
 	<!--header-->
 	<%@ include file="/views/layout/header.jsp"%>
 

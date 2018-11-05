@@ -15,20 +15,20 @@ public class KakaoDao {
 
 	public int insertKakao(ArrayList<KakaoTalk> kakaoList, Connection conn) {
 		PreparedStatement pstmt = null;
-		int result = 0;		
-		int projno = 1;
+		int result = 0;
 
 		//System.out.println(kakaoList);
 		//System.out.println(kakaoList.getContent());
 		
-		String query = "insert into kakao values(kakaoNo.nextval,?,?,sysdate,default)";
+		String query = "insert into kakao_table values(kakaoNo.nextval,?,?,?,sysdate,default)";
 		
 		System.out.println(query);
 		try {
 			pstmt = conn.prepareStatement(query);
 			for(int i=0; i<kakaoList.size(); i++) {
-			pstmt.setInt(1, projno);
-			pstmt.setString(2, kakaoList.get(i).getContent());
+			pstmt.setInt(1, kakaoList.get(i).getProjNo());
+			pstmt.setString(2, kakaoList.get(i).getInputId());
+			pstmt.setString(3, kakaoList.get(i).getContent());
 			
 			result += pstmt.executeUpdate();
 			}
@@ -56,6 +56,8 @@ public class KakaoDao {
 
 		String query = "select * from kakao_id where proj_no = " + projNo;
 		
+		
+		
 		try {
 			stmt = conn.createStatement();	
 			rset = stmt.executeQuery(query);
@@ -66,8 +68,7 @@ public class KakaoDao {
 				
 				String inputId=rset.getString("input_id");
 				
-				KakaoTalkId kakaoId = new KakaoTalkId(viewId, inputId);
-				
+				KakaoTalkId kakaoId = new KakaoTalkId(viewId, inputId);				
 				
 				kakaoList.add(kakaoId);				
 				
@@ -84,5 +85,40 @@ public class KakaoDao {
 		return kakaoList;
 		
 	
+	}
+
+	public void insertKakaoId(ArrayList<KakaoTalk> kakaoList, Connection conn) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		//System.out.println(kakaoList);
+		//System.out.println(kakaoList.getContent());
+		
+		String query = "insert into kakao_table values(kakaoNo.nextval,?,?,?,sysdate,default)";
+		
+		System.out.println(query);
+		try {
+			pstmt = conn.prepareStatement(query);
+			for(int i=0; i<kakaoList.size(); i++) {
+			pstmt.setInt(1, kakaoList.get(i).getProjNo());
+			pstmt.setString(2, kakaoList.get(i).getInputId());
+			pstmt.setString(3, kakaoList.get(i).getContent());
+			
+			result += pstmt.executeUpdate();
+			}
+			if(result>0) {
+				conn.commit();
+				System.out.println(result + "성공!");
+			}else {
+				conn.rollback();
+				System.out.println("실패!");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
 	}
 }
