@@ -70,7 +70,6 @@
     </div>
     <div class="col-sm-6">
       <h2>회원가입</h2>
-  <form action="/enroll.do" method="post">
     <div class="form-group">
         <label for="id">ID</label>
         <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId">
@@ -98,7 +97,6 @@
     </div>
     <button type="submit" class="btn btn-primary" onclick="return check();" id="enroll">회원가입</button>
     
-  </form>
 </div>
 
     </div>
@@ -144,39 +142,9 @@ $(function(){
 		var userPwd = $("#userPwd").val();
 		var userName = $("#userName").val();
 		var userEmail = $("#userEmail").val();
-		var Phone = $("Phone").val();
+		var Phone = $("#Phone").val();
 		
-		$.ajax({
-			url : "/enroll.do",
-			type : "post",
-			data : {userId:userId,userPwd:userPwd,userName:userName,userEmail:userEmail,Phone:Phone},
-			success : function(result){
-				if(result==1){
-					alert("회원가입 완료");
-				}
-				else if(result==0){
-					alert("회원가입 실패");
-				}
-			} ,
-			error : function(){
-				alert("문제가 발생하였습니다. 지속적으로 문제 발생 시 관리자에게 문의 바랍니다.");
-			}
-		});
-	});
-});
-	function check(){
-		
-		var checkFlag = document.getElementById("checkFlag").value;
-		var userId = document.getElementById("userId").value;
-		var userPwd = document.getElementById("userPwd").value;
-		var userName = document.getElementById("userName").value;
-		var userEmail = document.getElementById("userEmail").value;
-		var userPhone = document.getElementById("Phone").value;
-		if(checkFlag==0){
-			alert("ID 중복확인을 먼저 진행해 주세요");
-			return false;
-		}
-		else if(userId == ""){
+		if(userId==""){
 			alert("ID를 입력해 주세요");
 			return false;
 		}
@@ -196,7 +164,25 @@ $(function(){
 			alert("전화번호를 입력해 주세요");
 			return false;
 		}
-	}
+		
+		$.ajax({
+			url : "/enroll.do",
+			type : "post",
+			data : {userId:userId,userPwd:userPwd,userName:userName,userEmail:userEmail,Phone:Phone},
+			success : function(result){
+				if(result==1){
+					alert("회원가입 완료");
+				}
+				else if(result==0){
+					alert("회원가입 실패");
+				}
+			} ,
+			error : function(){
+				alert("문제가 발생하였습니다. 지속적으로 문제 발생 시 관리자에게 문의 바랍니다.");
+			}
+		});
+	});
+});
 </script>
  
 <script type = "text/javaxcript" src = "JS/bootstrap.js"></script>
