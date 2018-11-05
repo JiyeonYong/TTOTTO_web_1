@@ -37,16 +37,6 @@
 	</script>
 	
 <% }else{%>
- 
-
-<script>
-	function idCheck(){
-		var userId = document.getElementById("userId").value;
-		window.open("/views/member/idCheck.jsp?userId="+userId ,"_blank","width=500px,height=100px");
-		
-		return false;
-	}
-</script>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
 
@@ -86,7 +76,8 @@
         <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId">
     </div>
     <div class="form-group">
-    	<button type="button" class="btn btn-outline-dark" onclick="return idCheck();">ID 중복확인</button>
+    	<button type="button" class="btn btn-outline-dark" id="check">ID 중복확인</button>
+    	<span style="float:left;" id="idCheckText"></span>
         <input type="hidden" class="form-control" id="checkFlag" value=0>
     </div>
     <div class="form-group">
@@ -118,8 +109,36 @@
 
 
 <% } %>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- jQuery 선언 -->
 
 <script>
+$(function(){
+	$("#check").click(function(){
+		var userId = $("#userId").val();
+		var idCheckText = $("#idCheckText");
+		$.ajax({
+			url : "/check.do",
+			data : {userId:userId},
+			type : "post",
+			success : function(isUserId){
+				var isUserId = isUserId;
+				//console.log(typeof(isUserId)+" / "+isUserId);
+				if(isUserId == "true"){
+					idCheckText.html("&nbsp;중복된 ID가 있습니다.");
+					idCheckText.attr("style","color:red");
+					
+				}
+				else{
+					idCheckText.html("&nbsp;사용 가능한 ID 입니다.");
+					idCheckText.attr("style","color:blue");
+				}
+			},
+			error : function(){
+				alert("문제가 발생하였습니다. 지속적으로 문제 발생 시 관리자에게 문의 바랍니다.");
+			}
+		});
+	});
+});
 	function check(){
 		
 		var checkFlag = document.getElementById("checkFlag").value;
