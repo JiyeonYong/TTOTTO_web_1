@@ -70,7 +70,6 @@
     </div>
     <div class="col-sm-6">
       <h2>회원가입</h2>
-      <form action="/enroll.do" method="post">
       	<div class="form-group">
         <label for="id">ID</label>
         <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId">
@@ -97,7 +96,6 @@
       <input type="text" class="form-control" id="Phone" placeholder="전화번호 입력 ('-'를 빼고 입력해 주세요.)" name="Phone">
     </div>
     <button type="submit" class="btn btn-primary" onclick="return check();" id="enroll">회원가입</button>
-      </form> 
 </div>
 
     </div>
@@ -166,22 +164,23 @@ $(function(){
 			return false;
 		}
 		
-		//$.ajax({
-			//url : "/enroll.do",
-			//type : "post",
-			//data : {userId:userId,userPwd:userPwd,userName:userName,userEmail:userEmail,Phone:Phone},
-			//success : function(result){
-				//if(result==1){
-					//alert("회원가입 완료");
-				//}
-				//else if(result==0){
-					//alert("회원가입 실패");
-				//}
-			//} ,
-			//error : function(){
-				//alert("문제가 발생하였습니다. 지속적으로 문제 발생 시 관리자에게 문의 바랍니다.");
-			//}
-		//});
+		$.ajax({
+			url : "/enroll.do",
+			type : "post",
+			data : {userId:userId,userPwd:userPwd,userName:userName,userEmail:userEmail,Phone:Phone},
+			success : function(result){
+				if(result==1){
+					alert("회원가입 완료");
+				}
+				else if(result==0){
+					alert("회원가입 실패");
+					$("#userPwd").val("");
+				}
+			} ,
+			error : function(){
+				alert("문제가 발생하였습니다. 지속적으로 문제 발생 시 관리자에게 문의 바랍니다.");
+			}
+		});
 	});
 });
 </script>

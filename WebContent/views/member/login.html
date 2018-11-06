@@ -42,7 +42,6 @@
     <div class="col-sm-5">
       <h2>로그인</h2>
         <div class="jumbotron">
-            <form action="/login.do" method="post">
         <div class="form-group">
         <label for="id">ID</label>
         <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId">
@@ -51,9 +50,8 @@
         <label for="pwd">Password</label>
         <input type="password" class="form-control" id="userPwd" placeholder="비밀번호 입력" name="userPwd">
         </div>
-        <button type="submit" class="btn btn-primary" onclick="return login();">로그인</button>
+        <button type="submit" class="btn btn-primary" id="login">로그인</button>
         <a class="btn btn-primary" href="find.html">아이디/비밀번호 찾기</a>
-    </form>
         </div>
     </div>
   </div>
@@ -66,20 +64,42 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- jQuery 선언 -->
 
 <script>
-	
-	function login(){
-		var userId = document.getElementById("userId").value;
-		var userPwd = document.getElementById("userPwd").value;
-		
-		if(userId == ""){
-			alert("ID를 입력해 주세요.");
-			return false;
-		}
-		else if(userPwd == ""){
-			alert("비밀번호를 입력해 주세요.");
-			return false;
-		}
-	}
+	$(function(){
+		$("#login").click(function(){
+			var userId = $("#userId").val();
+			var userPwd = $("#userPwd").val();
+			
+			if(userId == ""){
+				alert("ID를 입력해 주세요.");
+				return false;
+			}
+			else if(userPwd == ""){
+				alert("비밀번호를 입력해 주세요.");
+				return false;
+			}
+			
+			$.ajax({
+				url : "/login.do",
+				data : {userId:userId,userPwd:userPwd},
+				type : "post",
+				success : function(isMember){
+					if(isMember == "1"){
+						alert("로그인 성공");
+						location.href="/views/project/projectList.jsp";
+					}
+					else{
+						alert("ID와 비밀번호를 다시 확인해 주세요.");
+						$("#userId").val("");
+						$("#userPwd").val("");
+					}
+				} ,
+				error : function(){
+					alert("문제가 발생하였습니다. 지속적으로 문제 발생 시 관리자에게 문의 바랍니다.");
+				}
+				
+			});
+		});
+	});
 </script>
 </body>
 </html>
