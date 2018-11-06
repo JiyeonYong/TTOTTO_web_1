@@ -160,7 +160,7 @@ $(function(){
 			alert("이메일을 입력해 주세요");
 			return false;
 		}
-		else if(userPhone == ""){
+		else if(Phone == ""){
 			alert("전화번호를 입력해 주세요");
 			return false;
 		}
