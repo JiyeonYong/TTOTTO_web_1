@@ -47,10 +47,10 @@ public class MdeleteServlet extends HttpServlet {
 			// 3. 결과 리턴
 			if(result>0) {
 				session.invalidate(); // 세션 파기
-				response.sendRedirect("/views/member/deleteSuccess.jsp");
+				response.sendRedirect("/index.jsp");
 			}
-			else {
-				response.sendRedirect("/views/member/error.jsp");
+			else if(result==0) {
+				response.sendRedirect("/views/member/deleteError.jsp");
 			}
 		}
 	}

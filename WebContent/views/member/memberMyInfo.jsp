@@ -43,8 +43,12 @@
         if(result==true){
            	 var password = window.prompt("비밀번호 입력");
             	document.getElementById("password").value = password;
+            	if(password==null){
+        			alert("취소되었습니다.");
+        			return false;
+        		}
            	 return true;
-        }
+    		}
         else{
             alert("취소되었습니다.");
             return false;
@@ -106,11 +110,9 @@
   <p>Footer</p>
 </div>
 <% } else { %>
-	<script>
-		alert("비밀번호를 재확인 해주세요!");
-		location.href="/index.jsp";
-	</script>
-
+<script>
+	location.href="/views/project/projectList.jsp";
+</script>
 <% } %>
 
     

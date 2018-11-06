@@ -21,6 +21,10 @@
 	 function info_passCheck(){
 		var password = window.prompt("개인 정보 보호를 위하여 확인 차 비밀번호를 입력해 주세요.");
 		document.getElementById("password").value = password;
+		if(password==null){
+			alert("취소되었습니다.");
+			return false;
+		}
  	}
 	</script>
 
