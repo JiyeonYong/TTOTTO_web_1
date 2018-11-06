@@ -3,40 +3,6 @@
     import = "com.ttotto.project.model.vo.*"
     import = "java.util.ArrayList"%>
     
-    
-   <script>
-   		
-   		var userId = <%((Member)session.getAttribute("member")).getUserId();%>
-   		$.ajax({
-   			url : "/projectList.do",
-   			data : {userId:userId},
-   			type : "post",
-   			success :  function(list){
-   				conlose.log(userId);
-   			},
-   			
-   			error : function(list){
-   				console.log("에러");
-   			},
-   			
-   			complete:function(list){
-   				consolse.log("리스트 가져오기 complete");
-   			}
-   			
-   		});
-   		
-   		
-   		
-   
-   </script> 
-    
-    
-    
-<%
-	ArrayList<Project> list = (ArrayList<Project>)request.getAttribute("projectList");
-%>
-    
-    
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -65,6 +31,47 @@
 </head>
     
 <body>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+   <script>
+   		
+   		var userId = <%((Member)session.getAttribute("member")).getUserId();%>   		
+   		
+   		$(function(){
+   			$.ajax({
+   				url : "/projectList.do",
+   				data : {userId:userId},
+   				type : "post",
+   				success :  function(list){
+   					list
+   					
+   					
+   				},
+   			
+   				error : function(list){
+   					console.log("에러");
+   				},
+   			
+   				complete:function(list){
+   					consolse.log("리스트 가져오기 complete");
+   				}
+   			
+   			});
+   		
+   		});
+   		
+   		
+   
+   </script> 
+    
+    
+    
+<%
+	ArrayList<Project> list = (ArrayList<Project>)request.getAttribute("projectList");
+%>
+
     
     <!--header-->
      <%@ include file = "/views/layout/header.jsp" %>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.ttotto.member.model.vo.Member;
 import com.ttotto.project.model.service.ProjectService;
 import com.ttotto.project.model.vo.Project;
@@ -37,28 +38,20 @@ public class ProjectListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		HttpSession session = request.getSession(false);
-
-		String userId = ((Member) session.getAttribute("member")).getUserId();
-
-		try {
-
-			ArrayList<Project> list = new ProjectService().selectAllProjectList(userId);
-			
-			if (!list.isEmpty()) {
-				
-			}
-				RequestDispatcher view = request.getRequestDispatcher("views/project/projectList.jsp");
-				request.setAttribute("projectList", list);
-				view.forward(request, response);
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-
-		/* response.sendRedirect("/views/project/projectList.jsp"); */
+		
+		String userId = request.getParameter("userId");
+		
+		System.out.println("userId");
+		
+		ArrayList<Project> projList = new ProjectService().selectAllProjectList(userId);
+		
+		response.setContentType("application/json");
+		
+		response.setCharacterEncoding("UTF-8");
+		
+		new Gson().toJson(projList,response.getWriter());
+		
+		
 	}
 
 	/**
