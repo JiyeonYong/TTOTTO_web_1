@@ -12,8 +12,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" href="/CSS/bootstrap.css">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  
 <title>카카오톡 모아보기</title>
 <style>
 .bubbleRight 
@@ -118,10 +124,6 @@ button{
 <body>
 
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">		
-</script>
-
 <!--header-->
 	<%@ include file="/views/layout/header.jsp"%>
 	
@@ -160,11 +162,10 @@ button{
 	</div>	
 	
 	
-	
-<script>				
+	<script>				
+
 				
-				//
-				
+				//kakaoId 툴의 리스트를 보여주는 ajax			
 				$(function(){
 					$.ajax({
 				
@@ -180,47 +181,65 @@ button{
 						
 						for(var i=0;i<kakaoIdList.length;i++)
 						{
-							$("#kakaoIdList").append(									
-									"<div style='border:2px solid red; height:15%; width:100%; float:left; text-align:left;'>"
-									+"<a><img src='../../img/kakao%20profile.png' style='width:35px; height:35px; box-sizing: border-box; border-radius: 40px;'>"+kakaoIdList[i][0]+"</a>"									
-									
-									
-									
+							var kakao_div=$("<div style='border:2px solid red; height:15%; width:100%; float:left; text-align:left;'></div>")
+							$(kakao_div).append(
+									"<a><img src='../../img/kakao%20profile.png' style='width:35px; height:35px; box-sizing: border-box; border-radius: 40px;'>"+kakaoIdList[i][0]+"</a>"									
 							  )
-							  var kakao_ul = $("<ul class='hide'></ul>");
+							  
+							  
+							var kakao_ul = $("<ul class='hide'></ul>");
 							
 							  
-							  for(var j=1;j<kakaoIdList[i].length;j++){
+							for(var j=1;j<kakaoIdList[i].length;j++){
 									
-									$(kakao_ul).append(
+								$(kakao_ul).append(
 											"<li>"+kakaoIdList[i][j]+"</li>"
-									);
-						 		}
-							
-					 		
+								);
+						 	}
 							
 							
-							$("#kakaoIdList").append(				
+							$(kakao_div).append(				
 									kakao_ul
 							)
 							
-							
+							$("#kakaoIdList").append(kakao_div);
 						}
-						
 					},
 					error : function(){
 						console.log("kakaoId ajax 통신 에러");
 					},
 					
 					complete:function(){
-						console.log("complete 통신 연결");
+						
+ 						$("#kakaoIdList ul").slideUp()
+						
+						
+						$("#kakaoIdList a").click(function(){
+							 
+							 console.log("kakaoIdList 누름");
+							 var submenu = $(this).next("ul");
+							 
+							 if(submenu.is(":visible")){
+								 submenu.slideUp();
+							 }else
+								 submenu.slideDown();
+								 
+						 });	
+						
+						
 					}
 					
 					});
 					
 				});
-			
-				</script>
+				
+				
+</script>			
+	
+	
+	
+	
+
 				
 				
 <div id="kakao_white_space1" style="width:1%; height:100%; float:left;"></div><!-- 아이디 관리, 보여주기 사이 빈공간 -->
@@ -244,7 +263,7 @@ button{
             
         </div>
 	</div>
- 	<div id="kakao_body1" style="height:87%; width:100%; border:1px solid blue; box-sizing: border-box;" >           
+ 	<div id="kakao_body1" style="height:87%; width:100%; border:1px solid blue; box-sizing: border-box;">           
 		<div id="kakao_body1-1" style="height:98%; width:95%; border:1px solid yellow; overflow:auto; display:inline-block; box-sizing: border-box;">
         	<div name="kakao_talkData1" style="float:right; border:1px solid black; width:100%; box-sizing: border-box;">
         	  	<div name="kakao_Contents" style="float:left; width:80%; height:80%; border:2px solid pink; box-sizing: border-box;">
@@ -293,8 +312,20 @@ button{
         		<div name="kakao_Contents" style="float:left; width:80%; height:80%; border:2px solid pink; box-sizing: border-box;">
             		<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-right:30px;float:right; box-sizing: border-box;">
             			<ul></ul>                
-               			<div class="bubbleRight bubbleRight:after bubbleRight:before" class="text text-r" id="talkText1" style="background-color:white !important;" >                   								
-							<%=kakaoList.get(i).getContent()%>
+               			<div id="kakao_talk_bubble1_<%=i%>" class="bubbleRight bubbleRight:after bubbleRight:before" class="text text-r" id="talkText1" style="background-color:white !important;" >                   								
+							<script>
+								$("#kakao_talk_bubble1_<%=i%>").append("<div id='container"+<%=i%>+"' class='container'></div>")
+								
+									var data_content1_1=$("<button>☆</button>");
+									var data_content1_2=$("<button>☆</button>");
+									var data_content1_3=$("<button>☆</buttton>");
+								
+									$("#container"+<%=i%>).append("<a href='#' data-toggle='popover' title='중요도 선택하기' data-content="+
+											data_content1_1.html()+
+											data_content1_2.html()+
+											data_content1_3.html()+
+											"><%=kakaoList.get(i).getContent()%></a>");
+								</script>
                			 </div><br><br>
             		</div>
             	</div> 
@@ -317,9 +348,25 @@ button{
             	<div name="kakao_Contents" style="float:right; width:80%; height:80%; border:2px solid pink; box-sizing: border-box;">
             		<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-left:30px;float:left; box-sizing: border-box;">
             			<ul></ul>                
-               			<div class="bubbleLeft bubbleLeft:after bubbleLeft:before" class="text text-r" id="talkText2" style="background-color:white !important;" >                   								
-							<%=kakaoList.get(i).getContent()%>
-               			 </div><br><br>
+               			<div id="kakao_talk_bubble2_<%=i%>" class="bubbleLeft bubbleLeft:after bubbleLeft:before" class="text text-r" id="talkText2" style="background-color:white !important;" >                  								
+														
+								<script>
+								$("#kakao_talk_bubble2_<%=i%>").append("<div id='container"+<%=i%>+"' class='container'></div>")
+								
+									var data_content2_1=$("<button>☆</button>");
+									var data_content2_2=$("<button>☆</button>");
+									var data_content2_3=$("<button>☆</buttton>");
+								
+									$("#container"+<%=i%>).append("<a href='#' data-toggle='popover' title='중요도 선택하기' data-content="+
+											data_content2_1.html()+
+											data_content2_2.html()+
+											data_content2_3.html()+
+											"><%=kakaoList.get(i).getContent()%></a>");
+								</script>
+								
+							</div>
+														
+               			 
             		</div>
             	</div> 
             	
@@ -362,8 +409,127 @@ button{
     </div>
 </div>
 </center>
+ 
 
-  <script>
+
+<script>
+	$(function(){
+		$("#talkText1").click(function(){
+			;
+			
+			
+		});
+		
+				
+		$("#talkText2").click(function(){
+			;
+			
+		});
+	
+	});
+
+</script>
+
+<script>				
+				//
+				
+				$(function(){
+					
+					$("#allView").click(function(){
+					
+						$.ajax({
+				
+						url : "/kakaoAllView.do",
+					
+						data : {
+						
+						},
+						type : "post",
+						success : function(kakaoIdList){
+							
+						},
+					
+						error : function(){
+							console.log("kakaoId ajax 통신 에러");
+						}
+					});
+					
+					});
+					
+					$("#allView").click(function(){
+						
+						$.ajax({
+				
+						url : "/kakaoDateView.do",
+					
+						data : {
+						
+						},
+						type : "post",
+						success : function(kakaoIdList){
+							
+						},
+					
+						error : function(){
+							console.log("kakaoId ajax 통신 에러");
+						}
+					});
+					
+					});
+				
+				
+					$("#allView").click(function(){
+						
+						$.ajax({
+				
+						url : "/kakaoimportanceView.do",
+					
+						data : {
+						
+						},
+						type : "post",
+						success : function(kakaoIdList){
+							
+						},
+					
+						error : function(){
+							console.log("kakaoId ajax 통신 에러");
+						}
+					});
+					
+					});
+					
+				});
+					
+</script>
+
+
+<!-- 중요도 팝업 부분을 위한 메소드 및 변수들 -->
+<script>
+
+	
+
+
+	$(document).ready(function(){
+		
+   		$('[data-toggle="popover"]').popover();  
+	
+		$(data_content2_1).click(function(){
+	
+		console.log("입력은?");
+		});
+		
+		
+	});
+	
+	
+	
+	
+</script>
+
+
+
+<script>
   
 	function pasteKatalk() {
 		
@@ -409,27 +575,11 @@ button{
 		
 		kakao_id_tool.style.display="none";
 	 
-	 <%} %>
-	 
-	 
-	 $(function(){
-		
-		 $("#kakaoIdList a").css("background-color:red");
-		 
-		 $("#kakaoIdList a").click(function(){
-			 
-			 console.log("kakaoIdList 누름");
-			 var submenu = $(this).next("ul");
-			 
-			 if(submenu.is(":visible")){
-				 submenu.slidup();
-			 }else
-				 submenu.slideDown();
-		 });		 
-	 });
-	 
+	 <%} %>	 
 	 
  </script>
+ 
+
  	<br><br><br>
  	<%@ include file="/views/layout/footer.jsp"%>
  	
