@@ -46,58 +46,71 @@ public class KakaoIdListServlet extends HttpServlet {
 		
 		//해당 proj의 view id list를 가져옴
 		
-		System.out.println("projNo : " + projNo);
+		//System.out.println("projNo : " + projNo);
 		
 		ArrayList<KakaoTalkId> kakaoIdList = new KakaoService().viewKakaoId(projNo);
 		
-		System.out.println("kakaoIdList" + kakaoIdList.size());
+		System.out.println("kakaoIdList : " + kakaoIdList.size());
 		
-		ArrayList<ArrayList<String>> idList = null; 
+		ArrayList<ArrayList<String>> idList =  new ArrayList<>(); 
 		
 		//가져온 id list의 값들이 있으면
 		if(kakaoIdList.size()>0)
-		{
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			
+		{	
 			//각 view아이디 별로 inputId를 넣어놓는 이중배열
-			idList = new ArrayList<>();
 			
 			for(int i=0;i<kakaoIdList.size();i++) {
 				
 				String inputId = kakaoIdList.get(i).getInputId();
-				String viewId = kakaoIdList.get(i).getViewId();
+				String viewId = kakaoIdList.get(i).getViewId();				
 				
 				boolean isViewId = false;
-			
+				
+				System.out.println("idList size : " + idList.size());
+				
+				System.out.println(viewId);
+				
 				//각 ArrayList의 첫번째 위치에 view 아이디를 넣어두고, 그것을 찾음
-				for(int j=0;j<idList.size();i++)
+				System.out.println("직전 idList" + idList.size());
+				for(int j=0;j<idList.size();j++)
 				{
+					//System.out.println("여기 : " + idList.get(j).get(0));
 					//viewId 있는지 찾기
 					if(idList.get(j).get(0).equals(viewId)) {
-						//있으면 해당 리스트에 inputId 넣어주기						
+						//있으면 해당 리스트에 inputId 넣어주기
+						System.out.println("여기 못들어오지?");						
 						idList.get(j).add(inputId);
-						isViewId=true;						
+						isViewId=true;
+						break;
 					}
 				}
 				
 				//viewId가 없었으면
 				if(!isViewId) {
 					
-					//ArrayList 새로 만들어주기			
-					ArrayList<String> insertList =  new ArrayList<>();
+					idList.add(new ArrayList<String>());
+					idList.get(idList.size()-1).add(viewId);
+					idList.get(idList.size()-1).add(inputId);
 					
-					insertList.add(viewId);
-					
-					insertList.add(inputId);
+					System.out.println("마지막 리스트 사이즈 : " + idList.size());
+
 				}
-			}	
+			}
+			
+		}		
+		
+		else {
+			System.out.println("리스트 없음");			
 		}
 		
-		else 
-			System.out.println("리스트 없음");
 		
-		System.out.println("리스트 사이즈 : "+ idList.size());
+		System.out.println("??");
+		
+		System.out.println("리스트 사이즈 : "+ idList.size());		
+		
+		response.setContentType("application/json");
+		
+		response.setCharacterEncoding("UTF-8");
 		
 		new Gson().toJson(idList,response.getWriter());
 		

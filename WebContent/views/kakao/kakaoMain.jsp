@@ -153,7 +153,7 @@ button{
 			</div>
 			
 			
-			<div id = "kakaoIdList">
+			<div id = "kakaoIdList" style="text-align:left">
 			
 			</div>
 		</div>	
@@ -180,14 +180,30 @@ button{
 						
 						for(var i=0;i<kakaoIdList.length;i++)
 						{
-							
-							
-							$("#kakaoIdList").append(
+							$("#kakaoIdList").append(									
+									"<div style='border:2px solid red; height:15%; width:100%; float:left; text-align:left;'>"
+									+"<a><img src='../../img/kakao%20profile.png' style='width:35px; height:35px; box-sizing: border-box; border-radius: 40px;'>"+kakaoIdList[i][0]+"</a>"									
 									
-									"<div style='border:2px solid red; height:15%; width:100%; float:left; text-align:left;'>"+									
-									"<img src='../../img/kakao%20profile.png' style='width:35px; height:35px; box-sizing: border-box; border-radius: 40px;'>"+									
-									kakaoIdList[i][0].viewId + "</div><br><br>"									
-							);
+									
+									
+							  )
+							  var kakao_ul = $("<ul class='hide'></ul>");
+							
+							  
+							  for(var j=1;j<kakaoIdList[i].length;j++){
+									
+									$(kakao_ul).append(
+											"<li>"+kakaoIdList[i][j]+"</li>"
+									);
+						 		}
+							
+					 		
+							
+							
+							$("#kakaoIdList").append(				
+									kakao_ul
+							)
+							
 							
 						}
 						
@@ -394,6 +410,25 @@ button{
 		kakao_id_tool.style.display="none";
 	 
 	 <%} %>
+	 
+	 
+	 $(function(){
+		
+		 $("#kakaoIdList a").css("background-color:red");
+		 
+		 $("#kakaoIdList a").click(function(){
+			 
+			 console.log("kakaoIdList 누름");
+			 var submenu = $(this).next("ul");
+			 
+			 if(submenu.is(":visible")){
+				 submenu.slidup();
+			 }else
+				 submenu.slideDown();
+		 });		 
+	 });
+	 
+	 
  </script>
  	<br><br><br>
  	<%@ include file="/views/layout/footer.jsp"%>
