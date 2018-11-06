@@ -8,8 +8,8 @@
 </head>
 <body>
 <script>
-	alert("회원가입이 정상적으로 처리되었습니다.");
 	location.href="/index.jsp";
+	alert("회원가입이 정상적으로 처리되었습니다.");
 </script>
 
 </body>
