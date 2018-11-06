@@ -1,6 +1,8 @@
 package com.ttotto.member.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,7 +50,8 @@ public class EnrollServlet extends HttpServlet {
 		// 4. 결과 처리 페이지로 이동
 		
 		//if(result>0) {
-			//response.sendRedirect("/views/member/enrollSuccess.jsp");
+			//response.sendRedirect("/views/member/login.html");
+			
 		//}
 		//else {
 			//response.sendRedirect("/views/member/error.jsp");

@@ -70,7 +70,7 @@
     </div>
     <div class="col-sm-6">
       <h2>회원가입</h2>
-    <div class="form-group">
+      	<div class="form-group">
         <label for="id">ID</label>
         <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId">
     </div>
@@ -93,10 +93,9 @@
     </div>
     <div class="form-group">
       <label for="phone">Phone</label>
-      <input type="text" class="form-control" id="Phone" placeholder="전화번호 입력" name="Phone">
+      <input type="text" class="form-control" id="Phone" placeholder="전화번호 입력 ('-'를 빼고 입력해 주세요.)" name="Phone">
     </div>
     <button type="submit" class="btn btn-primary" onclick="return check();" id="enroll">회원가입</button>
-    
 </div>
 
     </div>
@@ -160,7 +159,7 @@ $(function(){
 			alert("이메일을 입력해 주세요");
 			return false;
 		}
-		else if(userPhone == ""){
+		else if(Phone == ""){
 			alert("전화번호를 입력해 주세요");
 			return false;
 		}
@@ -175,6 +174,7 @@ $(function(){
 				}
 				else if(result==0){
 					alert("회원가입 실패");
+					$("#userPwd").val("");
 				}
 			} ,
 			error : function(){
