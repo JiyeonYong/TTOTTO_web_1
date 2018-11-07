@@ -37,26 +37,6 @@
 </head>
 <body>
     
-    <script>
-    	function leave(){
-        	var result = window.confirm("정말로 탈퇴하시겠습니까?");
-        if(result==true){
-           	 var password = window.prompt("비밀번호 입력");
-            	document.getElementById("password").value = password;
-            	if(password==null){
-        			alert("취소되었습니다.");
-        			return false;
-        		}
-           	 return true;
-    		}
-        else{
-            alert("취소되었습니다.");
-            return false;
-        }
-            
-    }
-    </script>
-    
     <div class="jumbotron text-center" style="margin-bottom:0">
   <h1>TTOTTO</h1>
 </div>
@@ -98,10 +78,7 @@
     </div>
     <div class="col-sm-6">
       <h2>회원탈퇴</h2>
-      <form action="/mdelete.do" method="post">
-      	<input type="hidden" id="password" name="password"/>
-        <button type="submit" class="btn btn-primary" onclick="return leave();">탈퇴하기</button>
-    </form>
+        <a class="btn btn-primary" href="/views/member/passCheckDelete.jsp">탈퇴하기</a>
     </div>
   </div>
 </div>

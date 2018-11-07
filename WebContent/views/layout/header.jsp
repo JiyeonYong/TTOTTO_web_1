@@ -17,26 +17,14 @@
 	<%-- <%@ include file = "/views/layout/header.jsp" %> --%>
 	
 	<!--header-->
-	<script>
-	 function info_passCheck(){
-		var password = window.prompt("개인 정보 보호를 위하여 확인 차 비밀번호를 입력해 주세요.");
-		document.getElementById("password").value = password;
-		if(password==null){
-			alert("취소되었습니다.");
-			return false;
-		}
- 	}
-	</script>
-
+	
+	
 	<% if(member != null) { %>
 	<nav class="navbar navbar-expand-sm bg-light navbar-light">
 		<ul class="navbar-nav">
 			<li><%=member.getUserName() %>님 환영합니다.</li>
 			<li class="nav-item">
-			<form action="/views/member/memberMyInfo.jsp" method="post">
-      			<input type="hidden" id="password" name="password"/>
-        		<button type="submit" class="nav-link" onclick="return info_passCheck();">MyPage</button>
-    		</form>
+				<a Class="nav-link" href="/views/member/passCheckInfo.jsp">MyPage</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/logout.do">logout</a>
@@ -70,7 +58,7 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">   
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                	<a class="nav-link" href="#">MyPage</a>
+                	<a class="nav-link" href="/views/member/passCheckInfo.jsp">MyPage</a>
                 </li>
                    
                 <li>
