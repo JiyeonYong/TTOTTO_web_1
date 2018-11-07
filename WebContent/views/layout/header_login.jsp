@@ -17,14 +17,26 @@
 	<%-- <%@ include file = "/views/layout/header.jsp" %> --%>
 	
 	<!--header-->
-	
-	
+	<script>
+	 function info_passCheck(){
+		var password = window.prompt("개인 정보 보호를 위하여 확인 차 비밀번호를 입력해 주세요.");
+		document.getElementById("password").value = password;
+		if(password==null){
+			alert("취소되었습니다.");
+			return false;
+		}
+ 	}
+	</script>
+
 	<% if(member != null) { %>
 	<nav class="navbar navbar-expand-sm bg-light navbar-light">
 		<ul class="navbar-nav">
 			<li><%=member.getUserName() %>님 환영합니다.</li>
 			<li class="nav-item">
-				<a Class="nav-link" href="/views/member/passCheckInfo.jsp">MyPage</a>
+			<form action="/views/member/memberMyInfo.jsp" method="post">
+      			<input type="hidden" id="password" name="password"/>
+        		<button type="submit" class="nav-link" onclick="return info_passCheck();">MyPage</button>
+    		</form>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/logout.do">logout</a>
@@ -57,20 +69,21 @@
         
         <div class="collapse navbar-collapse" id="collapsibleNavbar">   
             <ul class="navbar-nav mr-auto">
-<<<<<<< HEAD
-                <li class="nav-item">
-                	<a class="nav-link" href="/views/member/passCheckInfo.jsp">MyPage</a>
-=======
-            
             	<li class="nav-item">
                 	<a class="nav-link" href="/projectList.do">TTOTTO</a>
->>>>>>> 19a22b8455a6f5ee09cbfeb5edc80b03248a11e3
                 </li>
             
                 <li class="nav-item">
-                	<a class="nav-link" href="/views/member/memberMyInfo.jsp">MyPage</a>
+                	<a class="nav-link" href="#">MyPage</a>
                 </li>
-              
+                   
+                <li>
+                	<a class="nav-link" href = "/views/kakao/kakaoMain.jsp">카카오톡 모아보기</a>
+                </li>
+                
+                <li>
+                	<a class="nav-link" href = "/views/scheduler/scheduler.jsp">스케줄러</a>
+                </li>
             
             </ul>
       

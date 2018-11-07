@@ -39,17 +39,27 @@ public class ProjectListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String userId = request.getParameter("userId");
+		HttpSession session = request.getSession(false);
+ 		String userId = ((Member) session.getAttribute("member")).getUserId();
+ 		try {
+ 			
+ 			ArrayList<Project> list = new ProjectService().selectAllProjectList(userId); 		
+			
+			request.setAttribute("projectList", list);
+			RequestDispatcher view = request.getRequestDispatcher("views/project/projectList.jsp");
+				
+			view.forward(request, response);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+ 		/* response.sendRedirect("/views/project/projectList.jsp"); */
 		
-		System.out.println("userId");
 		
-		ArrayList<Project> projList = new ProjectService().selectAllProjectList(userId);
 		
-		response.setContentType("application/json");
-		
-		response.setCharacterEncoding("UTF-8");
-		
-		new Gson().toJson(projList,response.getWriter());
+		//new Gson().toJson(projList,response.getWriter());
 		
 		
 	}

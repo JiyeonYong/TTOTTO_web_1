@@ -44,7 +44,7 @@
 </div>
  
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">TTOTTO</a> <!--로고들어갈자리-->
+  <a class="navbar-brand" href="/index.jsp">TTOTTO</a> <!--로고들어갈자리-->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
