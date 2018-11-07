@@ -6,6 +6,58 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("/img/top.jpg");
+
+    /* Full height */
+    height: 35%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 20%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.mainTitle {
+ /*  background-color: #fff; */
+  color: #000;
+  padding: 10PX;
+  font-size: 45px;
+  letter-spacing: 10px;
+}
+
+.border{
+	border : 1px solid black ;
+}
+
+/* h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+} */
+
+#loginStatusNav {
+    padding: 0px;
+}
+</style>
 <title>My Page</title>
 </head>
 <body>
@@ -34,32 +86,69 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-</head>
-<body>
-    
-    <div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>TTOTTO</h1>
-</div>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">TTOTTO</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar"> 
-    </div>  
-    <div class="pull-right">
-        <form class="form-inline pull-right" action="/action_page.php">
-            <input class="form-control mr-sm-2" type="text" placeholder="(공개프로젝트만)">
-            <button class="btn btn-success" type="submit">검색</button>
-        </form>
+	<!-- 멤버 객체 중복때문에 header구현 -->
+    
+    <% if(member != null) { %>
+	<nav id = "loginStatusNav" class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end">
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class = "nav-link"><%=member.getUserName() %>님 환영합니다!</a>
+			</li>
+			<li class="nav-item">
+				<a Class="nav-link" href="/views/member/passCheckInfo.jsp">MyPage</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/logout.do">logout</a>
+			</li>
+			<% } %>
+		</ul>
+	</nav>
+	
+	<!--header-->
+	
+    <div class = "bg">
+    	<div class="caption">
+   		 <span class="mainTitle">TTO TTO</span><br>
+    	</div>
+  </div>
     </div>
-</nav>
+
+    
+    <!--nav-->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+        <a class="navbar-brand" href="#" style = "margin-left: 10px">
+            <img src = "/img/logo_sample3.png" style = "width:40px; height:40px"/>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style = "margin-top: 0">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">   
+            <ul class="navbar-nav mr-auto">            
+            
+      	<li class="nav-item">
+                	<a class="nav-link" href="/index.jsp">TTOTTO</a>
+                </li>
+				            
+            </ul>
+      
+            <!--search-->
+            <form class="form-inline my-2 my-lg-0" action="/action_page.php">
+                <input class="form-control mr-sm-2" type="text" placeholder="프로젝트를 찾아보세요!">
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            
+        </div> 
+    </nav>
 
 <div class="container" style="margin-top:30px">
   <div class="row">
     <div class="col-sm-6">
-        <h2>비밀번호 수정</h2>
+        <h3>비밀번호 수정</h3>
+        <br>
         <form action="/infoUpdate.do" method="post">
         <div class="form-group">
             <label for="pwd">Password</label>
@@ -77,12 +166,15 @@
     </form>
     </div>
     <div class="col-sm-6">
-      <h2>회원탈퇴</h2>
+      <h3>회원탈퇴</h3>
+      <br>
         <a class="btn btn-primary" href="/views/member/passCheckDelete.jsp">탈퇴하기</a>
     </div>
   </div>
 </div>
 
+
+<br><br><br><br>
 <div class="jumbotron text-center" style="margin-bottom:0">
   <p>Footer</p>
 </div>

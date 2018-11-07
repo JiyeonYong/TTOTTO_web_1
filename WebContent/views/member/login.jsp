@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>sign_in Page</title>
-    <!-- Latest compiled and minified CSS -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+ <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
      <!-- jQuery library -->
@@ -15,9 +17,14 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
  	
- 	
+<title>sign_in Page</title>
+<link rel="stylesheet" href="/CSS/bootstrap.css">
 </head>
 <body>
+
+<!-- header  -->
+<%@ include file = "/views/layout/header.jsp" %>
+
 
 <div class="container" style="margin-top:30px">
   <div class="row">
@@ -35,11 +42,14 @@
         <input type="password" class="form-control" id="userPwd" placeholder="비밀번호 입력" name="userPwd">
         </div>
         <button type="submit" class="btn btn-primary" id="login">로그인</button>
-        <a class="btn btn-primary" href="find.html">아이디/비밀번호 찾기</a>
+        <a class="btn btn-primary" href="find.jsp">아이디/비밀번호 찾기</a>
         </div>
     </div>
   </div>
 </div>
+
+<!-- footer -->
+<%@ include file = "/views/layout/footer.jsp" %>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- jQuery 선언 -->
@@ -84,5 +94,6 @@
 	});
 </script>
 
+<script type = "text/javaxcript" src = "JS/bootstrap.js"></script>
 </body>
 </html>

@@ -10,7 +10,61 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("/img/top.jpg");
+
+    /* Full height */
+    height: 35%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 20%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.mainTitle {
+ /*  background-color: #fff; */
+  color: #000;
+  padding: 10PX;
+  font-size: 45px;
+  letter-spacing: 10px;
+}
+
+.border{
+	border : 1px solid black ;
+}
+
+/* h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+} */
+
+#loginStatusNav {
+    padding: 0px;
+}
+
+
+</style>
+<title>TTO TTO</title>
 </head>
 <body>
 	<!-- 선언부에 아래와 같이 명시 -->
@@ -20,27 +74,28 @@
 	
 	
 	<% if(member != null) { %>
-	<nav class="navbar navbar-expand-sm bg-light navbar-light">
+	<nav id = "loginStatusNav" class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end">
 		<ul class="navbar-nav">
-			<li><%=member.getUserName() %>님 환영합니다.</li>
+			<li class="nav-item">
+				<a class = "nav-link"><%=member.getUserName() %>님 환영합니다!</a>
+			</li>
 			<li class="nav-item">
 				<a Class="nav-link" href="/views/member/passCheckInfo.jsp">MyPage</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/logout.do">logout</a>
 			</li>
-			<% } else { %>
-			<li class="nav-item">
-				<a class="nav-link" href="/views/member/login.html">Login</a>
-			</li>
 			<% } %>
 		</ul>
 	</nav>
 	
 	<!--header-->
-    <div class="jumbotron text-center" style="margin-bottom: 0; margin-top: 0">
-        <h1>TTO TTO</h1>
-        <p>팀프로젝트 함께 하자!</p> 
+	
+    <div class = "bg">
+    	<div class="caption">
+   		 <span class="mainTitle">TTO TTO</span><br>
+    	</div>
+  </div>
     </div>
 
     
@@ -58,13 +113,9 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">   
             <ul class="navbar-nav mr-auto">            
             
-            	<li class="nav-item">
-                	<a class="nav-link" href="/projectList.do">TTOTTO</a>
+      	<li class="nav-item">
+                	<a class="nav-link" href="/index.jsp">TTOTTO</a>
                 </li>
-
-                <li class="nav-item">
-                	<a class="nav-link" href="/views/member/passCheckInfo.jsp">MyPage</a>
-				</li>
 				            
             </ul>
       

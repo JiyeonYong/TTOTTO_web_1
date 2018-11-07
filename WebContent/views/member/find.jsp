@@ -1,12 +1,11 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Id Password find Page</title>
-</head>
-<body>
-
-    <!-- Latest compiled and minified CSS -->
+ <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
      <!-- jQuery library -->
@@ -19,8 +18,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-    
-    <script>
+<script>
         function find(){
               var password = window.prompt("수정할 비밀번호 입력");
               document.getElementById("password").value = password;
@@ -29,29 +27,15 @@
     </script>
     
     
-    <div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>TTO TTO</h1>
-</div>
+<!-- header  -->
+<%@ include file = "/views/layout/header.jsp" %>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">TTOTTO</a><!--로고들어갈자리-->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar"> 
-    </div>  
-    <div class="pull-right">
-        <form class="form-inline pull-right" action="/action_page.php">
-            <input class="form-control mr-sm-2" type="text" placeholder="(공개프로젝트만)">
-            <button class="btn btn-success" type="submit">검색</button>
-        </form>
-    </div>
-</nav>
 
 <div class="container" style="margin-top:30px">
   <div class="row">
     <div class="col-sm-6">
-      <h2>아이디 찾기</h2>
+      <h3>아이디 찾기</h3>
+      <br>
       <form method="post">
         <div class="form-group">
       <label for="email">Email</label>
@@ -62,8 +46,8 @@
         </form>
     </div>
     <div class="col-sm-6">
-      <h2>비밀번호 찾기</h2>
-   
+      <h3>비밀번호 찾기</h3>
+   	  <br>
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" id="pwdEmail" placeholder="이메일 입력" name="email">
@@ -75,14 +59,13 @@
         <input type="hidden" id="password" name="password"/>
         
         <button type="submit" class="btn btn-primary"  id="pwdCheck">비밀번호 수정</button>
-   
+   		<br><br><br><br>
     </div>
 </div>
 </div>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <p>Footer</p>
-</div>
+<!-- footer -->
+<%@ include file = "/views/layout/footer.jsp" %>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- jQuery 선언 -->
 
@@ -128,6 +111,5 @@
 		});
 	});
 </script>
-
 </body>
 </html>
