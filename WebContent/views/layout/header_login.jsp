@@ -69,15 +69,21 @@
         
         <div class="collapse navbar-collapse" id="collapsibleNavbar">   
             <ul class="navbar-nav mr-auto">
-            
             	<li class="nav-item">
                 	<a class="nav-link" href="/projectList.do">TTOTTO</a>
                 </li>
             
                 <li class="nav-item">
-                	<a class="nav-link" href="/views/member/memberMyInfo.jsp">MyPage</a>
+                	<a class="nav-link" href="#">MyPage</a>
                 </li>
-              
+                   
+                <li>
+                	<a class="nav-link" href = "/views/kakao/kakaoMain.jsp">카카오톡 모아보기</a>
+                </li>
+                
+                <li>
+                	<a class="nav-link" href = "/views/scheduler/scheduler.jsp">스케줄러</a>
+                </li>
             
             </ul>
       

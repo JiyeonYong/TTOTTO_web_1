@@ -436,23 +436,10 @@ button{
 				$(function(){
 					
 					$("#allView").click(function(){
-					
-						$.ajax({
-				
-						url : "/kakaoAllView.do",
-					
-						data : {
 						
-						},
-						type : "post",
-						success : function(kakaoIdList){
-							
-						},
+						location.href="/kakaoAllview.do";
 					
-						error : function(){
-							console.log("kakaoId ajax 통신 에러");
-						}
-					});
+					
 					
 					});
 					

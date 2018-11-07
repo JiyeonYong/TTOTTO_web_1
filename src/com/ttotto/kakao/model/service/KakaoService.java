@@ -56,4 +56,16 @@ public class KakaoService {
 		
 		
 	}
+
+	public int selectAllKakao(int projNo) {
+		// TODO Auto-generated method stub
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new KakaoDao().selectAllKakao(projNo,conn);
+		
+		
+		
+		
+	}
 }

@@ -22,7 +22,7 @@
 
 
 	<!--header-->
-	<%@ include file="/views/layout/header.jsp"%>
+	<%@ include file="/views/layout/header_login.jsp"%>
 
 	<div class="container" style="margin-top: 30px">
 		<div class="row">
