@@ -43,19 +43,13 @@ public class ProjectListServlet extends HttpServlet {
  		String userId = ((Member) session.getAttribute("member")).getUserId();
  		try {
  			
- 			ArrayList<Project> list = new ProjectService().selectAllProjectList(userId);
- 			
- 			System.out.println(list.get(0).getCreaterId());
+ 			ArrayList<Project> list = new ProjectService().selectAllProjectList(userId); 		
 			
-			if (!list.isEmpty()) {				
+			request.setAttribute("projectList", list);
+			RequestDispatcher view = request.getRequestDispatcher("views/project/projectList.jsp");
 				
-				System.out.println(list.get(0).getCreaterId());
+			view.forward(request, response);
 			
-				request.setAttribute("projectList", list);
-				RequestDispatcher view = request.getRequestDispatcher("views/project/projectList.jsp");
-				
-				view.forward(request, response);
-			}
 			
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -57,14 +57,21 @@ public class KakaoService {
 		
 	}
 
-	public int selectAllKakao(int projNo) {
+	public ArrayList<KakaoTalk> selectAllKakao(int projNo) {
 		// TODO Auto-generated method stub
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		int result = new KakaoDao().selectAllKakao(projNo,conn);
+		ArrayList<KakaoTalk> kakaoList = new KakaoDao().selectAllKakao(projNo,conn);
 		
+		if(kakaoList!=null) {
+			JDBCTemplate.commit(conn);
+		}else
+		{
+			JDBCTemplate.rollback(conn);
+		}
 		
+		return kakaoList;
 		
 		
 	}

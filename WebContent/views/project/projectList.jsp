@@ -72,7 +72,7 @@
 	
 	ArrayList<Project> list = (ArrayList<Project>)request.getAttribute("projectList");
 
-	System.out.println(list.get(0).getCreaterId());
+	//System.out.println(list.get(0).getCreaterId());
 %>
 
     

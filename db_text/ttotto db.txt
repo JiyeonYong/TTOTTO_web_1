@@ -9,20 +9,18 @@ grant connect ,resource to ttotto;
 
 ----------- 테이블 삭제
 
-DROP  TABLE USER_TABLE;
 DROP TABLE PROJECT_MEMBER_TABLE;
-DROP TABLE PROJECT_TABLE;
-DROP TABLE PROJ_BOARD_TABLE;
 drop table proj_hash_table;
 drop table comment_table;
 drop table post_hash_table;
 drop table hash_table;
-drop table post_table;
-drop table proj_board_table;
-drop table project_table;
 drop table kakao_table;
 drop table kakao_id_table;
 drop table file_table;
+drop table post_table;
+DROP TABLE PROJ_BOARD_TABLE;
+DROP TABLE PROJECT_TABLE;
+DROP  TABLE USER_TABLE;
 
 drop sequence boardno;
 Drop sequence projNo;

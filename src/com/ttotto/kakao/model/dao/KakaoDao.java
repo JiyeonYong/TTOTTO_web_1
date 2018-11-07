@@ -151,7 +151,7 @@ public class KakaoDao {
 	}
 
 
-	public int selectAllKakao(int projNo,Connection conn) {
+	public ArrayList<KakaoTalk> selectAllKakao(int projNo,Connection conn) {
 		// TODO Auto-generated method stub
 		
 		PreparedStatement pstmt = null;
@@ -160,8 +160,10 @@ public class KakaoDao {
 		
 		String query = "select * from kakao_table where proj_no=?";
 		
+		ArrayList<KakaoTalk> kakaoList = new ArrayList<>(); 
 		
 		try {
+			
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setInt(1, projNo);			
@@ -182,6 +184,7 @@ public class KakaoDao {
 				
 				kt.setImportance(rset.getInt("importance"));
 				
+				kakaoList.add(kt);
 			}
 
 		} catch (SQLException e) {
@@ -192,10 +195,6 @@ public class KakaoDao {
 			JDBCTemplate.close(pstmt);			
 		}
 		
-		
-		
-		
-		
-		return 0;
+		return kakaoList;
 	}
 }
