@@ -56,22 +56,16 @@
         
         
         <div class="collapse navbar-collapse" id="collapsibleNavbar">   
-            <ul class="navbar-nav mr-auto">
-<<<<<<< HEAD
-                <li class="nav-item">
-                	<a class="nav-link" href="/views/member/passCheckInfo.jsp">MyPage</a>
-=======
+            <ul class="navbar-nav mr-auto">            
             
             	<li class="nav-item">
                 	<a class="nav-link" href="/projectList.do">TTOTTO</a>
->>>>>>> 19a22b8455a6f5ee09cbfeb5edc80b03248a11e3
                 </li>
-            
+
                 <li class="nav-item">
-                	<a class="nav-link" href="/views/member/memberMyInfo.jsp">MyPage</a>
-                </li>
-              
-            
+                	<a class="nav-link" href="/views/member/passCheckInfo.jsp">MyPage</a>
+				</li>
+				            
             </ul>
       
             <!--search-->

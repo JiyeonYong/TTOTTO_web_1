@@ -15,10 +15,15 @@
 
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
+  
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   
 <title>카카오톡 모아보기</title>
 <style>
@@ -247,19 +252,52 @@ button{
 <!-- 카카오톡 메인 화면 -->
  <div id="kakao1" style="height:500px; width:33%; border:2px solid black; float:left; data-toogle:drop-down; background-color:#A6CCE6; box-sizing: border-box;">
  	<div id="kakao_head1" style="height:13%; width:100%; border:2px solid black float:left; background-color:#A5C3E6">
-    	<div id="kakao_profile" style="width:50%; height:100%; border:1px solid black; float:left; ">
+    	<div id="kakao_profile" style="width:30%; height:100%; border:1px solid black; float:left; ">
         	<a href="/kakaoIdView.do"><img name="project_icon" src="../../img/kakao%20profile.png"" style="float:left; width:50px; height:50px; margin-top:5px; margin-left:5px; border-radius: 40px;"></a>
         </div>
         
-        <div id="kakao_menu" style="width:35%; height:65%; border:1px solid black; float:left;margin:10px; padding:10px;">
+        <div id="kakao_menu" style="width:60%; height:65%; border:1px solid black; float:left;margin:10px; padding:10px;">
         
-        <!-- ajax이용하여 전체보기, 날짜별 모아보기, 중요도별 모아보기 기능 제공-->
+        <!-- ajax이용하여 전체보기, 날짜별 모아보기, 중요도별 모아보기 기능 제공-->        
         
-        	<img id="allView" src="../../img/%EA%B8%B0%EB%B3%B8%EB%B3%B4%EA%B8%B0.png" style="float:left; width:35px; height:30px;">
-        	
-            <img id="dateView" src="../../img/%EB%AA%A8%EC%95%84%EB%B3%B4%EA%B8%B03.png" style="float :left width:35px; height:30px;">
+        	<img id="dateView" src="../../img/%EB%AA%A8%EC%95%84%EB%B3%B4%EA%B8%B03.png" style="float :left; width:35px; height:30px;">        	
+        				
+
+
+			<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker5'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker5').datetimepicker({
+                    defaultDate: "11/1/2013",
+                    disabledDates: [
+                        moment("12/25/2013"),
+                        new Date(2013, 11 - 1, 21),
+                        "11/22/2013 00:53"
+                    ]
+                });
+            });
+        </script>
+    </div>
+</div>
+
+
+
+
+
+			<img id="allView" src="../../img/%EA%B8%B0%EB%B3%B8%EB%B3%B4%EA%B8%B0.png" style="float:center; width:35px; height:30px;">
             
-            <img id="importanceView" src="../../img/%EB%AA%A8%EC%95%84%EB%B3%B4%EA%B8%B02.png" style="float : left width:35px; height:30px;">
+            <img id="importanceView" src="../../img/%EB%AA%A8%EC%95%84%EB%B3%B4%EA%B8%B02.png" style="float:right; width:35px; height:30px;">
             
         </div>
 	</div>
@@ -443,27 +481,9 @@ button{
 					
 					});
 					
-					$("#allView").click(function(){
-						
-						$.ajax({
-				
-						url : "/kakaoDateView.do",
+					//날짜별 보기를 위한 위젯 생성
+		
 					
-						data : {
-						
-						},
-						type : "post",
-						success : function(kakaoIdList){
-							
-						},
-					
-						error : function(){
-							console.log("kakaoId ajax 통신 에러");
-						}
-					});
-					
-					});
-				
 				
 					$("#allView").click(function(){
 						
