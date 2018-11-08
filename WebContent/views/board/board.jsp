@@ -41,7 +41,7 @@
 				<h4>게시물 만들기</h4>
 				<hr>
 				
-				<button  onclick="/post.do" class="btn btn-primary"> 게시물 리스트 페이지</button>
+				<a  href="/post.do" class="btn btn-primary"> 게시물 리스트 페이지</a>
 				<p style="margin-top: 10px">새로운 이야기장을 만들어 보세요!</p>
 				
 
