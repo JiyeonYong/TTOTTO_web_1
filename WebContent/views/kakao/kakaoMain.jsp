@@ -22,8 +22,7 @@
   
   
   <!-- 달력 모양 넣기 위한 css 및 js -->
-  	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-	<link rel="stylesheet" href="/css/jquery-ui.min.css">
+  	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>	
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
    	<script src="http://code.jquery.com/jquery-1.9.1.js"></script> 
@@ -190,18 +189,18 @@ button{
 <!-- 카카오톡 아이디 변경 툴 -->
 
 	<div id="kakao_id_tool" style="height:500px; width:25%; border:2px solid black; float:left; data-toogle:drop-down; background-color:white; box-sizing: border-box;" >
-		<div id="idTool_header" name="teamIcon" style="float:left; width:100%; hegiht:20%; border:2px solid blue; box-sizing: border-box;">
-			<div name="closeBtnDiv" style="width:100%; height:20%; float:left; border:2px solid yellow; box-sizing: border-box;">	
+		<div id="idTool_header" name="teamIcon" style="float:left; width:100%; hegiht:20%; box-sizing: border-box;">
+			<div name="closeBtnDiv" style="width:100%; height:20%; float:left; box-sizing: border-box;">	
 				<button id="xBtn" onclick="return id_tool_close();"name="idToolCloseBtn" style="float:right">x</button>
 			</div>	
-			<div name="teamImgDiv" style="width:100%; height:20%; float:left; border:2px solid pink; box-sizing: border-box;">
+			<div name="teamImgDiv" style="width:100%; height:20%; float:left; box-sizing: border-box;">
 			<img src="../../img/kakao%20profile.png" style="width:80px; height:80px; box-sizing: border-box; border-radius: 40px; ">
 			</div>		
-			<div name="teamMemberCount" style="width:100%; height:10%; float:left; border:2px solid pink; box-sizing: border-box; color:grey">
+			<div name="teamMemberCount" style="width:100%; height:10%; float:left; box-sizing: border-box; color:grey">
 				0명
 			</div>		
 			
-			<div  name="editDiv" style="width:100%; height:10%; float:left; border:2px solid pink; box-sizing: border-box; color:grey">
+			<div  name="editDiv" style="width:100%; height:10%; float:left; box-sizing: border-box; color:grey">
 				<img src="../../img/edit.PNG" style="width:50px; height:50px; box-sizing: border-box; border-radius: 50px; ">
 				<br>편집
 			</div>
@@ -233,7 +232,7 @@ button{
 						
 						for(var i=0;i<kakaoIdList.length;i++)
 						{
-							var kakao_div=$("<div style='border:2px solid red; height:15%; width:100%; float:left; text-align:left;'></div>")
+							var kakao_div=$("<div style='height:15%; width:100%; float:left; text-align:left;'></div>")
 							$(kakao_div).append(
 									"<a><img src='../../img/kakao%20profile.png' style='width:35px; height:35px; box-sizing: border-box; border-radius: 40px;'>"+kakaoIdList[i][0]+"</a>"									
 							  )
@@ -300,16 +299,16 @@ button{
 
 <!-- 카카오톡 메인 화면 -->
  <div id="kakao1" style="height:500px; width:33%; border:2px solid black; float:left; data-toogle:drop-down; background-color:#A6CCE6; box-sizing: border-box;">
- 	<div id="kakao_head1" style="height:13%; width:100%; border:2px solid black float:left; background-color:#A5C3E6">
-    	<div id="kakao_profile" style="width:20%; height:100%; border:1px solid black; float:left; ">
+ 	<div id="kakao_head1" style="height:13%; width:100%; float:left; background-color:#A5C3E6">
+    	<div id="kakao_profile" style="width:20%; height:100%; float:left; ">
         	<a href="/kakaoIdView.do"><img name="project_icon" src="../../img/kakao%20profile.png"" style="float:left; width:50px; height:50px; margin-top:5px; margin-left:5px; border-radius: 40px;"></a>
         </div>
         
-        <div id="kakao_menu" style="width:75%; height:65%; border:1px solid black; float:left; margin:10px">
+        <div id="kakao_menu" style="width:75%; height:65%; float:left; margin:10px">
         
         <!-- ajax이용하여 전체보기, 날짜별 모아보기, 중요도별 모아보기 기능 제공-->	
         	
-        	<div class="dateView" style="margin:0px; padding:0px; width:100%; height:100%;  box-sizing: border-box;">
+        	<div class="dateView" style="margin:10px; padding:0px; width:100%; height:100%;  box-sizing: border-box;">
         	
         	<div style="width:10%;  height:100%; float:left; margin:0px; box-sizing:border-box;">
         	
@@ -342,31 +341,31 @@ button{
             
         </div>
 	</div>
- 	<div id="kakao_body1" style="height:87%; width:100%; border:1px solid blue; box-sizing: border-box;">           
-		<div id="kakao_body1-1" style="height:98%; width:95%; border:1px solid yellow; overflow:auto; display:inline-block; box-sizing: border-box;">
-        	<div name="kakao_talkData1" style="float:right; border:1px solid black; width:100%; box-sizing: border-box;">
-        	  	<div name="kakao_Contents" style="float:left; width:80%; height:80%; border:2px solid pink; box-sizing: border-box;">
-            	<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-right:30px;float:right; box-sizing: border-box;">
+ 	<div id="kakao_body1" style="height:87%; width:100%; box-sizing: border-box;">           
+		<div id="kakao_body1-1" style="height:98%; width:95%; overflow:auto; display:inline-block; box-sizing: border-box;">
+        	<div name="kakao_talkData1" style="float:right; width:100%; box-sizing: border-box;">
+        	  	<div name="kakao_Contents" style="float:left; width:80%; height:80%; box-sizing: border-box;">
+            	<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-right:160px;float:right; box-sizing: border-box;">
             	<ul></ul>                
-                   <div class="bubbleRight bubbleRight:after bubbleRight:before" class="text text-r" id="talkText1" style="background-color:white !important;" >                   								
+                   <div class="bubbleRight bubbleRight:after bubbleRight:before" class="text text-r" id="talkText1" style="width:200px; height:auto; background-color:white !important;" >                   								
 						저장해두고 싶은 카카오톡 내용을 오른쪽 화면에 복사 + 붙여넣기 하고
                    </div><br><br>
             	</div>
             	</div> 
-        	  	<div name="kakao_profileImg" style="border:2px solid yellow; width:20%; height:60%; float:left; box-sizing: border-box;" >
+        	  	<div name="kakao_profileImg" style="width:20%; height:60%; float:left; box-sizing: border-box;" >
              	<img src="../../img/kakao%20profile.png" alt="Jane Doe" class="mr-3 mt-3 rounded-circle" style="width:55px; margin-top:30px;">
              	</div>
-            	<div name="kakao_id" style="border:2px solid purple; width:20%; height:40%; float:left; box-sizing:border-box;" >
+            	<div name="kakao_id" style="width:20%; height:40%; float:left; box-sizing:border-box;" >
             			id
             	</div> 
           </div>  
-            <div name="kakao_talkData2" style="float:right; border:1px solid red; width:100%"> 
+            <div name="kakao_talkData2" style="float:right; width:100%"> 
                 <img src="../../img/kakao%20profile.png" alt="Jane Doe" class="mr-3 mt-3 rounded-circle" style="width:55px; float:left; margin-top:30px; margin-left:20px;">
-            	<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px;margin-left:30px; float:left">
+            	<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px;margin-left:130px; float:left">
             		<ul></ul>
                 	<div style="float:right">
-                    	<div class="bubbleLeft bubbleLeft:after bubbleLeft:before" class="text text-r" id="talkText2" style="background-color:white !important;" >								
-								아래의 붙여넣기 버튼을 누르면 카카오톡 내용이 저장됩니다.	
+                    	<div class="bubbleLeft bubbleLeft:after bubbleLeft:before" class="text text-r" id="talkText2" style="width:200px; height:auto; background-color:white !important;" >								
+								아래의 붙여넣기 버튼을 누르면 카카오톡 내용이 저장됩니다.
                     	</div><br><br>
                   	</div>
            		</div>
@@ -387,11 +386,11 @@ button{
 	 			if(i%2==0){
 	 %>		
 	 		
-	 		  <div name="kakao_talkData1" style="float:right; border:1px solid black; width:100%; box-sizing: border-box;">
-        		<div name="kakao_Contents" style="float:left; width:80%; height:80%; border:2px solid pink; box-sizing: border-box;">
-            		<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-right:30px;float:right; box-sizing: border-box;">
+	 		  <div name="kakao_talkData1" style="float:right; width:100%; box-sizing: border-box;">
+        		<div name="kakao_Contents" style="float:left; width:80%; height:100%; box-sizing: border-box;">
+            		<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-right:160px;float:right; box-sizing: border-box;">
             			<ul></ul>                
-               			<div id="kakao_talk_bubble1_<%=i%>" class="bubbleRight bubbleRight:after bubbleRight:before" class="text text-r" id="talkText1" style="background-color:white !important;" >                   								
+               			<div id="kakao_talk_bubble1_<%=i%>" class="bubbleRight bubbleRight:after bubbleRight:before" class="text text-r" id="talkText1" style="width:200px; height:auto; background-color:white !important;" >                   								
 							<script>
 								$("#kakao_talk_bubble1_<%=i%>").append("<div id='kakao_box"+<%=i%>+"' class='kakao_box'></div>")
 								
@@ -408,10 +407,10 @@ button{
                			 </div><br><br>
             		</div>
             	</div> 
-        		<div name="kakao_profileImg" style="border:2px solid yellow; width:20%; height:60%; float:left; box-sizing: border-box;" >
+        		<div name="kakao_profileImg" style="width:20%; height:60%; float:left; box-sizing: border-box;" >
              		<img src="../../img/kakao%20profile.png" alt="Jane Doe" class="mr-3 mt-3 rounded-circle" style="width:55px; margin-top:30px;">
           		</div>
-           		<div name="kakao_id" style="border:2px solid purple; width:20%; height:40%; float:left; box-sizing:border-box;" >
+           		<div name="kakao_id" style="width:20%; height:40%; float:left; box-sizing:border-box;" >
             			<%= kakaoList.get(i).getInputId()%>
            		</div> 
           	  </div>   		
@@ -422,12 +421,13 @@ button{
           
             	
             	
-            <div name="kakao_talkData2" style="float:right; border:1px solid red; width:100%">
+            <div name="kakao_talkData2" style="float:left; width:100%">
             	
-            	<div name="kakao_Contents" style="float:right; width:80%; height:80%; border:2px solid pink; box-sizing: border-box;">
-            		<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-left:30px;float:left; box-sizing: border-box;">
+            	<div name="kakao_Contents" style="float:right; width:80%; height:100%; box-sizing: border-box;">            	
+            		
+            		 <div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-left:10px;float:left; box-sizing: border-box;">
             			<ul></ul>                
-               			<div id="kakao_talk_bubble2_<%=i%>" class="bubbleLeft bubbleLeft:after bubbleLeft:before" class="text text-r" id="talkText2" style="background-color:white !important;" >                  								
+               			<div id="kakao_talk_bubble2_<%=i%>" class="bubbleLeft bubbleLeft:after bubbleLeft:before" class="text text-r" id="talkText2" style="width:200px; height:auto;background-color:white !important;" >                 								
 														
 								<script>
 								$("#kakao_talk_bubble2_<%=i%>").append("<div id='kakao_box"+<%=i%>+"' class='kakao_box'></div>")
@@ -441,20 +441,19 @@ button{
 											data_content2_2.html()+
 											data_content2_3.html()+
 											"><%=kakaoList.get(i).getContent()%></a>");
-								</script>
-								
+								</script>								
 							</div>
-														
-               			 
-            		</div>
+            		</div> 
             	</div> 
             	
-            	<div name="kakao_profileImg" style="border:2px solid yellow; width:20%; height:60%; float:left; box-sizing: border-box;" >
+            	<div name="kakao_profileImg" style="width:20%; height:60%; float:right; box-sizing: border-box;" >
                 	<img src="../../img/kakao%20profile.png" alt="Jane Doe" class="mr-3 mt-3 rounded-circle" style="width:55px; float:left; margin-top:30px; margin-left:10px;">
             	</div>
-            	<div name="kakao_id" style="border:2px solid purple; width:20%; height:40%; float:left; box-sizing:border-box;" >
-            			<%= kakaoList.get(i).getInputId()%>
-           		</div> 	           			
+            	<div name="kakao_id" style="float:left; width:20%; height:auto; box-sizing:border-box;" >
+            		<%= kakaoList.get(i).getInputId()%>
+           		</div>   
+           		
+           		  			
            	</div>
             	
             	

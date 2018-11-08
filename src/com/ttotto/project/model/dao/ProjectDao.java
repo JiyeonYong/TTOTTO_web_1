@@ -53,6 +53,7 @@ public class ProjectDao {
 		
 		int result=0;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		String sql1 = "insert into project_table values(projNo.nextval,?,?,sysdate,?,?)";
 		
 		String sql2 = "insert into project_member_table values(projMemberNo.nextVal,"
@@ -70,12 +71,12 @@ public class ProjectDao {
 			
 			String memberNickName="민수러브";
 			
-			pstmt=conn.prepareStatement(sql2);
+			pstmt2=conn.prepareStatement(sql2);
 			
-			pstmt = conn.prepareStatement(sql2);			
-			pstmt.setString(1, createrId);
-			pstmt.setString(2, memberNickName);	
-			pstmt.setString(3, newProject.getAddMemberId());
+			pstmt2 = conn.prepareStatement(sql2);			
+			pstmt2.setString(1, createrId);
+			pstmt2.setString(2, memberNickName);	
+			pstmt2.setString(3, newProject.getAddMemberId());
 			
 			result += pstmt.executeUpdate();
 			
@@ -85,6 +86,7 @@ public class ProjectDao {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(pstmt2);
 		}
 		
 		return result;
