@@ -180,7 +180,8 @@ body, html {
 </div>
 <% } else { %>
 <script>
-	location.href="/views/project/projectList.jsp";
+	alert("비밀번호를 다시 입력해 주세요.");
+	location.href="/views/member/passCheckInfo.jsp";
 </script>
 <% } %>
 
