@@ -11,29 +11,16 @@ import com.ttotto.postpost.vo.PostListData;
 
 public class PostService {
 
-	public PostListData PostAllList() {
+	public ArrayList<Post> PostAllList() {
 		System.out.println("POSTSERVICE의값이야");
-		Connection conn = JDBCTemplate.getConnection();
-		PostListData pld = null;
+		Connection conn = JDBCTemplate.getConnection();		
 		
-		ArrayList<Post> list = new PostDao().noteAllList(conn);	
-		
+		ArrayList<Post> list = new PostDao().noteAllList(conn);			
 		
 		System.out.println("postservice의리스트값"+list);
-		
-		for(Post p :list) {
-			int postNo = p.getPostNo();
-			ArrayList<Comment> list1 =new PostDao().commentList(conn, postNo);
-			
-			//if(p!=null) {
-				pld = new PostListData();
-				pld.setList(list);
-				pld.setList1(list1);
-		//}
-		
-	}
+	
 		JDBCTemplate.close(conn);
-		System.out.println("pld의값"+pld);
-		return pld ;
+		
+		return list;
 	}
 }

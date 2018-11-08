@@ -78,7 +78,7 @@ public class ProjectDao {
 			pstmt2.setString(2, memberNickName);	
 			pstmt2.setString(3, newProject.getAddMemberId());
 			
-			result += pstmt.executeUpdate();
+			result += pstmt2.executeUpdate();
 			
 			
 		} catch (SQLException e) {

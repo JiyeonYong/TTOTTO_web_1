@@ -8,10 +8,13 @@ import com.ttotto.post.model.vo.Post;
 
 public class PostService {
 
-	public int insertPost(String subject, String title, String contents) {
+	public int insertPost(Post post) {
 		
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new PostDao().insertPost(conn, subject, title,contents);
+		
+		System.out.println("service"+conn);
+		
+		int result = new PostDao().insertPost(conn, post);
 		
 		if(result>0) {
 			JDBCTemplate.commit(conn);
@@ -19,6 +22,7 @@ public class PostService {
 			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
+		
 	
 		return result;
 		

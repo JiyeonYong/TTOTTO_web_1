@@ -40,10 +40,9 @@ public class PostDao {
 				p.setPostType(rset.getString("POST_TYPE"));
 				p.setPostDate(rset.getDate("POST_DATE"));
 				
-				p.getPostNo();
-				list.add(p);
-			
+				System.out.println("지영이꺼 포스트 번호" + p.getPostNo());
 				
+				list.add(p);
 			}
 			
 			

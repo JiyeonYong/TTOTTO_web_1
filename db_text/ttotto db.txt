@@ -122,7 +122,7 @@ nocycle
 nocache;
 
 CREATE TABLE  PROJ_BOARD_TABLE  (
-    BOARD_NO    NUMBER   PRIMARY KEY,
+    BOARD_NO    NUMBER PRIMARY KEY,
     PROJ_NO    NUMBER,
      FOREIGN KEY (PROJ_NO) REFERENCES PROJECT_TABLE(PROJ_NO) ON DELETE CASCADE,
     BOARD_NAME    VARCHAR2(50)   NOT NULL
@@ -152,7 +152,7 @@ CREATE TABLE  POST_TABLE  (
     CONTENTS    VARCHAR2(4000)   NOT NULL,
     USER_ID     VARCHAR2(20),
     FOREIGN KEY (USER_ID) REFERENCES USER_TABLE(USER_ID) ON DELETE CASCADE,
-    POST_TYPE    VARCHAR2(20)   NOT NULL,
+    POST_TYPE    VARCHAR2(20),
     POST_DATE    DATE
 );
 
@@ -303,6 +303,18 @@ nocache;
      REFERENCES POST_TABLE (POST_NO) ON DELETE CASCADE
    ); 
 
+
+
+---------------board insert ºÎºÐ
+
+insert into proj_board_table values(1,1,'¾È³ç');
+
+insert into proj_board_table values(2,2,'¾È³ç');
+
+insert into proj_board_table values(4,4,'¾È³ç');
+
+
+insert into post_table values(0,1,'»ý¼º','¤·¤©¤¤¤·¤©¤©','mslove',null,sysdate);
 
 commit;
 

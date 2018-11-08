@@ -35,14 +35,15 @@ public class PostServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("서블릿왔어");
-		PostListData list =new PostService().PostAllList();
+		ArrayList<Post> list =new PostService().PostAllList();
 		
-		if(list != null) {
+		System.out.println("list사이즈"+list.size());
+
+		
+		if(list.size()!=0) {
 			RequestDispatcher view = request.getRequestDispatcher("views/post/post.jsp");
-			request.setAttribute("PostListData", list);
+			request.setAttribute("postList", list);
 			view.forward(request, response);
-			System.out.println("list의값"+list);
-			
 		}else {
 			response.sendRedirect("/views/post/error.jsp");
 		}
