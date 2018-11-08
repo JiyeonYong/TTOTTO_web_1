@@ -85,14 +85,16 @@
             <!-- left section-->
             <div class="col-sm-4">
                 <h4>프로젝트 만들기</h4>
+                <hr>
                 
                <%@ include file = "/views/project/projectCreate.jsp" %>
  
-                <p style = "margin-top: 10px">새 프로젝트를 만들어 친구들과 팀플을 시작하세요!</p>
+                <p style = "margin-top: 10px">새 프로젝트를 만들어 팀플을 시작하세요!</p>
                 
                 <br><br>
                 
                 <h4>진행중인 프로젝트</h4>
+                <hr>
                 <%if(list==null){ %>
                 	진행중인 프로젝트가 없습니다.
                 <%}else{%>
@@ -111,25 +113,6 @@
                 	<%}%>
                 	
                 	</ul>
-                <!-- 
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href = "#">또또 프로젝트 </a>
-                    해당 프로젝트에 최근 이슈(새 댓글,게시글 등) 몇개 있는지 알려주는 badge
-                    <span class="badge badge-primary badge-pill">12</span>
-                    </li>
-                    
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href= "#">뚜뚜 팀플</a>
-                    <span class="badge badge-primary badge-pill">50</span>
-                    </li>
-                    
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href= "#">어사출또 개발 프로젝트</a>
-                    <span class="badge badge-primary badge-pill">99</span>
-                    </li>
-                    </ul> -->
-        
-                    <!--<hr class="d-sm-none">-->
 
             </div>
             

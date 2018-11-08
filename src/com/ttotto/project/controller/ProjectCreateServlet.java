@@ -82,7 +82,7 @@ public class ProjectCreateServlet extends HttpServlet {
 		
 		try {			
 			if(result>0) {
-				response.sendRedirect("/views/project/projectList.jsp");
+				response.sendRedirect("/projectList.do");
 				
 			}else {
 				System.out.println("프로젝트가 정상적으로 만들어지지 않았습니다.");

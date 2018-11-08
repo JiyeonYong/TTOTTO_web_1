@@ -94,19 +94,21 @@
 						</div>
 						</div>
 						<div class="modal-header2">
+						</div>
+						
+						<div class="modal-body">
 							<h4 class="modal-title2">2.프로젝트 명을 입력해주세요.</h4>
 							<br>
-
-						</div>
-						<div class="modal-body">
 							<input type="text" class="form-control"
 								id="projectName" placeholder="(프로젝트 명을 입력해주세요.)" />
+								
+							<hr>
+							<h4 class="modal-title3">3. 프로젝트 공개 / 비공개 선택</h4>
+							<pre>  <button onclick="clickPublic();" type="button" class="btn btn-outline-primary btn-sm">공개</button>  <button
+								onclick="clickPrivate();" type="button" class="btn btn-outline-primary btn-sm">비공개</button>
+							</pre>
 						</div>
-						<hr>
-						<h4 class="modal-title3">3. 프로젝트 공개 / 비공개 선택</h4>
-						<pre>  <button onclick="clickPublic();" type="button" class="btn">공개</button>  <button
-								onclick="clickPrivate();" type="button" class="btn">비공개</button>
-					</pre>
+							
 
 						<div class="modal-footer">
 							<button class="btn btn-secondary" data-targer="#firstModal">Pre</button>

@@ -112,10 +112,13 @@ body, html {
         
         <div class="collapse navbar-collapse" id="collapsibleNavbar">   
             <ul class="navbar-nav mr-auto">            
-            
+        
+        
+        <%if (member != null) {%>
       	<li class="nav-item">
-                	<a class="nav-link" href="/index.jsp">TTOTTO</a>
+                	<a class="nav-link" href="/projectList.do">TTOTTO</a>
                 </li>
+        <%} %>
 				            
             </ul>
       
