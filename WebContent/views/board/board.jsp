@@ -22,6 +22,7 @@
 
 
 	<!--header-->
+	<%@ include file="/views/layout/header.jsp" %>
 	<%@ include file="/views/layout/header_login.jsp"%>
 
 	<div class="container" style="margin-top: 30px">
@@ -29,12 +30,15 @@
 			<!-- left section-->
 			<div class="col-sm-4">
 				<h4>게시판 만들기</h4>
+				<hr>
 				<button id="createBoardBtn" type="button" class="btn btn-primary">+ NEW 게시판</button>
 				<p style="margin-top: 10px">새로운 이야기장을 만들어 보세요!</p>
+				
 
 				<br><br>
 			
 				<h4>게시판 목록</h4>
+				<hr>
 				<ul class = "list-group">
 				<!--  include file="/views/board/boardList.jsp"  -->
 				</ul>
