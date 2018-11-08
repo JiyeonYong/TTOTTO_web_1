@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.ttotto.common.JDBCTemplate;
 import com.ttotto.kakao.model.vo.KakaoTalk;
@@ -175,6 +176,61 @@ public class KakaoDao {
 				KakaoTalk kt = new KakaoTalk();
 				
 				kt.setProjNo(projNo);
+				
+				kt.setInputId(rset.getString("input_id"));
+				
+				kt.setContent(rset.getString("contents"));
+				
+				kt.setDateWithTime(rset.getString("date_with_time"));
+				
+				kt.setImportance(rset.getInt("importance"));
+				
+				kakaoList.add(kt);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);			
+		}
+		
+		return kakaoList;
+	}
+
+
+	public ArrayList<KakaoTalk> selectDateKakao(String dateText,Connection conn) {
+		// TODO Auto-generated method stub
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String dateString = dateText.substring(2, 10);
+		
+		System.out.println(dateString);
+		
+		String query = "select * from kakao_table where DATE_WITH_TIME >= ? and DATE_WITH_TIME <TO_date(?)+1";
+				
+		
+		ArrayList<KakaoTalk> kakaoList = new ArrayList<>(); 
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, dateString);
+			
+			pstmt.setString(2, dateString);
+			
+			rset=pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				KakaoTalk kt = new KakaoTalk();
+				
+				kt.setProjNo(rset.getInt("kakao_no"));
 				
 				kt.setInputId(rset.getString("input_id"));
 				

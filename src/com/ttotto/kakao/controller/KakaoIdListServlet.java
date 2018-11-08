@@ -50,7 +50,7 @@ public class KakaoIdListServlet extends HttpServlet {
 		
 		ArrayList<KakaoTalkId> kakaoIdList = new KakaoService().viewKakaoId(projNo);
 		
-		System.out.println("kakaoIdList : " + kakaoIdList.size());
+		//System.out.println("kakaoIdList : " + kakaoIdList.size());
 		
 		ArrayList<ArrayList<String>> idList =  new ArrayList<>(); 
 		
@@ -66,12 +66,12 @@ public class KakaoIdListServlet extends HttpServlet {
 				
 				boolean isViewId = false;
 				
-				System.out.println("idList size : " + idList.size());
+				//System.out.println("idList size : " + idList.size());
 				
-				System.out.println(viewId);
+				//System.out.println(viewId);
 				
 				//각 ArrayList의 첫번째 위치에 view 아이디를 넣어두고, 그것을 찾음
-				System.out.println("직전 idList" + idList.size());
+				//System.out.println("직전 idList" + idList.size());
 				for(int j=0;j<idList.size();j++)
 				{
 					//System.out.println("여기 : " + idList.get(j).get(0));
@@ -92,7 +92,7 @@ public class KakaoIdListServlet extends HttpServlet {
 					idList.get(idList.size()-1).add(viewId);
 					idList.get(idList.size()-1).add(inputId);
 					
-					System.out.println("마지막 리스트 사이즈 : " + idList.size());
+					//System.out.println("마지막 리스트 사이즈 : " + idList.size());
 
 				}
 			}
@@ -106,7 +106,7 @@ public class KakaoIdListServlet extends HttpServlet {
 		
 		System.out.println("??");
 		
-		System.out.println("리스트 사이즈 : "+ idList.size());		
+		//System.out.println("리스트 사이즈 : "+ idList.size());		
 		
 		response.setContentType("application/json");
 		

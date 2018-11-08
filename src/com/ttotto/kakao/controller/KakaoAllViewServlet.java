@@ -17,14 +17,14 @@ import com.ttotto.kakao.model.vo.KakaoTalk;
 /**
  * Servlet implementation class KakaoAllviewServlet
  */
-@WebServlet(name = "KakaoAllview", urlPatterns = { "/kakaoAllview.do" })
-public class KakaoAllviewServlet extends HttpServlet {
+@WebServlet(name = "KakaoAllView", urlPatterns = { "/kakaoAllView.do" })
+public class KakaoAllViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public KakaoAllviewServlet() {
+    public KakaoAllViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,7 +40,7 @@ public class KakaoAllviewServlet extends HttpServlet {
 		
 		ArrayList<KakaoTalk> kakaoList = new KakaoService().selectAllKakao(projNo);
 		
-		if(kakaoList!=null) {
+		if(kakaoList.size()!=0) {
 			RequestDispatcher view = request.getRequestDispatcher("views/kakao/kakaoMain.jsp");
 			request.setAttribute("kakaoList", kakaoList);
 			request.setAttribute("iskakaoList", "1");

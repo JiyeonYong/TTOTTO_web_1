@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.ttotto.common.JDBCTemplate;
+import com.ttotto.kakao.controller.KakaoIdListServlet;
 import com.ttotto.kakao.model.dao.KakaoDao;
 import com.ttotto.kakao.model.vo.KakaoTalk;
 import com.ttotto.kakao.model.vo.KakaoTalkId;
@@ -64,7 +65,7 @@ public class KakaoService {
 		
 		ArrayList<KakaoTalk> kakaoList = new KakaoDao().selectAllKakao(projNo,conn);
 		
-		if(kakaoList!=null) {
+		if(kakaoList.size()!=0) {
 			JDBCTemplate.commit(conn);
 		}else
 		{
@@ -74,5 +75,23 @@ public class KakaoService {
 		return kakaoList;
 		
 		
+	}
+
+	public ArrayList<KakaoTalk> selectDateKakao(String dateText) {
+		// TODO Auto-generated method stub
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<KakaoTalk> kakaoList = new KakaoDao().selectDateKakao(dateText,conn);
+		
+		if(kakaoList.size()!=0) {
+			JDBCTemplate.commit(conn);
+			System.out.println(kakaoList.get(0).getDateWithTime());
+		}else
+		{
+			JDBCTemplate.rollback(conn);
+		}
+		
+		return kakaoList;		
 	}
 }

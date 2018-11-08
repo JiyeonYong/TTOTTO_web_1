@@ -15,15 +15,47 @@
 
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
   
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!-- 달력 모양 넣기 위한 css 및 js -->
+  	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<link rel="stylesheet" href="/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+   	<script src="http://code.jquery.com/jquery-1.9.1.js"></script> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+    
+    
+    
+    <script charset="UTF-8">
+
+    $(function(){
+
+        $('.input-group.date').datepicker({
+
+            calendarWeeks: false,
+
+            todayHighlight: true,
+
+            autoclose: true,
+
+            format: "yyyy/mm/dd",
+
+            language: "kr"
+
+        });
+
+    });
+
+    </script>
+
+  
+  
   
 <title>카카오톡 모아보기</title>
 <style>
@@ -128,14 +160,29 @@ button{
 </head>
 <body>
 
+<!-- 달력모양 넣기 위한 js -->
+<script>
+        (function($){
+	   $.fn.datepicker.dates['kr'] = {
+		days: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"],
+		daysShort: ["일", "월", "화", "수", "목", "금", "토", "일"],
+		daysMin: ["일", "월", "화", "수", "목", "금", "토", "일"],
+		months: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+		monthsShort: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
+	};
+    });
+
+</script>
+
+
+
 
 <!--header-->
 	<%@ include file="/views/layout/header.jsp"%>
 	
+	<br><br><br><br><br><br><br><br><br><br><br><br>
 	
 	
-	
-	<br><br><br>
 <center>
 
 <div style="width:1300px; height:500px">
@@ -192,7 +239,7 @@ button{
 							  )
 							  
 							  
-							var kakao_ul = $("<ul class='hide'></ul>");
+							var kakao_ul = $("<ul class='hide1'></ul>");
 							
 							  
 							for(var j=1;j<kakaoIdList[i].length;j++){
@@ -216,18 +263,20 @@ button{
 					
 					complete:function(){
 						
- 						$("#kakaoIdList ul").slideUp()
-						
+ 						$("#kakaoIdList ul").slideUp();					
 						
 						$("#kakaoIdList a").click(function(){
 							 
 							 console.log("kakaoIdList 누름");
-							 var submenu = $(this).next("ul");
+							 var submenu = $(this).next("ul");							 
 							 
-							 if(submenu.is(":visible")){
+							 if(submenu.is(":visible")){								
 								 submenu.slideUp();
-							 }else
+								 console.log("slideUp 누름")
+							 }else{
 								 submenu.slideDown();
+								 console.log("slideDown 누름")
+							 }
 								 
 						 });	
 						
@@ -252,52 +301,44 @@ button{
 <!-- 카카오톡 메인 화면 -->
  <div id="kakao1" style="height:500px; width:33%; border:2px solid black; float:left; data-toogle:drop-down; background-color:#A6CCE6; box-sizing: border-box;">
  	<div id="kakao_head1" style="height:13%; width:100%; border:2px solid black float:left; background-color:#A5C3E6">
-    	<div id="kakao_profile" style="width:30%; height:100%; border:1px solid black; float:left; ">
+    	<div id="kakao_profile" style="width:20%; height:100%; border:1px solid black; float:left; ">
         	<a href="/kakaoIdView.do"><img name="project_icon" src="../../img/kakao%20profile.png"" style="float:left; width:50px; height:50px; margin-top:5px; margin-left:5px; border-radius: 40px;"></a>
         </div>
         
-        <div id="kakao_menu" style="width:60%; height:65%; border:1px solid black; float:left;margin:10px; padding:10px;">
+        <div id="kakao_menu" style="width:75%; height:65%; border:1px solid black; float:left; margin:10px">
         
-        <!-- ajax이용하여 전체보기, 날짜별 모아보기, 중요도별 모아보기 기능 제공-->        
-        
-        	<img id="dateView" src="../../img/%EB%AA%A8%EC%95%84%EB%B3%B4%EA%B8%B03.png" style="float :left; width:35px; height:30px;">        	
-        				
+        <!-- ajax이용하여 전체보기, 날짜별 모아보기, 중요도별 모아보기 기능 제공-->	
+        	
+        	<div class="dateView" style="margin:0px; padding:0px; width:100%; height:100%;  box-sizing: border-box;">
+        	
+        	<div style="width:10%;  height:100%; float:left; margin:0px; box-sizing:border-box;">
+        	
+        		<img id="allView" src="../../img/%EA%B8%B0%EB%B3%B8%EB%B3%B4%EA%B8%B0.png" style="float:left; width:35px; height:30px;">
+        		
+        	</div>
+        		
+        		<div class="input-group date" style="margin:0px; padding:0px; width:60%; box-sizing: border-box;">
+        		
+	    	        <input type="text" id="dateText" class="form-control">    	
+	    	        
+	    	        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+	    	        
+	    	        <div style="width:30px; height:30px; float:left; box-sizing:border-box;">
+	    	        	<button id="dateBtn" style=" font-size:10px; float:right; box-sizing: border-box;">완료</button>
+	    	        </div> 
+	    	        		
+        		</div>
+        		
+        		       		
 
-
-			<div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker5'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker5').datetimepicker({
-                    defaultDate: "11/1/2013",
-                    disabledDates: [
-                        moment("12/25/2013"),
-                        new Date(2013, 11 - 1, 21),
-                        "11/22/2013 00:53"
-                    ]
-                });
-            });
-        </script>
-    </div>
-</div>
-
-
-
-
-
-			<img id="allView" src="../../img/%EA%B8%B0%EB%B3%B8%EB%B3%B4%EA%B8%B0.png" style="float:center; width:35px; height:30px;">
+    		</div>
+    		
+    		
+    		
+        	
+            <!-- <img id="dateView" src="../../img/%EB%AA%A8%EC%95%84%EB%B3%B4%EA%B8%B03.png" style="float :right; width:10px; height:10px;">
             
-            <img id="importanceView" src="../../img/%EB%AA%A8%EC%95%84%EB%B3%B4%EA%B8%B02.png" style="float:right; width:35px; height:30px;">
+            <img id="importanceView" src="../../img/%EB%AA%A8%EC%95%84%EB%B3%B4%EA%B8%B02.png" style="float : right; width:10px; height:10px;"> -->
             
         </div>
 	</div>
@@ -308,7 +349,7 @@ button{
             	<div class="col-sm-3 col-sm-offset-4 frame" style=" margin-top:15px; margin-right:30px;float:right; box-sizing: border-box;">
             	<ul></ul>                
                    <div class="bubbleRight bubbleRight:after bubbleRight:before" class="text text-r" id="talkText1" style="background-color:white !important;" >                   								
-						이거?
+						저장해두고 싶은 카카오톡 내용을 오른쪽 화면에 복사 + 붙여넣기 하고
                    </div><br><br>
             	</div>
             	</div> 
@@ -325,7 +366,7 @@ button{
             		<ul></ul>
                 	<div style="float:right">
                     	<div class="bubbleLeft bubbleLeft:after bubbleLeft:before" class="text text-r" id="talkText2" style="background-color:white !important;" >								
-								ㅋㅋ	
+								아래의 붙여넣기 버튼을 누르면 카카오톡 내용이 저장됩니다.	
                     	</div><br><br>
                   	</div>
            		</div>
@@ -352,13 +393,13 @@ button{
             			<ul></ul>                
                			<div id="kakao_talk_bubble1_<%=i%>" class="bubbleRight bubbleRight:after bubbleRight:before" class="text text-r" id="talkText1" style="background-color:white !important;" >                   								
 							<script>
-								$("#kakao_talk_bubble1_<%=i%>").append("<div id='container"+<%=i%>+"' class='container'></div>")
+								$("#kakao_talk_bubble1_<%=i%>").append("<div id='kakao_box"+<%=i%>+"' class='kakao_box'></div>")
 								
 									var data_content1_1=$("<button>☆</button>");
 									var data_content1_2=$("<button>☆</button>");
 									var data_content1_3=$("<button>☆</buttton>");
 								
-									$("#container"+<%=i%>).append("<a href='#' data-toggle='popover' title='중요도 선택하기' data-content="+
+									$("#kakao_box"+<%=i%>).append("<a href='#' data-toggle='popover' title='중요도 선택하기' data-content="+
 											data_content1_1.html()+
 											data_content1_2.html()+
 											data_content1_3.html()+
@@ -389,13 +430,13 @@ button{
                			<div id="kakao_talk_bubble2_<%=i%>" class="bubbleLeft bubbleLeft:after bubbleLeft:before" class="text text-r" id="talkText2" style="background-color:white !important;" >                  								
 														
 								<script>
-								$("#kakao_talk_bubble2_<%=i%>").append("<div id='container"+<%=i%>+"' class='container'></div>")
+								$("#kakao_talk_bubble2_<%=i%>").append("<div id='kakao_box"+<%=i%>+"' class='kakao_box'></div>")
 								
 									var data_content2_1=$("<button>☆</button>");
 									var data_content2_2=$("<button>☆</button>");
 									var data_content2_3=$("<button>☆</buttton>");
 								
-									$("#container"+<%=i%>).append("<a href='#' data-toggle='popover' title='중요도 선택하기' data-content="+
+									$("#kakao_box"+<%=i%>).append("<a href='#' data-toggle='popover' title='중요도 선택하기' data-content="+
 											data_content2_1.html()+
 											data_content2_2.html()+
 											data_content2_3.html()+
@@ -475,37 +516,19 @@ button{
 					
 					$("#allView").click(function(){
 						
-						location.href="/kakaoAllview.do";
+						location.href="/kakaoAllView.do";
 					
 					
 					
 					});
 					
-					//날짜별 보기를 위한 위젯 생성
-		
-					
-				
-					$("#allView").click(function(){
+					$("#dateBtn").click(function(){
 						
-						$.ajax({
-				
-						url : "/kakaoimportanceView.do",
-					
-						data : {
+						var dateText = $("#dateText").val();
 						
-						},
-						type : "post",
-						success : function(kakaoIdList){
-							
-						},
-					
-						error : function(){
-							console.log("kakaoId ajax 통신 에러");
-						}
-					});
+						location.href="/kakaoDateView.do?dateText="+dateText;	
 					
 					});
-					
 				});
 					
 </script>
@@ -519,12 +542,7 @@ button{
 
 	$(document).ready(function(){
 		
-   		$('[data-toggle="popover"]').popover();  
-	
-		$(data_content2_1).click(function(){
-	
-		console.log("입력은?");
-		});
+   		$('[data-toggle="popover"]').popover();
 		
 		
 	});
@@ -572,8 +590,7 @@ button{
 	// 아이디툴 보여주기 안보여주기
 	 <%
 	 
-	 if(request.getAttribute("is_id_tool")=="1"){%>
-	 		<%System.out.println("여기>>>");%>
+	 if(request.getAttribute("is_id_tool")=="1"){%>	 		
 	 		idToolView();
 	 		
 	 <%}else{%>
