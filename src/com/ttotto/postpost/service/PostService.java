@@ -11,11 +11,11 @@ import com.ttotto.postpost.vo.PostListData;
 
 public class PostService {
 
-	public ArrayList<Post> PostAllList() {
+	public ArrayList<Post> PostAllList(int projNo) {
 		System.out.println("POSTSERVICE의값이야");
 		Connection conn = JDBCTemplate.getConnection();		
 		
-		ArrayList<Post> list = new PostDao().noteAllList(conn);			
+		ArrayList<Post> list = new PostDao().noteAllList(projNo,conn);			
 		
 		System.out.println("postservice의리스트값"+list);
 	

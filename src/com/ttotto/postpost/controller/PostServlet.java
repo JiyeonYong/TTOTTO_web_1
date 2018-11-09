@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ttotto.postpost.service.PostService;
 import com.ttotto.postpost.vo.*;
@@ -35,7 +36,12 @@ public class PostServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("서블릿왔어");
-		ArrayList<Post> list =new PostService().PostAllList();
+		
+		HttpSession session = request.getSession();
+		
+		int projNo = (int)session.getAttribute("projNo");
+		
+		ArrayList<Post> list =new PostService().PostAllList(projNo);
 		
 		System.out.println("list사이즈"+list.size());
 

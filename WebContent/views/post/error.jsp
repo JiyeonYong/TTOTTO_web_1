@@ -8,7 +8,12 @@
 </head>
 <body>
 <script>
-alert("오류가 발생했어요");
+
+alert("해당 프로젝트에 게시물이 없습니다.");
+location.href=window.history.go(-1);
+
+
+
 </script>
 
 </body>

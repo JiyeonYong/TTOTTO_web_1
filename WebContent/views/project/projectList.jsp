@@ -70,7 +70,9 @@
     
 <%
 	
-	ArrayList<Project> list = (ArrayList<Project>)request.getAttribute("projectList");
+	ArrayList<Project> projList = (ArrayList<Project>)request.getAttribute("projectList");
+
+	session.setAttribute("projList",projList);
 
 	//System.out.println(list.get(0).getCreaterId());
 %>
@@ -95,13 +97,13 @@
                 
                 <h4>진행중인 프로젝트</h4>
                 <hr>
-                <%if(list==null){ %>
+                <%if(projList==null){ %>
                 	진행중인 프로젝트가 없습니다.
                 <%}else{%>
                 <ul class="list-group">
-                	<% for(Project p : list) { %>
+                	<% for(Project p : projList) { %>
                 		<li class="list-group-item d-flex justify-content-between align-items-center">
-                		<a href= "views/board/board.jsp?projNo=<%=p.getProjNo()%>"> <%=p.getProjName()%> </a>
+                		<a href= "/views/board/board.jsp?projNo=<%=p.getProjNo()%>"> <%=p.getProjName()%> </a>
                 		<form>
                 			
                 		</form>
@@ -112,7 +114,7 @@
                 	
                 	<%}%>
                 	
-                	</ul>
+                </ul>
 
             </div>
             

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.ArrayList"%>
 <%@ page import="com.ttotto.member.model.vo.*" %>
+<%@ page import = "com.ttotto.project.model.vo.*"
+    import = "java.util.ArrayList" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,6 +25,8 @@
 		int projNo = Integer.parseInt((String)request.getParameter("projNo"));
 	
 		session.setAttribute("projNo",projNo);
+		
+		ArrayList<Project> projList = (ArrayList<Project>)session.getAttribute("projList");
 		
 		Member member1 = (Member)session.getAttribute("member");
 	
@@ -47,12 +51,26 @@
 
 				<br><br>
 			
-				<h4>게시판 목록</h4>
-				<hr>
-				<ul class = "list-group">
-				<!--  include file="/views/board/boardList.jsp"  -->
-				</ul>
+				<h4>진행중인 프로젝트</h4>
+                <hr>
+                <%if(projList==null){ %>
+                	진행중인 프로젝트가 없습니다.
+                <%}else{%>
+                <ul class="list-group">
+                	<% for(Project p : projList) { %>
+                		<li class="list-group-item d-flex justify-content-between align-items-center">
+                		<a href= "/views/board/board.jsp?projNo=<%=p.getProjNo()%>"> <%=p.getProjName()%> </a>
+                		<form>
+                			
+                		</form>
+                   	    </li>
+                	
 
+                		<%} %>
+                	
+                	<%}%>
+                	
+                </ul>
 			</div>
 
 			<!-- postList section-->

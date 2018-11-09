@@ -13,7 +13,7 @@ import com.ttotto.postpost.vo.Post;
 
 public class PostDao {
 
-	public ArrayList<Post> noteAllList(Connection conn) {
+	public ArrayList<Post> noteAllList(int projNo, Connection conn) {
 	
 		Statement stmt = null;
 		
@@ -21,7 +21,7 @@ public class PostDao {
 		
 		ArrayList<Post> list = new ArrayList<Post>();
 		
-		String query = "select * from post_table";
+		String query = "select * from post_table where board_no = '" +projNo+"'";
 		
 		System.out.println("postDao의값"+conn);
 		

@@ -1,13 +1,11 @@
 package com.ttotto.project.model.dao;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import com.ttotto.common.JDBCTemplate;
 import com.ttotto.project.model.vo.Hash;
@@ -54,10 +52,14 @@ public class ProjectDao {
 		int result=0;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
+		Statement stmt = null;
+		
 		String sql1 = "insert into project_table values(projNo.nextval,?,?,sysdate,?,?)";
 		
 		String sql2 = "insert into project_member_table values(projMemberNo.nextVal,"
 				+ "projNo.currVal,?,?,?)";
+		
+		String sql3 = "insert into proj_board_table values(projNo.currVal,projNo.currVal,'안녕')";
 		
 		try {
 			pstmt = conn.prepareStatement(sql1);
@@ -78,7 +80,9 @@ public class ProjectDao {
 			pstmt2.setString(2, memberNickName);	
 			pstmt2.setString(3, newProject.getAddMemberId());
 			
-			result += pstmt2.executeUpdate();
+			stmt=conn.createStatement();
+			
+			stmt.executeUpdate(sql3);
 			
 			
 		} catch (SQLException e) {
@@ -87,6 +91,7 @@ public class ProjectDao {
 		} finally {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(pstmt2);
+			JDBCTemplate.close(stmt);
 		}
 		
 		return result;

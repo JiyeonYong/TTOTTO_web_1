@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.ttotto.board.model.vo.*"
+	import ="com.ttotto.project.model.vo.*"
 	import="java.util.ArrayList"%>
 <%
 	ArrayList<Board> list = (ArrayList<Board>) request.getAttribute("boardList");
