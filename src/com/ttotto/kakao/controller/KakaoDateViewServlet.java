@@ -46,6 +46,7 @@ public class KakaoDateViewServlet extends HttpServlet {
 			view.forward(request, response);
 			
 		}else {
+			response.sendRedirect("views/kakao/kakaoDateFail.jsp");
 			System.out.println("날짜별 카톡 조회에 실패했습니다.");
 		}
 		

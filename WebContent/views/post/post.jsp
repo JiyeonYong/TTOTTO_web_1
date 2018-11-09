@@ -125,12 +125,7 @@
 </head>
     
 <body>
-    
-    <!--header-->
-    <div class="jumbotron text-center" style="margin-bottom: 0; margin-top: 0">
-        <h1>TTO TTO</h1>
-        <p>팀프로젝트 함께 하자!</p> 
-    </div>
+   
 
     
    	<!--header-->

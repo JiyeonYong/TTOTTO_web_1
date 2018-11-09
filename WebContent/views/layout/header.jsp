@@ -101,8 +101,8 @@ body, html {
     
     <!--nav-->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-        <a class="navbar-brand" href="#" style = "margin-left: 10px">
-            <img src = "/img/logo_sample3.png" style = "width:40px; height:40px"/>
+        <a class="navbar-brand" href="/index.jsp" style = "margin-left: 10px">
+            <img src = "/img/TTOTTO_icon.png" style = "width:40px; height:40px"/>
         </a>
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style = "margin-top: 0">
